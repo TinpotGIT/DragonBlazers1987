@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://cqffo4pej471a"]
+
+[ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="1_uteap"]
+
+[node name="Control" type="Control" unique_id=1219179035]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="slot1_HP" type="RichTextLabel" parent="." unique_id=570141335]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.112
+anchor_right = 0.90200007
+anchor_bottom = 0.24100001
+offset_left = -0.120010376
+offset_top = -0.08800125
+offset_right = 0.08798218
+offset_bottom = 0.01599884
+theme_override_fonts/normal_font = ExtResource("1_uteap")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+
+[node name="slot1_HPMAX" type="RichTextLabel" parent="." unique_id=708354367]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.89500004
+anchor_top = 0.112
+anchor_right = 1.023
+anchor_bottom = 0.24100001
+offset_left = -0.120010376
+offset_top = -0.08800125
+offset_right = 0.11199951
+offset_bottom = 0.01599884
+theme_override_fonts/normal_font = ExtResource("1_uteap")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+
+[node name="slot2_HP" type="RichTextLabel" parent="." unique_id=131992037]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.35700002
+anchor_right = 0.90200007
+anchor_bottom = 0.48700002
+offset_left = -0.120010376
+offset_top = 0.03199768
+offset_right = 0.08798218
+offset_bottom = -0.088005066
+theme_override_fonts/normal_font = ExtResource("1_uteap")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+
+[node name="slot2_HPMAX" type="RichTextLabel" parent="." unique_id=1048966047]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.89500004
+anchor_top = 0.35700002
+anchor_right = 1.023
+anchor_bottom = 0.48700002
+offset_left = -0.120010376
+offset_top = 0.03199768
+offset_right = 0.11199951
+offset_bottom = -0.088005066
+theme_override_fonts/normal_font = ExtResource("1_uteap")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+
+[node name="slot3_HP" type="RichTextLabel" parent="." unique_id=123619310]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.60300004
+anchor_right = 0.90200007
+anchor_bottom = 0.73200005
+offset_left = -0.120010376
+offset_top = -0.072006226
+offset_right = 0.08798218
+offset_bottom = 0.031982422
+theme_override_fonts/normal_font = ExtResource("1_uteap")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+
+[node name="slot3_HPMAX" type="RichTextLabel" parent="." unique_id=608192410]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.89500004
+anchor_top = 0.60300004
+anchor_right = 1.023
+anchor_bottom = 0.73200005
+offset_left = -0.120010376
+offset_top = -0.072006226
+offset_right = 0.11199951
+offset_bottom = 0.031982422
+theme_override_fonts/normal_font = ExtResource("1_uteap")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+
+[node name="slot4_HP" type="RichTextLabel" parent="." unique_id=335460165]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.84800005
+anchor_right = 0.90200007
+anchor_bottom = 0.97800004
+offset_left = -0.120010376
+offset_top = 0.04798889
+offset_right = 0.08798218
+offset_bottom = -0.072006226
+theme_override_fonts/normal_font = ExtResource("1_uteap")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+
+[node name="slot4_HPMAX" type="RichTextLabel" parent="." unique_id=21775273]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.89500004
+anchor_top = 0.84800005
+anchor_right = 1.023
+anchor_bottom = 0.97800004
+offset_left = -0.120010376
+offset_top = 0.04798889
+offset_right = 0.11199951
+offset_bottom = -0.072006226
+theme_override_fonts/normal_font = ExtResource("1_uteap")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"

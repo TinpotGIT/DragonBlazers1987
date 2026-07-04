@@ -1,0 +1,301 @@
+[gd_scene format=3 uid="uid://bx38obn351t0q"]
+
+[ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://Final_Fantasy_I_-_NES.ttf" id="1_3efbw"]
+[ext_resource type="Script" uid="uid://ndnje7f535tl" path="res://Scripts/slot_status.gd" id="2_r2h2o"]
+[ext_resource type="Script" uid="uid://d30a2k0vdjmke" path="res://Scripts/slot_name.gd" id="3_qvy1q"]
+[ext_resource type="Script" uid="uid://bhmxfeg8klog" path="res://Scripts/slot_hp.gd" id="4_smewj"]
+[ext_resource type="Script" uid="uid://bfsyddafucmwd" path="res://Scripts/slot_hpmax.gd" id="5_dlh7i"]
+
+[node name="Battle_UI" type="Control" unique_id=682112751]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 224.0
+metadata/_edit_use_anchors_ = true
+
+[node name="slot1_STATUS" type="RichTextLabel" parent="." unique_id=946319697]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.040000003
+anchor_right = 1.0200001
+anchor_bottom = 0.17
+offset_left = 2.8799896
+offset_top = 0.03999901
+offset_right = -0.120025635
+offset_bottom = -0.08000183
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "STATUS"
+script = ExtResource("2_r2h2o")
+
+[node name="slot1_NAME" type="RichTextLabel" parent="." unique_id=277368417]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_right = 1.008
+anchor_bottom = 0.134
+offset_left = -0.120010376
+offset_top = 1.0
+offset_right = -0.04800415
+offset_bottom = -0.016000748
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+script = ExtResource("3_qvy1q")
+
+[node name="slot1_HP" type="RichTextLabel" parent="." unique_id=907209161]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.73
+anchor_top = 0.112
+anchor_right = 0.86300004
+anchor_bottom = 0.24100001
+offset_left = 0.11999512
+offset_top = -0.08800125
+offset_right = 0.07199097
+offset_bottom = 0.01599884
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+horizontal_alignment = 2
+script = ExtResource("4_smewj")
+
+[node name="slot1_HPMAX" type="RichTextLabel" parent="." unique_id=790615686]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.89500004
+anchor_top = 0.112
+anchor_right = 1.023
+anchor_bottom = 0.24100001
+offset_left = -0.120010376
+offset_top = -0.08800125
+offset_right = 0.11199951
+offset_bottom = 0.01599884
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+script = ExtResource("5_dlh7i")
+
+[node name="slot2_STATUS" type="RichTextLabel" parent="." unique_id=509787301]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.112
+anchor_right = 0.90200007
+anchor_bottom = 0.24100001
+offset_left = 2.8799896
+offset_top = 38.912
+offset_right = 30.087982
+offset_bottom = 39.016
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "STATUS"
+script = ExtResource("2_r2h2o")
+number = 1
+
+[node name="slot2_NAME" type="RichTextLabel" parent="." unique_id=79108264]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.112
+anchor_right = 0.90200007
+anchor_bottom = 0.24100001
+offset_left = -0.120010376
+offset_top = 30.911999
+offset_right = 27.087982
+offset_bottom = 31.015999
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+script = ExtResource("3_qvy1q")
+number = 1
+
+[node name="slot2_HP" type="RichTextLabel" parent="." unique_id=320273740]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.35700002
+anchor_right = 0.90200007
+anchor_bottom = 0.48700002
+offset_left = -10.12001
+offset_top = 0.03199768
+offset_right = -9.912018
+offset_bottom = -0.088005066
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+horizontal_alignment = 2
+script = ExtResource("4_smewj")
+number = 1
+
+[node name="slot2_HPMAX" type="RichTextLabel" parent="." unique_id=1894874586]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.89500004
+anchor_top = 0.35700002
+anchor_right = 1.023
+anchor_bottom = 0.48700002
+offset_left = -0.120010376
+offset_top = 0.03199768
+offset_right = 0.11199951
+offset_bottom = -0.088005066
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+script = ExtResource("5_dlh7i")
+number = 1
+
+[node name="slot3_STATUS" type="RichTextLabel" parent="." unique_id=1470629922]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.112
+anchor_right = 0.90200007
+anchor_bottom = 0.24100001
+offset_left = 2.8799896
+offset_top = 93.912
+offset_right = 30.087982
+offset_bottom = 94.016
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "STATUS"
+script = ExtResource("2_r2h2o")
+number = 2
+
+[node name="slot3_NAME" type="RichTextLabel" parent="." unique_id=1125576807]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.112
+anchor_right = 0.90200007
+anchor_bottom = 0.24100001
+offset_left = -0.120010376
+offset_top = 85.912
+offset_right = 27.087982
+offset_bottom = 86.016
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+script = ExtResource("3_qvy1q")
+number = 2
+
+[node name="slot3_HP" type="RichTextLabel" parent="." unique_id=1578959070]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.60300004
+anchor_right = 0.90200007
+anchor_bottom = 0.73200005
+offset_left = -10.12001
+offset_top = -0.072006226
+offset_right = -9.912018
+offset_bottom = 0.031982422
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+horizontal_alignment = 2
+script = ExtResource("4_smewj")
+number = 2
+
+[node name="slot3_HPMAX" type="RichTextLabel" parent="." unique_id=1793563170]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.89500004
+anchor_top = 0.60300004
+anchor_right = 1.023
+anchor_bottom = 0.73200005
+offset_left = -0.120010376
+offset_top = -0.072006226
+offset_right = 0.11199951
+offset_bottom = 0.031982422
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+script = ExtResource("5_dlh7i")
+number = 2
+
+[node name="slot4_STATUS" type="RichTextLabel" parent="." unique_id=1411004071]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.112
+anchor_right = 0.90200007
+anchor_bottom = 0.24100001
+offset_left = 2.8799896
+offset_top = 148.912
+offset_right = 30.087982
+offset_bottom = 149.01599
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "STATUS"
+script = ExtResource("2_r2h2o")
+number = 3
+
+[node name="slot4_NAME" type="RichTextLabel" parent="." unique_id=1696900611]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.112
+anchor_right = 0.90200007
+anchor_bottom = 0.24100001
+offset_left = -0.120010376
+offset_top = 140.912
+offset_right = 27.087982
+offset_bottom = 141.01599
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+script = ExtResource("3_qvy1q")
+number = 3
+
+[node name="slot4_HP" type="RichTextLabel" parent="." unique_id=2055868018]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.77000004
+anchor_top = 0.84800005
+anchor_right = 0.90200007
+anchor_bottom = 0.97800004
+offset_left = -10.12001
+offset_top = 0.04798889
+offset_right = -9.912018
+offset_bottom = -0.072006226
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+horizontal_alignment = 2
+script = ExtResource("4_smewj")
+number = 3
+
+[node name="slot4_HPMAX" type="RichTextLabel" parent="." unique_id=569242393]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.89500004
+anchor_top = 0.84800005
+anchor_right = 1.023
+anchor_bottom = 0.97800004
+offset_left = -0.120010376
+offset_top = 0.04798889
+offset_right = 0.11199951
+offset_bottom = -0.072006226
+theme_override_fonts/normal_font = ExtResource("1_3efbw")
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+script = ExtResource("5_dlh7i")
+number = 3

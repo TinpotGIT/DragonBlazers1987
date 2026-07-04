@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://b3tt1yvckk8l6"]
+
+[ext_resource type="Script" uid="uid://bf6n52rlikuyp" path="res://Scripts/player.gd" id="2_g4t0d"]
+[ext_resource type="Texture2D" uid="uid://c6osg3y7jxen0" path="res://Sprites/Spritesheets/FF1_SANS_FOND_BLEU.png" id="3_o04y6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etk83"]
+atlas = ExtResource("3_o04y6")
+region = Rect2(5, 159, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qumfl"]
+atlas = ExtResource("3_o04y6")
+region = Rect2(158, 159, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yn8b"]
+atlas = ExtResource("3_o04y6")
+region = Rect2(39, 159, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t7yc"]
+atlas = ExtResource("3_o04y6")
+region = Rect2(56, 159, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngcqm"]
+atlas = ExtResource("3_o04y6")
+region = Rect2(192, 159, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws1hi"]
+atlas = ExtResource("3_o04y6")
+region = Rect2(175, 159, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r08cw"]
+atlas = ExtResource("3_o04y6")
+region = Rect2(22, 159, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00287"]
+atlas = ExtResource("3_o04y6")
+region = Rect2(141, 159, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5t7yc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etk83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qumfl")
+}],
+"loop": 0,
+"name": &"walk_down",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yn8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t7yc")
+}],
+"loop": 0,
+"name": &"walk_left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngcqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws1hi")
+}],
+"loop": 0,
+"name": &"walk_right",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r08cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00287")
+}],
+"loop": 0,
+"name": &"walk_up",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yn8b"]
+size = Vector2(0, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h6aav"]
+load_path = "res://.godot/imported/carré.png-3bf142cc45b62289c91e37b17e7f573e.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vefg"]
+size = Vector2(206, 170)
+
+[node name="Map" type="Node2D" unique_id=1433906551]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=105889038]
+z_index = 1
+position = Vector2(126, 110)
+script = ExtResource("2_g4t0d")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=232189378]
+position_smoothing_enabled = true
+
+[node name="Timer" type="Timer" parent="CharacterBody2D" unique_id=2052474736]
+wait_time = 0.4
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=290371362]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_5t7yc")
+animation = &"walk_up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=844722942]
+shape = SubResource("RectangleShape2D_7yn8b")
+
+[node name="up" type="RayCast2D" parent="CharacterBody2D" unique_id=78457533]
+position = Vector2(0, -8)
+target_position = Vector2(0, -8)
+
+[node name="down" type="RayCast2D" parent="CharacterBody2D" unique_id=311335266]
+position = Vector2(0, 8)
+target_position = Vector2(0, 8)
+
+[node name="left" type="RayCast2D" parent="CharacterBody2D" unique_id=1639578704]
+position = Vector2(-8, 0)
+target_position = Vector2(-8, 0)
+
+[node name="right" type="RayCast2D" parent="CharacterBody2D" unique_id=252781229]
+position = Vector2(8, 0)
+target_position = Vector2(8, 0)
+
+[node name="ZONE" type="Area2D" parent="." unique_id=308347798]
+position = Vector2(127, 110)
+
+[node name="Carré" type="Sprite2D" parent="ZONE" unique_id=1175402432]
+modulate = Color(0.24985075, 0.24985075, 0.24985075, 1)
+position = Vector2(0, 7.6293945e-06)
+scale = Vector2(6.4375, 5.3125)
+texture = SubResource("CompressedTexture2D_h6aav")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZONE" unique_id=1912929237]
+shape = SubResource("RectangleShape2D_5vefg")
+
+[connection signal="body_entered" from="ZONE" to="CharacterBody2D" method="_on_body_entered" binds= [[[0, 16], [0, 32], [0, 16]]]]
