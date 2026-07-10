@@ -6,6 +6,8 @@ var enemies = []
 var attacking = false
 var moving = false
 
+var hitMultiplier = [1, 1, 1, 1]
+
 var existingEnemies = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 var turn = 0
@@ -13,7 +15,9 @@ var turn = 0
 var charSelectedID = 0
 @onready var charSelected = GlobalVariables.team_formation[0]
 var currentAction = "None"
+var actionableCharacter = -1
 var actions = []
+var turnFinished = false
 
 var currentSpell
 
@@ -38,6 +42,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 			actionBack()
+			
+	if len(actions) == 4 and turnFinished == false:
+		turnFinished = true
+		playTurn()
 
 func actionBack():
 	var formation = GlobalVariables.team_formation
@@ -186,24 +194,25 @@ func attackChoice():
 func _on_animation_finished_char0(anim_name: StringName) -> void:
 	var char : AnimatedSprite2D = get_node("Char" + str(charSelectedID))
 	char.play(char.idle_name)
-	if anim_name == ("run_animation_" + str(charSelectedID)):
-		showCursor()
-		$CommandUI/Button.grab_focus.call_deferred()
-	if anim_name == ("runback_animation_" + str(charSelectedID)):
-		print("Going to next character")
-		print(currentAction)
-		if currentAction == "Back":
-			print("Next character is previous character")
-			charSelectedID -= 1
-			actions.pop_back()
-		else:
-			print("Next character is not previous character")
-			charSelectedID += 1
-		currentAction = "None"
-		charSelected = GlobalVariables.team_formation[charSelectedID]
-		print(charSelectedID)
-		onCharSelected()
-
+	if turnFinished == false:
+		if anim_name == ("run_animation_" + str(charSelectedID)):
+			showCursor()
+			$CommandUI/Button.grab_focus.call_deferred()
+		if anim_name == ("runback_animation_" + str(charSelectedID)):
+			print("Going to next character")
+			print(currentAction)
+			if currentAction == "Back":
+				print("Next character is previous character")
+				charSelectedID -= 1
+				actions.pop_back()
+			else:
+				print("Next character is not previous character")
+				charSelectedID += 1
+			currentAction = "None"
+			charSelected = GlobalVariables.team_formation[charSelectedID]
+			print(charSelectedID)
+			onCharSelected()
+			
 func _on_enemy_pressed(extra_arg_0: int) -> void:
 	if currentAction == "CastingSpell":
 		actions.append([extra_arg_0, currentSpell])
@@ -316,6 +325,7 @@ func playTurn():
 	var turnOrder: Array = getTurnOrder()
 	for i in range(len(turnOrder)):
 		if turnOrder[i] >= 20:
+			actionableCharacter = i - 20
 			allyAction(turnOrder[i])
 		else:
 			enemyAction(turnOrder[i])
@@ -331,7 +341,22 @@ func targetAlly():
 	else: return 3
 
 func allyAction(i):
-	var status = getStatusAlly(i - 20)
+	match actions[i][1]:
+		0:
+			var equippedWeapon = getWeaponInfo(i - 20)
+			var totalAcc = calcTotalAcc(equippedWeapon, i - 20)
+			var armorStats = getArmorInfo(i - 20)
+			var eva = calcEva(48, i - 20, armorStats[1])
+			var nbHit = calcNbHit(totalAcc, i - 20)
+			for j in range(nbHit):
+				var weakness = isWeak(equippedWeapon[4], actions[i][0])
+				var status = getStatusAlly(i - 20)
+				var baseHitChance = calcBaseChance(status[0], status[1], 168, weakness)
+				var miss = calcMiss(baseHitChance, totalAcc, eva)
+				if miss == true:
+					print("Character missed")
+				else:
+					pass
 
 func enemyAction(i):
 	var status = getStatusEnemy(randi_range(0, 3), i)
@@ -346,43 +371,69 @@ func getStatusEnemy(attacker, target):
 	var targetStatus = GlobalVariables.global_status[GlobalVariables.team_formation[target]]
 	return [attackerStatus, targetStatus]
 
-func isWeak():
-	pass
+func isWeak(weaponTypes: Array, attacker):
+	var addedChance = 0
+	var enemyType = enemies[actions[attacker]][1][10]
+	var enemyWeak = enemies[actions[attacker]][1][11]
+	for i in range(len(weaponTypes)):
+		for j in range(len(enemyType)):
+			if weaponTypes[i] == enemyType[j]:
+				addedChance += 40
+		for k in range(len(enemyWeak)):
+			if weaponTypes[i] == enemyWeak[k]:
+				addedChance += 40
+	return addedChance
 
-func calcBC(attackerStatus, targetStatus, base):
-	var addedValue = 0
+func calcBaseChance(attackerStatus, targetStatus, base, weakness):
+	var chance = base
 	if attackerStatus == "Dark":
-		addedValue -= 40
+		chance -= 40
 	if targetStatus == "Dark":
-		addedValue += 40
-	return base + addedValue
-	
-func calcTotalAcc():
-	pass
+		chance += 40
+	return chance
 
-func calcEva():
-	pass
+func getWeaponInfo(charID):
+	for i in range(len(GlobalVariables.global_is_equipped[charID][0])):
+		if GlobalVariables.global_is_equipped[charID][0][i] == true:
+			var weaponID = GlobalVariables.global_equipment_inventory[charID][0][i]
+			return $ItemMenu.items[weaponID]
 
-func calcMiss():
-	var base_chance = calcBC()
-	var total_acc = calcTotalAcc()
-	var eva = calcEva()
-	var rng = randi_range(0, 200)
-	var opposingChance = (base_chance + total_acc - eva)
-	if opposingChance > 200:
-		opposingChance = 200
-	if rng >= opposingChance:
+func getArmorInfo(charID):
+	var armorStats = [0, 0, []]
+	for i in range(len(GlobalVariables.global_is_equipped[charID][1])):
+		if GlobalVariables.global_is_equipped[charID][1][i] == true:
+			var armorID = GlobalVariables.global_equipment_inventory[charID][1][i]
+			armorStats[0] += $ItemMenu.items[armorID][1][0]
+			armorStats[1] += $ItemMenu.items[armorID][1][1]
+			for j in range(len($ItemMenu.items[armorID][4])):
+				armorStats[2].append($ItemMenu.items[armorID][4][j])
+	return armorStats
+
+func calcTotalAcc(weapon, charID):
+	return weapon[1][1] + GlobalVariables.global_stats[GlobalVariables.team_formation[charID]][5]
+
+func calcEva(baseChance, charID, armorWeight):
+	var charAGL = GlobalVariables.global_stats[GlobalVariables.team_formation[charID]][1]
+	return baseChance + charAGL - armorWeight
+
+func calcMiss(baseChance, totalAcc, eva):
+	var missChance = randi_range(0, 200)
+	var hitChance = (baseChance + totalAcc - eva)
+	if hitChance > 200:
+		hitChance = 200
+	if missChance >= hitChance:
 		return true
 	else: return false
 
-func calcAtt():
-	var att = 0
-	var weaponStats = 0
-	for i in range(4):
-		if GlobalVariables.global_is_equipped[charSelectedID][i] == true:
-			weaponStats = $ItemMenu.items[GlobalVariables.global_equipment_inventory[charSelectedID][0][i]][1]
-			att =  int(GlobalVariables.global_stats[charSelectedID][0]/2) + weaponStats
-	if att == 0 and GlobalVariables.global_allies[charSelectedID] == 2:
-		att =  GlobalVariables.global_levels[charSelectedID] * 2
-	else:
-		att = int(GlobalVariables.global_stats[charSelectedID][0]/2) 
+func calcNbHit(totalAcc, charID):
+	var nbHit = (1 + int(totalAcc/32)) * hitMultiplier[charID]
+	if nbHit < 1:
+		nbHit = 1
+	return nbHit
+
+func calcAtt(weapon, charID):
+	if GlobalVariables.global_allies[GlobalVariables.team_formation[charID]] == 5:
+		return GlobalVariables.global_levels[GlobalVariables.team_formation[charID]] * 2
+	var weaponAtt = weapon[1][0]
+	var finalStr = int(GlobalVariables.global_stats[GlobalVariables.team_formation[charID]][0]/2)
+	return weaponAtt + finalStr
