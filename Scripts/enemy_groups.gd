@@ -5,7 +5,7 @@ signal summon_monsters(chosenMonsters, groupMaxSize, groupSize)
 func _on_choose_monsters(zoneGroups) -> void:
 	var chosenGroup = getRandomGroup(zoneGroups)
 	buildEnemyTeam(enemyGroups[chosenGroup])
-	
+
 func getRandomGroup(zoneGroups):
 	var currentProbability = 0
 	var randInt = randi_range(1, 64)

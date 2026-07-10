@@ -11,6 +11,7 @@ var hitMultiplier = [1, 1, 1, 1]
 var existingEnemies = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 var turn = 0
+var turnOrder = []
 
 var charSelectedID = 0
 @onready var charSelected = GlobalVariables.team_formation[0]
@@ -79,6 +80,12 @@ func createEnemyTeam(chosenMonsters, groupFormation, groupSize):
 			else:
 				enemies.append([chosenMonsters[i][0], enemyData, ""])
 				totalEnemies += 1
+	print("")
+	print("")
+	print(enemies)
+	print("")
+	print("")
+	print("bonjour")
 	showEnemyTeam(groupFormation, maxEnemies)
 
 func showEnemyTeam(groupFormation, maxEnemies):
@@ -227,6 +234,7 @@ func _on_enemy_pressed(extra_arg_0: int) -> void:
 	var anPlayer : AnimationPlayer = get_node("AnimationPlayer0")
 	anPlayer.play("runback_animation_" + str(charSelectedID))
 	char.play(char.run_name)
+	print(actions)
 
 func _on_magic_pressed() -> void:
 	currentAction = "MagicChoice"
@@ -308,7 +316,7 @@ func _on_items_pressed() -> void:
 func getTurnOrder():
 	var enemylist = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 	var allylist = [20, 21, 22, 23]
-	var order = []
+	var order = [] 	
 	while len(order) != 17:
 		if randi_range(0, 1) == 0 and len(enemylist) != 0: order = getRandomCharacter(enemylist, order)
 		elif len(allylist) != 0: order = getRandomCharacter(allylist, order)
@@ -322,13 +330,12 @@ func getRandomCharacter(list: Array, order: Array):
 # turn order : from 0 to 8 small enemies, 9 to 12 medium enemies, 20 to 23 allies
 
 func playTurn():
-	var turnOrder: Array = getTurnOrder()
-	for i in range(len(turnOrder)):
-		if turnOrder[i] >= 20:
-			actionableCharacter = i - 20
-			allyAction(turnOrder[i])
-		else:
-			enemyAction(turnOrder[i])
+	turnOrder = getTurnOrder()
+	if turnOrder[0] >= 20:
+		actionableCharacter = turnOrder[0] - 20
+		allyAction(turnOrder[0])
+	else:
+		enemyAction(turnOrder[0])
 
 func targetAlly():
 	var randAlly = randi_range(1, 8)
@@ -343,23 +350,30 @@ func targetAlly():
 func allyAction(i):
 	match actions[i][1]:
 		0:
-			var equippedWeapon = getWeaponInfo(i - 20)
-			var totalAcc = calcTotalAcc(equippedWeapon, i - 20)
-			var armorStats = getArmorInfo(i - 20)
-			var eva = calcEva(48, i - 20, armorStats[1])
-			var nbHit = calcNbHit(totalAcc, i - 20)
+			var storedHits = []
+			var equippedWeapon = getWeaponInfo(turnOrder[i] - 20)
+			var totalAcc = calcTotalAcc(equippedWeapon, turnOrder[i] - 20)
+			var armorStats = getArmorInfo(turnOrder[i] - 20)
+			var eva = calcEva(48, turnOrder[i] - 20, armorStats[1])
+			var nbHit = calcNbHit(totalAcc, turnOrder[i] - 20)
 			for j in range(nbHit):
 				var weakness = isWeak(equippedWeapon[4], actions[i][0])
-				var status = getStatusAlly(i - 20)
+				var status = getStatusAlly(turnOrder[i] - 20)
 				var baseHitChance = calcBaseChance(status[0], status[1], 168, weakness)
 				var miss = calcMiss(baseHitChance, totalAcc, eva)
 				if miss == true:
 					print("Character missed")
 				else:
-					pass
+					storedHits.append(calcAtt(equippedWeapon, turnOrder[i] - 20))
+			
 
 func enemyAction(i):
 	var status = getStatusEnemy(randi_range(0, 3), i)
+
+func allyAttack(hits, target):
+	#if enemies[target][1][0] == 0:
+	#	var newTarget = randi_range()
+	pass
 
 func getStatusAlly(attacker):
 	var attackerStatus = GlobalVariables.global_status[GlobalVariables.team_formation[attacker]]
