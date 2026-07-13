@@ -13,7 +13,7 @@ func getRandomGroup(zoneGroups):
 		currentProbability += zoneGroups[i][1]
 		if currentProbability >= randInt:
 			return zoneGroups[i][0]
-	
+
 func buildEnemyTeam(chosenGroup):
 	var enemyTeam = []
 	var enemyList = []
@@ -86,7 +86,7 @@ func indexCleanup(formation, count, cleanTeam, i, order, max, opposite):
 	
 var enemyGroups = [
 	# 0 - Imps
-	[[0, 1, 3], [1, 1, 5], [116, 1, 3]],
+	[[0, 1, 3], [1, 1, 5], [116, 1, 1]],
 	# 1 - skelton
 	[[11, 2, 4]],
 	# 2 - GrIMP - wolf - grey wolf - imp

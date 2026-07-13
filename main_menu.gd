@@ -128,13 +128,13 @@ func newSave():
 			save[str(i)]["Id"] = 0
 			save[str(i)]["Stats"]["HP_MAX"] = 35
 			save[str(i)]["Stats"]["HP"] = 35
-			save[str(i)]["Stats"]["STR"] = 20
+			save[str(i)]["Stats"]["STR"] = 80
 			save[str(i)]["Stats"]["AGL"] = 5
 			save[str(i)]["Stats"]["INT"] = 1
 			save[str(i)]["Stats"]["VIT"] = 10
 			save[str(i)]["Stats"]["LUCK"] = 5
 			save[str(i)]["Stats"]["MDEF"] = 15
-			save[str(i)]["Stats"]["ACC"] = 5
+			save[str(i)]["Stats"]["ACC"] = 64
 			save[str(i)]["WeaponInventory"][0] = 1
 			save[str(i)]["ArmorInventory"][1] = 2
 		elif GlobalVariables.global_allies[i] == 1:

@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://cj2pg185bajwb"]
 
-[ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="1_1vweq"]
+[ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://Final_Fantasy_I_-_NES.ttf" id="1_1vweq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vweq"]
 content_margin_left = 4.0

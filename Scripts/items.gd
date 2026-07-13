@@ -5,7 +5,7 @@ extends Node2D
 # STATS SI ARMURE : [DEF, WEIGHT], RESIST
 
 var items = [
-	["", [0,0,0], 0, 0, ["None"], "res://Sprites/Icons/black.png"],
+	["", [0,0,0], 0, 0, ["None"], [], "res://Sprites/Icons/black.png"],
 	["Bois", [12, 0, 10], 0, 10, ["None"],["NI", "BB"], "res://Sprites/Icons/nunchuck.png"],
 	["Fer", [16, 0, 10], 0, 200, ["None"],["NI","BB"], "res://Sprites/Icons/nunchuck.png"],
 	["Petite", [5, 10, 5], 0, 5, ["None"],["FI","TH","RM", "BM"], "res://Sprites/Icons/dagger.png"],

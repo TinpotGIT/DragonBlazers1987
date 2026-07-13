@@ -2,7 +2,7 @@ extends Node2D
 
 signal choose_monsters(groupNum)
 
-var enemies = []
+var enemies = [[], [], [], [], [], [], [], [], [], [], [], [], []]
 var attacking = false
 var moving = false
 
@@ -19,6 +19,15 @@ var currentAction = "None"
 var actionableCharacter = -1
 var actions = []
 var turnFinished = false
+
+var enemyInfo = [
+	[0, ""], [0, ""], [0, ""], [0, ""], [0, ""], [0, ""], [0, ""], [0, ""], [0, ""], 
+	[0, ""], [0, ""], [0, ""], [0, ""]
+	]
+
+var allyInfo =  [
+	[0, ""], [0, ""], [0, ""], [0, ""]
+]
 
 var currentSpell
 
@@ -70,22 +79,35 @@ func actionBack():
 		$CommandUI/Button.grab_focus.call_deferred()
 
 func createEnemyTeam(chosenMonsters, groupFormation, groupSize):
+	print("the chosen monsters are : ")
+	print(chosenMonsters)
+	print("")
+	var enemyCountSmall = 0
+	var enemyCountMedium = 9
+	var chosenCount = 0
 	var totalEnemies = 0
 	var maxEnemies = getMaxEnemies(groupFormation)
+	print(maxEnemies)
 	for i in range(len(chosenMonsters)):
 		var enemyData = getEnemyData(chosenMonsters[i])
 		for j in range(len(chosenMonsters[i])):
 			if (totalEnemies > (maxEnemies[0] + maxEnemies[1]) ):
 				print("There are already too many enemies!")
 			else:
-				enemies.append([chosenMonsters[i][0], enemyData, ""])
+				if chosenMonsters[i][0] >= 62:
+					chosenCount = enemyCountMedium
+					enemyCountMedium += 1
+				else: 
+					chosenCount = enemyCountSmall
+					enemyCountSmall += 1
+				enemies[chosenCount] = [chosenMonsters[i][0], enemyData, ""]
 				totalEnemies += 1
+				print(totalEnemies)
 	print("")
 	print("")
 	print(enemies)
 	print("")
 	print("")
-	print("bonjour")
 	showEnemyTeam(groupFormation, maxEnemies)
 
 func showEnemyTeam(groupFormation, maxEnemies):
@@ -98,23 +120,24 @@ func showEnemyTeam(groupFormation, maxEnemies):
 	print("The formation is : " + str(groupFormation))
 	print(enemies)
 	for i in range(len(enemies)):
-		if enemies[i][0] >= 62 and enemyName != "enemyM_":
-			enemyName = "enemyM_"
-			max = maxEnemies[1]
-			smallCounter = enemyCounter
-			enemyCounter = mediumCounter
-		elif enemies[i][0] < 62 and enemyName != "enemyS_":
-			enemyName = "enemyS_"
-			max = maxEnemies[0]
-			mediumCounter = enemyCounter
-			enemyCounter = smallCounter
-		if enemyCounter < max:
-			var enemy = get_node(enemyName + str(enemyCounter))
-			enemy.show()
-			print("Showed " + enemyName + str(enemyCounter))
-			enemy.texture_normal = load(enemies[i][1][15])
-			enemyCounter += 1
-		else: print("Maximum amount of " + enemyName + " reached.")
+		if enemies[i] != []:
+			if enemies[i][0] >= 62 and enemyName != "enemyM_":
+				enemyName = "enemyM_"
+				max = maxEnemies[1]
+				smallCounter = enemyCounter
+				enemyCounter = mediumCounter
+			elif enemies[i][0] < 62 and enemyName != "enemyS_":
+				enemyName = "enemyS_"
+				max = maxEnemies[0]
+				mediumCounter = enemyCounter
+				enemyCounter = smallCounter
+			if enemyCounter < max:
+				var enemy = get_node(enemyName + str(enemyCounter))
+				enemy.show()
+				print("Showed " + enemyName + str(enemyCounter))
+				enemy.texture_normal = load(enemies[i][1][15])
+				enemyCounter += 1
+			else: print("Maximum amount of " + enemyName + " reached.")
 	changeFormationFocus(groupFormation)
 
 func getMaxEnemies(groupFormation):
@@ -306,8 +329,8 @@ func showInventory():
 	for i in range(4):
 		get_node("ItemMenu/UI/W_" + str(i)).text = $ItemMenu.items[weapons[i]][0]
 		get_node("ItemMenu/UI/A_" + str(i)).text = $ItemMenu.items[armor[i]][0]
-		get_node("ItemMenu/UI/IW_" + str(i)).texture = load($ItemMenu.items[weapons[i]][5])
-		get_node("ItemMenu/UI/IA_" + str(i)).texture = load($ItemMenu.items[armor[i]][5])
+		get_node("ItemMenu/UI/IW_" + str(i)).texture = load($ItemMenu.items[weapons[i]][6])
+		get_node("ItemMenu/UI/IA_" + str(i)).texture = load($ItemMenu.items[armor[i]][6])
 
 func _on_items_pressed() -> void:
 	currentAction = "InventoryChoice"
@@ -318,25 +341,73 @@ func getTurnOrder():
 	var allylist = [20, 21, 22, 23]
 	var order = [] 	
 	while len(order) != 17:
-		if randi_range(0, 1) == 0 and len(enemylist) != 0: order = getRandomCharacter(enemylist, order)
-		elif len(allylist) != 0: order = getRandomCharacter(allylist, order)
-		else: return order
+		print(len(enemylist))
+		print(allylist)
+		if randi_range(0, 1) == 0 and len(enemylist) != 0: 
+			order = getRandomCharacter(enemylist, order)
+		elif len(allylist) != 0: 
+			order = getRandomCharacter(allylist, order)
+		else: 
+			return order
 
 func getRandomCharacter(list: Array, order: Array):
 	var choix = randi_range(0, len(list) - 1)
 	order.append(choix)
 	list.pop_at(choix)
+	return order
 
 # turn order : from 0 to 8 small enemies, 9 to 12 medium enemies, 20 to 23 allies
 
 func playTurn():
-	turnOrder = getTurnOrder()
-	if turnOrder[0] >= 20:
-		actionableCharacter = turnOrder[0] - 20
-		allyAction(turnOrder[0])
-	else:
-		enemyAction(turnOrder[0])
+	allyAction(0)
+	name = getActionName(actions[0][1])
+	showInfo(20, name)
+	#turnOrder = getTurnOrder()
+	#var name = ""
+	#if turnOrder[0] >= 20:
+	#	actionableCharacter = turnOrder[0] - 20
+	#	allyAction(turnOrder[0])
+	#	name = getActionName(actions[turnOrder[0]][1])
+	#else:
+	#	enemyAction(turnOrder[0])
+	#	name = getActionName(0)
+	#turnOrder.pop_front()
+	#if len(turnOrder) != 0:
+	#	$ActionBuffer.start()
 
+func getActionName(actionID):
+	match actionID:
+		0: 
+			return "ATTACKS"
+		_:
+			return "IDK"
+	
+
+func showInfo(characterID, actionName):
+	$BattleInfo.visible = true
+	$EnemiesUI.z_index = -1
+	$CommandUI.visible = false
+	var charName = ""
+	if characterID >= 20:
+		charName = GlobalVariables.global_names[GlobalVariables.team_formation[characterID - 20]]
+		infoAllyAction()
+	else: 
+		charName = $EnemiesUI.Names[enemies[characterID][0]]
+		infoEnemyAction()
+	$BattleInfo/InfoUI_Bar/Text.text = charName + " " + actionName
+
+func infoEnemyAction():
+	pass
+	
+func infoAllyAction():
+	for i in range(len(allyInfo)):
+		if enemyInfo[i][0] > 0:
+			if i >= 11:
+				get_node("BattleInfo/InfoUI_" + str(i - 8)).visible = true
+			elif i >= 9:
+				get_node("BattleInfo/InfoUI_" + str(i - 9)).visible = true
+			else:
+				get_node("BattleInfo/InfoUI_" + str(i)).visible = true
 func targetAlly():
 	var randAlly = randi_range(1, 8)
 	if randAlly <= 4:
@@ -351,33 +422,101 @@ func allyAction(i):
 	match actions[i][1]:
 		0:
 			var storedHits = []
-			var equippedWeapon = getWeaponInfo(turnOrder[i] - 20)
-			var totalAcc = calcTotalAcc(equippedWeapon, turnOrder[i] - 20)
-			var armorStats = getArmorInfo(turnOrder[i] - 20)
-			var eva = calcEva(48, turnOrder[i] - 20, armorStats[1])
-			var nbHit = calcNbHit(totalAcc, turnOrder[i] - 20)
+			var equippedWeapon = getWeaponInfo(i)
+			var totalAcc = calcTotalAcc(equippedWeapon, i)
+			var armorStats = getArmorInfo(i)
+			var eva = calcEva(48, i, armorStats[1])
+			var nbHit = calcNbHit(totalAcc, i)
 			for j in range(nbHit):
-				var weakness = isWeak(equippedWeapon[4], actions[i][0])
-				var status = getStatusAlly(turnOrder[i] - 20)
+				var weakness = isWeak(equippedWeapon, actions[i][0])
+				var status = getStatusAlly(i)
 				var baseHitChance = calcBaseChance(status[0], status[1], 168, weakness)
 				var miss = calcMiss(baseHitChance, totalAcc, eva)
 				if miss == true:
 					print("Character missed")
 				else:
-					storedHits.append(calcAtt(equippedWeapon, turnOrder[i] - 20))
-			
+					storedHits.append(calcAtt(equippedWeapon, i))
+			allyAttack(storedHits, actions[i][0])
+			print(enemyInfo)
 
 func enemyAction(i):
-	var status = getStatusEnemy(randi_range(0, 3), i)
+	var target = targetAlly()
+	var storedHits = []
+	var nbHit = enemies[i][1][3]
+	for j in range(nbHit):
+		var status = getStatusEnemy(i, target)
+		var baseHitChance = calcBaseChance(status[0], status[1], 168, 0)
+		var miss = calcMiss(baseHitChance, enemies[i][1][2], enemies[i][1][7])
+		if miss == true:
+			print("Enemy missed")
+		else:
+			print(enemies[i])
+			print(enemies[i][1][0])
+			storedHits.append(enemies[i][1][1])
+	enemyAttack(storedHits, target)
+	print(storedHits)
+	print(allyInfo)
+
+func getNewAlly():
+	var targets = [0, 1, 2, 3]
+	var newTarget = randi_range(0, 3)
+	if GlobalVariables.global_hp[GlobalVariables.team_formation[newTarget]][0] <= 0:
+		while GlobalVariables.global_hp[GlobalVariables.team_formation[newTarget]][0] <= 0:
+			print("Ally is already dead, searching for new ally")
+			targets.pop_at(newTarget)
+			newTarget = randfn(0, len(targets))
+			if targets == []:
+				print("no ally alive left")
+				return -1
+	return targets[newTarget]
+
+func enemyStatusAttack(baseChance, enemy, target):
+	var targetMagicDef = GlobalVariables.global_stats[GlobalVariables.team_formation[target]][6]
+	var allyResistance = GlobalVariables.global_resistances[GlobalVariables.team_formation[target]]
 
 func allyAttack(hits, target):
-	#if enemies[target][1][0] == 0:
-	#	var newTarget = randi_range()
-	pass
+	for i in range(len(hits)):
+		if enemies[target][1][0] <= 0:
+			print("target is already dead, searching for new target")
+			target = getNewEnemy()
+			if target != -1:
+				enemies[target][1][0] -= hits[i]
+				enemyInfo[target][0] += hits[i]
+		else:
+			enemies[target][1][0] -= hits[i]
+			enemyInfo[target][0] += hits[i]
+
+func enemyAttack(hits, target):
+	for i in range(len(hits)):
+		var targetedAlly = GlobalVariables.team_formation[target]
+		var allyHp = GlobalVariables.global_hp[targetedAlly]
+		if allyHp[0] <= 0:
+			print("target is already dead, searching for new target")
+			target = getNewAlly()
+			if target != -1:
+				allyHp[0] -= hits[i]
+				allyInfo[target][0] += hits[i]
+		else:
+			allyHp[0] -= hits[i]
+			allyInfo[target][0] += hits[i]
+
+func getNewEnemy():
+	var targets = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+	var newTarget = randi_range(0, 12)
+	if enemies[newTarget] == [] or enemies[newTarget][1][0] <= 0:
+		while enemies[newTarget] == [] or enemies[newTarget][1][0] <= 0:
+			print("target is already dead, searching for new target")
+			targets.pop_at(newTarget)
+			print("New target is : " + str(newTarget))
+			newTarget = randi_range(0, len(targets))
+			if targets == []:
+				print("no target left found")
+				return -1
+	return targets[newTarget]
 
 func getStatusAlly(attacker):
 	var attackerStatus = GlobalVariables.global_status[GlobalVariables.team_formation[attacker]]
-	var targetStatus = enemies[actions[attacker]][2]
+	var targetStatus = enemies[actions[attacker][0]][2]
 	return [attackerStatus, targetStatus]
 
 func getStatusEnemy(attacker, target):
@@ -385,10 +524,13 @@ func getStatusEnemy(attacker, target):
 	var targetStatus = GlobalVariables.global_status[GlobalVariables.team_formation[target]]
 	return [attackerStatus, targetStatus]
 
-func isWeak(weaponTypes: Array, attacker):
+func isWeak(weapon: Array, target):
+	if weapon == []:
+		return 0
+	var weaponTypes = weapon[4]
 	var addedChance = 0
-	var enemyType = enemies[actions[attacker]][1][10]
-	var enemyWeak = enemies[actions[attacker]][1][11]
+	var enemyType = enemies[target][1][10]
+	var enemyWeak = enemies[target][1][11]
 	for i in range(len(weaponTypes)):
 		for j in range(len(enemyType)):
 			if weaponTypes[i] == enemyType[j]:
@@ -404,13 +546,15 @@ func calcBaseChance(attackerStatus, targetStatus, base, weakness):
 		chance -= 40
 	if targetStatus == "Dark":
 		chance += 40
-	return chance
+	return chance + weakness
 
 func getWeaponInfo(charID):
-	for i in range(len(GlobalVariables.global_is_equipped[charID][0])):
-		if GlobalVariables.global_is_equipped[charID][0][i] == true:
-			var weaponID = GlobalVariables.global_equipment_inventory[charID][0][i]
+	var formation = GlobalVariables.team_formation
+	for i in range(len(GlobalVariables.global_is_equipped[formation[charID]][0])):
+		if GlobalVariables.global_is_equipped[formation[charID]][0][i] == true:
+			var weaponID = GlobalVariables.global_equipment_inventory[formation[charID]][0][i]
 			return $ItemMenu.items[weaponID]
+	return []
 
 func getArmorInfo(charID):
 	var armorStats = [0, 0, []]
@@ -424,7 +568,12 @@ func getArmorInfo(charID):
 	return armorStats
 
 func calcTotalAcc(weapon, charID):
-	return weapon[1][1] + GlobalVariables.global_stats[GlobalVariables.team_formation[charID]][5]
+	var weaponAtt = 0
+	print(weapon)
+	print(charID)
+	if weapon != []:
+		weaponAtt = weapon[1][1]
+	return weaponAtt + GlobalVariables.global_stats[GlobalVariables.team_formation[charID]][5]
 
 func calcEva(baseChance, charID, armorWeight):
 	var charAGL = GlobalVariables.global_stats[GlobalVariables.team_formation[charID]][1]
@@ -443,11 +592,18 @@ func calcNbHit(totalAcc, charID):
 	var nbHit = (1 + int(totalAcc/32)) * hitMultiplier[charID]
 	if nbHit < 1:
 		nbHit = 1
+	print("Character is going to hit " + str(nbHit) + " times.")
 	return nbHit
 
 func calcAtt(weapon, charID):
 	if GlobalVariables.global_allies[GlobalVariables.team_formation[charID]] == 5:
 		return GlobalVariables.global_levels[GlobalVariables.team_formation[charID]] * 2
-	var weaponAtt = weapon[1][0]
+	var weaponAtt = 0
+	if weapon != []:
+		weaponAtt = weapon[1][0]
 	var finalStr = int(GlobalVariables.global_stats[GlobalVariables.team_formation[charID]][0]/2)
 	return weaponAtt + finalStr
+
+
+func _on_action_buffer_timeout() -> void:
+	pass

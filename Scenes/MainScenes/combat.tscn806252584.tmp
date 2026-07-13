@@ -2058,12 +2058,7 @@ texture_filter = 1
 position = Vector2(-15, 215)
 texture = ExtResource("16_q76jo")
 
-[node name="ActionBuffer" type="Timer" parent="." unique_id=723663703]
-wait_time = 0.5
-one_shot = true
-
 [connection signal="choose_monsters" from="." to="Background" method="_on_choose_monsters"]
 [connection signal="summon_monsters" from="Background" to="." method="_on_summon_monsters"]
 [connection signal="timeout" from="Timer" to="." method="_on_actiontimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer0" to="." method="_on_animation_finished_char0"]
-[connection signal="timeout" from="ActionBuffer" to="." method="_on_action_buffer_timeout"]
