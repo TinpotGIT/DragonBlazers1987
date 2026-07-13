@@ -5,4 +5,4 @@ func _ready() -> void:
 	focus_entered.connect(main._on_button_focus_entered.bind(get_path()))
 	pressed.connect(main._on_attack_pressed)
 	grab_focus.call_deferred()
-	print("connected attack")
+	print("AAAAAAAAAAAAAAAAAAAAA LUIGI LE FOU DU METRO")

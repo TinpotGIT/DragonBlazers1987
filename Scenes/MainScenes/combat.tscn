@@ -555,7 +555,6 @@ texture = ExtResource("2_mk7sy")
 script = ExtResource("3_t8s0f")
 
 [node name="BattleInfo" type="Node2D" parent="." unique_id=220624530]
-visible = false
 
 [node name="InfoUI_0" type="TileMapLayer" parent="BattleInfo" unique_id=1529021053]
 visible = false
@@ -901,6 +900,7 @@ flat = true
 script = ExtResource("13_srn1p")
 
 [node name="MagicMenu" type="Node2D" parent="." unique_id=2020343639]
+visible = false
 script = ExtResource("11_vrhm1")
 
 [node name="UI" type="TileMapLayer" parent="MagicMenu" unique_id=1441708783]
@@ -1519,6 +1519,7 @@ script = ExtResource("13_31olt")
 spellInfo = [7, 2]
 
 [node name="ItemMenu" type="Node2D" parent="." unique_id=270786390]
+visible = false
 script = ExtResource("7_oddcx")
 
 [node name="UI" type="TileMapLayer" parent="ItemMenu" unique_id=609727826]

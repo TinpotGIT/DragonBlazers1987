@@ -21,10 +21,11 @@ GlobalVariables="*uid://cixvm0tooalt3"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=560
+window/size/viewport_width=256
+window/size/viewport_height=224
+window/size/borderless=true
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-window/stretch/scale=2.5
 
 [input]
 

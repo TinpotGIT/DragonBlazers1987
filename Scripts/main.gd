@@ -91,23 +91,22 @@ func createEnemyTeam(chosenMonsters, groupFormation, groupSize):
 	for i in range(len(chosenMonsters)):
 		var enemyData = getEnemyData(chosenMonsters[i])
 		for j in range(len(chosenMonsters[i])):
-			if (totalEnemies > (maxEnemies[0] + maxEnemies[1]) ):
-				print("There are already too many enemies!")
-			else:
-				if chosenMonsters[i][0] >= 62:
+			if chosenMonsters[i][0] >= 62:
+				if (enemyCountMedium-9 >= maxEnemies[1]):
+					print("There are already too many enemies!")
+				else:
 					chosenCount = enemyCountMedium
 					enemyCountMedium += 1
-				else: 
+					enemies[chosenCount] = [chosenMonsters[i][0], enemyData, ""]
+					totalEnemies += 1
+			else:
+				if (enemyCountSmall >= maxEnemies[0]):
+					print("There are already too many enemies!")
+				else:
 					chosenCount = enemyCountSmall
 					enemyCountSmall += 1
-				enemies[chosenCount] = [chosenMonsters[i][0], enemyData, ""]
-				totalEnemies += 1
-				print(totalEnemies)
-	print("")
-	print("")
-	print(enemies)
-	print("")
-	print("")
+					enemies[chosenCount] = [chosenMonsters[i][0], enemyData, ""]
+					totalEnemies += 1
 	showEnemyTeam(groupFormation, maxEnemies)
 
 func showEnemyTeam(groupFormation, maxEnemies):
@@ -135,7 +134,7 @@ func showEnemyTeam(groupFormation, maxEnemies):
 				var enemy = get_node(enemyName + str(enemyCounter))
 				enemy.show()
 				print("Showed " + enemyName + str(enemyCounter))
-				enemy.texture_normal = load(enemies[i][1][15])
+				enemy.texture_normal = load(enemies[i][1][16])
 				enemyCounter += 1
 			else: print("Maximum amount of " + enemyName + " reached.")
 	changeFormationFocus(groupFormation)
@@ -400,8 +399,11 @@ func infoEnemyAction():
 	pass
 	
 func infoAllyAction():
+	print(allyInfo)
+	print(len(allyInfo))
 	for i in range(len(allyInfo)):
 		if enemyInfo[i][0] > 0:
+			print("pomme")
 			if i >= 11:
 				get_node("BattleInfo/InfoUI_" + str(i - 8)).visible = true
 			elif i >= 9:
@@ -475,10 +477,16 @@ func enemyStatusAttack(baseChance, enemy, target):
 	var allyResistance = GlobalVariables.global_resistances[GlobalVariables.team_formation[target]]
 
 func allyAttack(hits, target):
+	var targets = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 	for i in range(len(hits)):
 		if enemies[target][1][0] <= 0:
+			var newTarget = targets.pick_random()
+			print("Available targets : " + str(targets))
 			print("target is already dead, searching for new target")
-			target = getNewEnemy()
+			print("New target is : " + str(newTarget))
+			var newEnemy = getNewEnemy(targets, newTarget)
+			target = newEnemy[0]
+			targets = newEnemy[1]
 			if target != -1:
 				enemies[target][1][0] -= hits[i]
 				enemyInfo[target][0] += hits[i]
@@ -500,19 +508,21 @@ func enemyAttack(hits, target):
 			allyHp[0] -= hits[i]
 			allyInfo[target][0] += hits[i]
 
-func getNewEnemy():
-	var targets = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-	var newTarget = randi_range(0, 12)
+func getNewEnemy(targets, newTarget):
+	print("Target is : " + str(newTarget))
 	if enemies[newTarget] == [] or enemies[newTarget][1][0] <= 0:
 		while enemies[newTarget] == [] or enemies[newTarget][1][0] <= 0:
 			print("target is already dead, searching for new target")
-			targets.pop_at(newTarget)
+			print("Target is : " + str(newTarget))
+			print("Target found : " + str(targets.find(newTarget)))
+			print("Target list before pop : " + str(targets))
+			targets.pop_at(targets.find(newTarget))
 			print("New target is : " + str(newTarget))
 			newTarget = randi_range(0, len(targets))
 			if targets == []:
 				print("no target left found")
-				return -1
-	return targets[newTarget]
+				return [-1, targets]
+	return [newTarget, targets]
 
 func getStatusAlly(attacker):
 	var attackerStatus = GlobalVariables.global_status[GlobalVariables.team_formation[attacker]]

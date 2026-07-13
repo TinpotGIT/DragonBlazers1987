@@ -42,13 +42,15 @@ func cleanEnemyTeam(enemyList):
 		print(formation)
 		var cleanup = []
 		cleanTeam.append(enemyList[i])
-		if enemyList[i][0] < 62: cleanup = indexCleanup(formation, count, cleanTeam, i, 3, 9, 1)
-		else: cleanup = indexCleanup(formation, count, cleanTeam, i, 1, 4, 3)
+		if enemyList[i][0] < 62: 
+			cleanup = indexCleanup(formation, count, cleanTeam, i, 3, 9, 1)
+		else: 
+			cleanup = indexCleanup(formation, count, cleanTeam, i, 1, 4, 3)
 		formation = cleanup[0]
 		cleanTeam = cleanup[1]
 		count += len(enemyList[i])
 	
-		if formation == 1 and count >= 9:
+		if formation == 1 and count >= 7:
 			if enemyList[i][0] > 62:
 				cleanTeam.pop_back()
 			return [1, cleanTeam]
@@ -60,11 +62,14 @@ func cleanEnemyTeam(enemyList):
 				while(len(cleanTeam[i]) > 2):
 					cleanTeam[i].pop_back()
 			return [2, cleanTeam]
-		elif formation == 3 and count >= 4:
+		elif formation == 3 and count >= 2:
 			if enemyList[i][0] <= 62:
 				cleanTeam.pop_back()
 			return [3, cleanTeam]
 		elif i == (len(enemyList) - 1):
+			print("LA TEAAAAM : ")
+			print(formation)
+			print(cleanTeam)
 			return [formation, cleanTeam]
 
 func indexCleanup(formation, count, cleanTeam, i, order, max, opposite):
@@ -79,6 +84,10 @@ func indexCleanup(formation, count, cleanTeam, i, order, max, opposite):
 		formation = opposite 
 		while(len(cleanTeam[i]) > max):
 			cleanTeam[i].pop_back()
+	print("Formation et equipe: ")
+	print(formation)
+	print(cleanTeam)
+	print(" ")
 	return [formation, cleanTeam]
 ## REGLES: 
 ## PETITS PUIS GRANDS.
@@ -86,7 +95,7 @@ func indexCleanup(formation, count, cleanTeam, i, order, max, opposite):
 	
 var enemyGroups = [
 	# 0 - Imps
-	[[0, 1, 3], [1, 1, 5], [116, 1, 1]],
+	[[0, 5, 5], [1, 2, 2], [116, 1, 1]],
 	# 1 - skelton
 	[[11, 2, 4]],
 	# 2 - GrIMP - wolf - grey wolf - imp
