@@ -11,5 +11,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if visible:
 		get_parent().existingEnemies[id] = 1
-	if get_parent().enemies[id] != [] and get_parent().enemies[id][1][0] <= 0:
+	if get_parent().enemies[id] == [] or get_parent().enemies[id][1][0] <= 0:
 		visible = false

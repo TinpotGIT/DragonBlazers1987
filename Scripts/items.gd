@@ -88,3 +88,12 @@ var items = [
 	["Guerison", [6, 3], 20, 20000, ["None"], ["KN", "NI"], "res://Sprites/Icons/helmet.png"],
 	["Ruban", [1, 1], 0, 2, ["Status","Psn","Stn","Time","Death","Fire","Ice","Thdr","Earth"], ["FI", "TH", "BB", "RM","WM","BW"], "res://Sprites/Icons/ruban.png"]
 ]
+
+var weaponNames = [
+	"",
+	"wooden_nunchuck",
+	"iron_nunchuck",
+	"small_dagger",
+	"large_dagger",
+	"silver_dagger",
+]
