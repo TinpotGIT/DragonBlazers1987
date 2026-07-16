@@ -9,4 +9,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	text = str(int(GlobalVariables.global_hp[GlobalVariables.team_formation[number]][1]))
+	text = str(int(GlobalVariables.global_hp[GlobalVariables.team_formation[number]][0]))
