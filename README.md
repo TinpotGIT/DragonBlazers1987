@@ -11,4 +11,4 @@ Honestly, you can instantly tell that I didn't use AI due to how primitive a lot
 
 Language : GDScript
 Godot version : 4.7
-Author : Tinpot and Another
+Author : Tinpot and Another.
