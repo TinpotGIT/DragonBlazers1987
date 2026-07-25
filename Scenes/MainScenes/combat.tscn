@@ -95,6 +95,10 @@ region = Rect2(39, 55, 16, 24)
 atlas = ExtResource("3_cn83p")
 region = Rect2(5, 55, 16, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pts48"]
+atlas = ExtResource("3_cn83p")
+region = Rect2(107, 65, 24, 14)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3aqv"]
 atlas = ExtResource("3_cn83p")
 region = Rect2(5, 55, 16, 24)
@@ -114,6 +118,10 @@ region = Rect2(39, 105, 16, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtcjb"]
 atlas = ExtResource("3_cn83p")
 region = Rect2(5, 105, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk52l"]
+atlas = ExtResource("3_cn83p")
+region = Rect2(107, 113, 24, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bo53"]
 atlas = ExtResource("3_cn83p")
@@ -135,6 +143,10 @@ region = Rect2(39, 80, 16, 24)
 atlas = ExtResource("3_cn83p")
 region = Rect2(5, 80, 16, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4bs5"]
+atlas = ExtResource("3_cn83p")
+region = Rect2(107, 89, 24, 15)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0uvdl"]
 atlas = ExtResource("3_cn83p")
 region = Rect2(5, 80, 16, 24)
@@ -154,6 +166,10 @@ region = Rect2(39, 30, 16, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gdbkx"]
 atlas = ExtResource("3_cn83p")
 region = Rect2(5, 30, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejam4"]
+atlas = ExtResource("3_cn83p")
+region = Rect2(107, 42, 24, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cv1yu"]
 atlas = ExtResource("3_cn83p")
@@ -175,6 +191,10 @@ region = Rect2(22, 3, 16, 26)
 atlas = ExtResource("3_cn83p")
 region = Rect2(5, 3, 16, 26)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ky2tc"]
+atlas = ExtResource("3_cn83p")
+region = Rect2(107, 17, 24, 12)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_p5pfc"]
 atlas = ExtResource("3_cn83p")
 region = Rect2(5, 3, 16, 26)
@@ -194,6 +214,10 @@ region = Rect2(39, 130, 16, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_c1r4d"]
 atlas = ExtResource("3_cn83p")
 region = Rect2(5, 130, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2mkr"]
+atlas = ExtResource("3_cn83p")
+region = Rect2(107, 141, 24, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7make"]
 atlas = ExtResource("3_cn83p")
@@ -222,6 +246,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"bbelt_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pts48")
+}],
+"loop": 1,
+"name": &"bbelt_ko",
 "speed": 5.0
 }, {
 "frames": [{
@@ -256,6 +288,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_kk52l")
+}],
+"loop": 1,
+"name": &"bmage_ko",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1bo53")
 }, {
 "duration": 1.0,
@@ -282,6 +322,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"rmage_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4bs5")
+}],
+"loop": 1,
+"name": &"rmage_ko",
 "speed": 5.0
 }, {
 "frames": [{
@@ -316,6 +364,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ejam4")
+}],
+"loop": 1,
+"name": &"thief_ko",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cv1yu")
 }, {
 "duration": 1.0,
@@ -346,6 +402,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ky2tc")
+}],
+"loop": 1,
+"name": &"warrior_ko",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_p5pfc")
 }, {
 "duration": 1.0,
@@ -372,6 +436,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"wmage_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2mkr")
+}],
+"loop": 1,
+"name": &"wmage_ko",
 "speed": 5.0
 }, {
 "frames": [{
@@ -410,7 +482,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(165, 37)]
+"values": [Vector2(-100, 37)]
 }
 
 [sub_resource type="Animation" id="Animation_tyvb3"]
@@ -1810,7 +1882,6 @@ flat = true
 script = ExtResource("13_srn1p")
 
 [node name="MagicMenu" type="Node2D" parent="." unique_id=2020343639]
-visible = false
 script = ExtResource("11_vrhm1")
 
 [node name="UI" type="TileMapLayer" parent="MagicMenu" unique_id=1441708783]
@@ -2429,7 +2500,6 @@ script = ExtResource("13_31olt")
 spellInfo = [7, 2]
 
 [node name="ItemMenu" type="Node2D" parent="." unique_id=270786390]
-visible = false
 script = ExtResource("7_oddcx")
 
 [node name="UI" type="TileMapLayer" parent="ItemMenu" unique_id=609727826]
@@ -2710,7 +2780,7 @@ z_index = 1
 texture_filter = 1
 position = Vector2(175, 49)
 sprite_frames = SubResource("SpriteFrames_0klwe")
-animation = &"bbelt_idle"
+animation = &"warrior_attack"
 script = ExtResource("4_cn83p")
 
 [node name="Char1" type="AnimatedSprite2D" parent="." unique_id=989221437]
@@ -2978,17 +3048,19 @@ texture = ExtResource("16_q76jo")
 wait_time = 3.0
 one_shot = true
 
+[node name="AttackTimer" type="Timer" parent="." unique_id=458501413]
+one_shot = true
+
 [node name="Weapon" type="AnimatedSprite2D" parent="." unique_id=490548661]
 texture_filter = 1
-position = Vector2(165, 37)
+position = Vector2(-100, 37)
 sprite_frames = SubResource("SpriteFrames_5vefg")
 animation = &"saber_sword"
-
-[node name="WalkTimer" type="Timer" parent="." unique_id=458501413]
-wait_time = 0.5
 
 [connection signal="choose_monsters" from="." to="Background" method="_on_choose_monsters"]
 [connection signal="summon_monsters" from="Background" to="." method="_on_summon_monsters"]
 [connection signal="timeout" from="Timer" to="." method="_on_actiontimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer0" to="." method="_on_animation_finished_char0"]
+[connection signal="animation_finished" from="AnimationPlayer1" to="." method="_on_animation_finished_1"]
 [connection signal="timeout" from="ActionBuffer" to="." method="_on_action_buffer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -57,10 +57,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 			actionBack()
-			
-	if len(actions) == 4 and turnFinished == false:
-		turnFinished = true
-		playTurn()
 
 func checkAlive():
 	for i in range(len(enemies)):
@@ -172,9 +168,6 @@ func changeFormationFocus(groupFormation):
 		get_node("enemyS_1").set_focus_neighbor(SIDE_LEFT, "../enemyM_0")
 		get_node("enemyS_2").set_focus_neighbor(SIDE_LEFT, "../enemyM_0")
 
-func changeFocus():
-	pass
-
 func showEnemyNames(chosenMonsters):
 	var currentText = 1
 	var currentMonster = 0
@@ -213,10 +206,16 @@ func showCursor():
 	$HandCursor.visible = true
 
 func attackChoice():
-	if $enemyM_0.is_visible_in_tree():
-		$enemyM_0.grab_focus.call_deferred()
-	else:
-		$enemyS_0.grab_focus.call_deferred()
+	var found = false
+	var i = 0
+	while found == false and i != len(enemies):
+		if enemies[i] != [] and enemies[i][1][0] > 0:
+			if enemies[i][0] >= 62:
+				get_node("enemyM_" + str(i)).grab_focus.call_deferred()
+			else:
+				get_node("enemyS_" + str(i)).grab_focus.call_deferred()
+			found = true
+		i += 1
 
 func _on_animation_finished_char0(anim_name: StringName) -> void:
 	var char : AnimatedSprite2D = get_node("Char" + str(charSelectedID))
@@ -229,15 +228,16 @@ func _on_animation_finished_char0(anim_name: StringName) -> void:
 			if currentAction == "Back":
 				charSelectedID -= 1
 				actions.pop_back()
-			else:
+			elif charSelectedID != 3:
 				charSelectedID += 1
+				print(charSelectedID)
+				charSelected = GlobalVariables.team_formation[charSelectedID]
+				onCharSelected()
 			currentAction = "None"
-			charSelected = GlobalVariables.team_formation[charSelectedID]
-			onCharSelected()
-	else:
-		if anim_name == ("run_animation_" + str(charSelectedID)):
-			if (actions[charSelectedID][0] == 0):
-				allyAttackAnimation()
+			if charSelectedID == 3:
+				if len(actions) == 4 and turnFinished == false:
+					turnFinished = true
+					playTurn()
 			
 func _on_enemy_pressed(extra_arg_0: int) -> void:
 	if currentAction == "CastingSpell":
@@ -349,34 +349,44 @@ func getTurnOrder():
 # turn order : from 0 to 8 small enemies, 9 to 12 medium enemies, 20 to 23 allies
 
 func playTurn():
+	print(enemies)
+	print(turnOrder)
+	print(totalOrder)
 	var foundChar = false
+	var attackName = ""
 	hideInfo()
 	showBattleUI()
+	
 	if totalOrder == 0:
 		turnOrder = getTurnOrder()
-	var name = ""
+
 	while foundChar == false:
 		if turnOrder != []:
-			print("CURRENT TURN ORDER IS : " + str(turnOrder))
-			print("TURN ORDER OF 0 : " + str(turnOrder[0]))
-			if turnOrder[0] >= 20 and (GlobalVariables.global_hp[turnOrder[0] - 20][0] > 0) and (dead < alive):
-					allyAction(turnOrder[0] - 20)
-					name = getActionName(actions[turnOrder[0] - 20][1])
-					print("Ally attacking")
-					showInfo(turnOrder[0], name)
+			if turnOrder[0] >= 20 and (GlobalVariables.global_hp[GlobalVariables.team_formation[turnOrder[0] - 20]][0] > 0) and (dead < alive):
+					charSelectedID = turnOrder[0] - 20
+					$AnimationPlayer1.play("run_animation_" + str(charSelectedID))
+					$ActionBuffer.start()
 					foundChar = true
 			elif turnOrder[0] < 20 and enemies[turnOrder[0]] != [] and enemies[turnOrder[0]][1][0] > 0:
+					print("enemy attacking")
+					print(turnOrder)
 					enemyAction(turnOrder[0])
-					name = getActionName(0)
-					print("Enemy attacking")
-					showInfo(turnOrder[0], name)
+					attackName = getActionName(0)
+					showInfo(turnOrder[0], attackName)
+					$ActionBuffer.start()
 					foundChar = true
+			totalOrder += 1
+			turnOrder.pop_front()
 		else:
+			print("the total order is " + str(totalOrder))
 			foundChar = true
-		totalOrder += 1
-		turnOrder.pop_front()
-	
-	$ActionBuffer.start()
+			checkOrder()
+
+func _on_animation_finished_1(anim_name: StringName) -> void:
+	if anim_name.begins_with("run_animation_") and turnFinished:
+		allyAttackAnimation()
+		$AttackTimer.start()
+
 
 func getActionName(actionID):
 	match actionID:
@@ -395,7 +405,7 @@ func showInfo(characterID, actionName):
 	if characterID >= 20:
 		charName = GlobalVariables.global_names[GlobalVariables.team_formation[characterID - 20]]
 		infoAllyAction()
-	else: 
+	else:
 		charName = $EnemiesUI.Names[enemies[characterID][0]][1]
 		infoEnemyAction()
 	$BattleInfo/InfoUI_Bar/Text.text = charName + " " + str(actionName)
@@ -441,10 +451,8 @@ func targetAlly():
 	else: return 3
 
 func allyAction(i):
-	charSelectedID = i
 	match actions[i][1]:
 		0:
-			$AnimationPlayer0.play("run_animation_" + str(i))
 			var equippedWeapon = getWeaponInfo(i)
 			var totalAcc = calcTotalAcc(equippedWeapon[0], i)
 			var armorStats = getArmorInfo(i)
@@ -460,12 +468,11 @@ func enemyAction(i):
 		enemyAttack(i, target, nbHit)
 
 func allyAttackAnimation():
-	var animationPlayer = get_node("AnimationPlayer0")
+	var animationPlayer = get_node("AnimationPlayer1")
 	if currentWeapon != "":
 		$Weapon.play(currentWeapon)
 		animationPlayer.play("attack_animation_" + str(charSelectedID))
 	get_node("Char"+str(charSelectedID)).attack()
-
 
 func enemyStatusAttack(baseChance, enemy, target):
 	var targetMagicDef = GlobalVariables.global_stats[GlobalVariables.team_formation[target]][6]
@@ -506,10 +513,23 @@ func enemyAttack(ally, target, nbHit):
 			if miss == false:
 				allyHp[0] -= enemies[ally][1][1]
 				allyInfo[target][0] += enemies[ally][1][1]
+				allyCheckAlive(target)
 			totalHits += 1
 		targets.erase(target)
-		target = targets.pick_random()
+		target = findEnemyTarget(targets)
 
+func findEnemyTarget(targets):
+	while true:
+		var randNum = randi_range(1, 8)
+		if randNum < 5 and targets[0] == 0:
+			return 0
+		elif randNum > 4 and randNum < 7 and targets[1] == 1:
+			return 1
+		elif randNum == 7 and targets[2] == 2:
+			return 2
+		elif randNum == 8 and targets[2] == 2:
+			return 3
+		
 func getStatusAlly(attacker, target):
 	var attackerStatus = GlobalVariables.global_status[GlobalVariables.team_formation[attacker]]
 	print(actions[attacker][0])
@@ -599,11 +619,36 @@ func calcAtt(weapon, charID):
 	return weaponAtt + finalStr
 
 func _on_action_buffer_timeout() -> void:
+	checkOrder()
+
+func allyCheckAlive(ID):
+	if GlobalVariables.global_hp[GlobalVariables.team_formation[ID]][0] <= 0:
+		get_node("Char"+str(ID)).ko()
+		get_node("Char"+str(ID)).position.x -= 4
+
+func checkOrder():
 	if totalOrder != 17:
 		playTurn()
 	else:
+		if (dead >= alive):
+			print("THEY ARE ALL DEAD")
 		turnOrder = []
 		totalOrder = 0
+		actions = []
+		turnFinished = false
+		charSelectedID = 0
 		$BattleInfo.visible = false
 		$CommandUI.visible = true
 		$EnemiesUI.z_index = 0
+		$HandCursor.visible = true
+		$CommandUI/Button.grab_focus()
+
+
+func _on_attack_timer_timeout() -> void:
+	var ID = GlobalVariables.team_formation[charSelectedID]
+	var animPlayer = $AnimationPlayer1
+	$Weapon.stop()
+	animPlayer.play("runback_animation_" + str(charSelectedID))
+	get_node("Char"+str(charSelectedID)).idle()
+	allyAction(charSelectedID)
+	showInfo(20+charSelectedID, getActionName(actions[ID][1]))

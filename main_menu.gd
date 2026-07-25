@@ -1,10 +1,13 @@
 extends Control
 
 var ally1 = 0
-var ally2 = 0
-var ally3 = 0
-var ally4 = 0
+var ally2 = 1
+var ally3 = 2
+var ally4 = 3
 var allies = [ally1, ally2, ally3, ally4]
+
+var classNames = ["COMBATT.", "VOLEUR", "CEINT.NOIR", "MAGE RGE", "MAGE BLC", "MAGE NOIR"]
+var classImgs = ["fighter", "thief", "bbelt", "rmage", "wmage", "bmage"]
 
 var save = {
 	"0": {
@@ -100,11 +103,17 @@ var save = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$AudioStreamPlayer.play()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if $NewGameMenu.visible == true:
+		if Input.is_action_just_pressed("ui_end"):
+			newSave()
+		elif Input.is_action_just_pressed("escape"):
+			$MainMenu.visible = true
+			$NewGameMenu.visible = false
+			$MainMenu/ContinueButton.grab_focus.call_deferred()
 
 func newSave():	
 	
@@ -115,13 +124,13 @@ func newSave():
 	
 	for i in range(4):
 		if i == 0:
-			save[str(i)]["Name"] = $Char1Name.text
+			save[str(i)]["Name"] = $NewGameMenu/CharName1.text
 		elif i == 1:
-			save[str(i)]["Name"] = $Char2Name.text
+			save[str(i)]["Name"] = $NewGameMenu/CharName2.text
 		elif i == 2:
-			save[str(i)]["Name"] = $Char3Name.text
+			save[str(i)]["Name"] = $NewGameMenu/CharName3.text
 		elif i == 3:
-			save[str(i)]["Name"] = $Char4Name.text
+			save[str(i)]["Name"] = $NewGameMenu/CharName4.text
 			
 		if GlobalVariables.global_allies[i] == 0:
 			#WARRIOR
@@ -164,8 +173,8 @@ func newSave():
 		elif GlobalVariables.global_allies[i] == 3:
 			#RMAGE
 			save[str(i)]["Id"] = 3
-			save[str(i)]["Stats"]["HP_MAX"] = 30
-			save[str(i)]["Stats"]["HP"] = 30
+			save[str(i)]["Stats"]["HP_MAX"] = 1
+			save[str(i)]["Stats"]["HP"] = 1
 			save[str(i)]["Stats"]["STR"] = 10
 			save[str(i)]["Stats"]["AGL"] = 10
 			save[str(i)]["Stats"]["INT"] = 10
@@ -250,43 +259,51 @@ func loadSave():
 				[charges["LV7"]["MAX"], charges["LV7"]["CURRENT"]],
 				[charges["LV8"]["MAX"], charges["LV8"]["CURRENT"]]
 				]
+	$AudioStreamPlayer.stop()
 	get_tree().change_scene_to_file("res://Scenes/MainScenes/Map.tscn")
 
 func _on_loading_pressed() -> void:
 	loadSave()
 
-func _on_newsave_pressed() -> void:
-	newSave()
-
 
 func _on_char_1_class_pressed() -> void:
 	if ally1 == 5:
 		ally1 = 0
-		$Char1Class.allyNumber = 0
 	else:
 		ally1 += 1
-		$Char1Class.allyNumber += 1
+	$NewGameMenu/CharTitle1.text = classNames[ally1]
+	$NewGameMenu/CharImg1.play(classImgs[ally1])
 	
 func _on_char_2_class_pressed() -> void:
 	if ally2 == 5:
 		ally2 = 0
-		$Char2Class.allyNumber = 0
 	else:
 		ally2 += 1
-		$Char2Class.allyNumber += 1
+	$NewGameMenu/CharTitle2.text = classNames[ally2]
+	$NewGameMenu/CharImg2.play(classImgs[ally2])
 
 func _on_char_3_class_pressed() -> void:
 	if ally3 == 5:
 		ally3 = 0
-		$Char3Class.allyNumber = 0
 	else:
 		ally3 += 1
-		$Char3Class.allyNumber += 1
+	$NewGameMenu/CharTitle3.text = classNames[ally3]
+	$NewGameMenu/CharImg3.play(classImgs[ally3])
 
 func _on_char_4_class_pressed() -> void:
 	if ally4 == 5:
 		ally4 = 0
-		$Char4Class.allyNumber = 0
 	else:
 		ally4 += 1
-		$Char4Class.allyNumber += 1
+	$NewGameMenu/CharTitle4.text = classNames[ally4]
+	$NewGameMenu/CharImg4.play(classImgs[ally4])
+
+
+func _on_new_game_button_pressed() -> void:
+	$MainMenu.visible = false
+	$NewGameMenu.visible = true
+	$NewGameMenu/CharSelect1.grab_focus.call_deferred()
+
+
+func _on_button_focus_entered(extra_arg_0: NodePath) -> void:
+	$HandCursor.position = Vector2(get_node(extra_arg_0).position.x - 10, get_node(extra_arg_0).position.y + 19)

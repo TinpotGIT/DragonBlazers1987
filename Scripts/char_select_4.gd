@@ -5,4 +5,4 @@ extends Button
 func _ready() -> void:
 	var main = get_parent().get_parent()
 	focus_entered.connect(main._on_button_focus_entered.bind(get_path()))
-	grab_focus.call_deferred()
+	pressed.connect(main._on_char_4_class_pressed)
