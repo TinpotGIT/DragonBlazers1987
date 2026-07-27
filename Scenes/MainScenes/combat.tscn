@@ -1731,7 +1731,6 @@ offset_right = 61.0
 offset_bottom = 168.0
 theme_override_fonts/normal_font = ExtResource("5_g3esw")
 theme_override_font_sizes/normal_font_size = 25
-text = "AZERTYUIOPQSDFGHJKLMWXC"
 
 [node name="Battle_UI" parent="." unique_id=682112751 instance=ExtResource("4_mk7sy")]
 texture_filter = 1
@@ -3041,7 +3040,7 @@ id = 12
 
 [node name="HandCursor" type="Sprite2D" parent="." unique_id=1540918562]
 texture_filter = 1
-position = Vector2(-15, 215)
+position = Vector2(-25, 207)
 texture = ExtResource("16_q76jo")
 
 [node name="ActionBuffer" type="Timer" parent="." unique_id=723663703]
@@ -3057,6 +3056,10 @@ position = Vector2(-100, 37)
 sprite_frames = SubResource("SpriteFrames_5vefg")
 animation = &"saber_sword"
 
+[node name="WinTimer" type="Timer" parent="." unique_id=491178438]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="choose_monsters" from="." to="Background" method="_on_choose_monsters"]
 [connection signal="summon_monsters" from="Background" to="." method="_on_summon_monsters"]
 [connection signal="timeout" from="Timer" to="." method="_on_actiontimer_timeout"]
@@ -3064,3 +3067,4 @@ animation = &"saber_sword"
 [connection signal="animation_finished" from="AnimationPlayer1" to="." method="_on_animation_finished_1"]
 [connection signal="timeout" from="ActionBuffer" to="." method="_on_action_buffer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

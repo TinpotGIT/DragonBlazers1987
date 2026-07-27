@@ -264,7 +264,7 @@ offset_right = 193.0
 offset_bottom = 212.0
 theme = ExtResource("5_8drj8")
 theme_override_font_sizes/normal_font_size = 25
-text = "BY ANOTHER"
+text = "BY TINPOT"
 horizontal_alignment = 1
 
 [node name="Cred4" type="RichTextLabel" parent="MainMenu" unique_id=1829317753]
@@ -275,7 +275,7 @@ offset_right = 191.0
 offset_bottom = 220.0
 theme = ExtResource("5_8drj8")
 theme_override_font_sizes/normal_font_size = 25
-text = "AND TINPOT"
+text = "AND ANOTHER"
 horizontal_alignment = 1
 
 [node name="Ff1LogoMagnifiqueGabin" type="Sprite2D" parent="MainMenu" unique_id=2062462948]

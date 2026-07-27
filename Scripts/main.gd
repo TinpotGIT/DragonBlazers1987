@@ -8,11 +8,15 @@ var moving = false
 
 var hitMultiplier = [1, 1, 1, 1]
 
+var totalGold = 0
+var totalExp = 0
 var existingEnemies = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 var turn = 0
 var turnOrder = []
 var totalOrder = 0
+
+var deadAllies = 0
 
 var alive = 0
 var dead = 0
@@ -53,10 +57,16 @@ func _ready() -> void:
 	hideCursor()
 	onCharSelected()
 	checkAlive()
+	goldGained()
+	expGained()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 			actionBack()
+			
+	if GlobalVariables.global_hp[GlobalVariables.team_formation[charSelectedID]][0] <= 0:
+		actions.append([-1, -1])
+		charSelectedID += 1
 
 func checkAlive():
 	for i in range(len(enemies)):
@@ -83,6 +93,18 @@ func actionBack():
 	elif currentAction == "InventoryChoice":
 		$ItemMenu/UI.visible = false
 		$CommandUI/Button.grab_focus.call_deferred()
+
+func goldGained():
+	for i in range(len(enemies)):
+		if enemies[i] != []:
+			totalGold += enemies[i][1][-3]
+	print("Gold that will be gained is : " + str(totalGold))
+
+func expGained():
+	for i in range(len(enemies)):
+		if enemies[i] != []:
+			totalExp += enemies[i][1][-2]
+	print("Exp that will be gained is : " + str(totalExp))
 
 func createEnemyTeam(chosenMonsters, groupFormation, groupSize):
 	var enemyCountSmall = 0
@@ -360,33 +382,43 @@ func playTurn():
 	if totalOrder == 0:
 		turnOrder = getTurnOrder()
 
-	while foundChar == false:
-		if turnOrder != []:
-			if turnOrder[0] >= 20 and (GlobalVariables.global_hp[GlobalVariables.team_formation[turnOrder[0] - 20]][0] > 0) and (dead < alive):
-					charSelectedID = turnOrder[0] - 20
-					$AnimationPlayer1.play("run_animation_" + str(charSelectedID))
-					$ActionBuffer.start()
-					foundChar = true
-			elif turnOrder[0] < 20 and enemies[turnOrder[0]] != [] and enemies[turnOrder[0]][1][0] > 0:
-					print("enemy attacking")
-					print(turnOrder)
-					enemyAction(turnOrder[0])
-					attackName = getActionName(0)
-					showInfo(turnOrder[0], attackName)
-					$ActionBuffer.start()
-					foundChar = true
-			totalOrder += 1
-			turnOrder.pop_front()
-		else:
-			print("the total order is " + str(totalOrder))
-			foundChar = true
-			checkOrder()
+	if dead >= alive:
+		showBattleUI()
+		$BattleInfo/InfoUI_Bar/Text.text = "You won!"
+		$WinTimer.start()
+	else:
+		while foundChar == false:
+			if turnOrder != []:
+				if turnOrder[0] >= 20 and (GlobalVariables.global_hp[GlobalVariables.team_formation[turnOrder[0] - 20]][0] > 0) and (dead < alive):
+						charSelectedID = turnOrder[0] - 20
+						$AnimationPlayer1.play("run_animation_" + str(charSelectedID))
+						var char = get_node("Char" + str(charSelectedID))
+						char.play(char.run_name)
+						$ActionBuffer.start()
+						foundChar = true
+				elif turnOrder[0] < 20 and enemies[turnOrder[0]] != [] and enemies[turnOrder[0]][1][0] > 0:
+						print("enemy attacking")
+						print(turnOrder)
+						enemyAction(turnOrder[0])
+						attackName = getActionName(0)
+						showInfo(turnOrder[0], attackName)
+						$ActionBuffer.start()
+						foundChar = true
+				totalOrder += 1
+				turnOrder.pop_front()
+			else:
+				print("the total order is " + str(totalOrder))
+				foundChar = true
+				checkOrder()
 
 func _on_animation_finished_1(anim_name: StringName) -> void:
+	var char = get_node("Char" + str(charSelectedID))
 	if anim_name.begins_with("run_animation_") and turnFinished:
+		char.play(char.idle_name)
 		allyAttackAnimation()
 		$AttackTimer.start()
-
+	elif anim_name.begins_with("runback_animation_") and turnFinished:
+		char.play(char.idle_name)
 
 func getActionName(actionID):
 	match actionID:
@@ -501,6 +533,7 @@ func allyAttack(ally, target, equippedWeapon, nbHit, totalAcc, eva):
 		print(target)
 
 func enemyAttack(ally, target, nbHit):
+	var targetChance = [0, 0, 0, 0, 1, 1, 2, 3]
 	var targets = [0, 1, 2, 3]
 	var totalHits = 0
 	while (totalHits != nbHit) and (len(targets) != 0):
@@ -516,19 +549,7 @@ func enemyAttack(ally, target, nbHit):
 				allyCheckAlive(target)
 			totalHits += 1
 		targets.erase(target)
-		target = findEnemyTarget(targets)
-
-func findEnemyTarget(targets):
-	while true:
-		var randNum = randi_range(1, 8)
-		if randNum < 5 and targets[0] == 0:
-			return 0
-		elif randNum > 4 and randNum < 7 and targets[1] == 1:
-			return 1
-		elif randNum == 7 and targets[2] == 2:
-			return 2
-		elif randNum == 8 and targets[2] == 2:
-			return 3
+		target = targetChance.pick_random()
 		
 func getStatusAlly(attacker, target):
 	var attackerStatus = GlobalVariables.global_status[GlobalVariables.team_formation[attacker]]
@@ -623,6 +644,8 @@ func _on_action_buffer_timeout() -> void:
 
 func allyCheckAlive(ID):
 	if GlobalVariables.global_hp[GlobalVariables.team_formation[ID]][0] <= 0:
+		print(deadAllies)
+		deadAllies += 1
 		get_node("Char"+str(ID)).ko()
 		get_node("Char"+str(ID)).position.x -= 4
 
@@ -649,6 +672,42 @@ func _on_attack_timer_timeout() -> void:
 	var animPlayer = $AnimationPlayer1
 	$Weapon.stop()
 	animPlayer.play("runback_animation_" + str(charSelectedID))
-	get_node("Char"+str(charSelectedID)).idle()
+	var char = get_node("Char" + str(charSelectedID))
+	char.play(char.run_name)
 	allyAction(charSelectedID)
 	showInfo(20+charSelectedID, getActionName(actions[ID][1]))
+
+
+func _on_win_timer_timeout() -> void:
+	GlobalVariables.gold += totalGold
+	giveExp()
+	get_tree().change_scene_to_file("res://Scenes/MainScenes/Map.tscn")
+	
+func giveExp():
+	var aliveAllies = [false, false, false, false]
+	var expDivisor = 0
+	for i in range(4):
+		if GlobalVariables.global_hp[i][0] > 0:
+			aliveAllies[i] = true
+			expDivisor += 1
+	var dividedExp = round(totalExp/expDivisor)
+	for i in range(len(aliveAllies)):
+		if aliveAllies[i]:
+			GlobalVariables.global_exp[i] += dividedExp
+			levelUpCheck(i)
+
+func checkNeededExp(levels, expTable, i):
+	if levels[i] <= 29:
+		return expTable[levels[i]+1]
+	return expTable[levels[30]]
+
+func levelUpCheck(i):
+	var exp = GlobalVariables.global_exp[i]
+	var levels = GlobalVariables.global_levels
+	var expTable = GlobalVariables.expTable
+	var neededExp = checkNeededExp(levels, expTable, i)
+	while exp >= neededExp and (levels[i] != 50):
+		levels[i] += 1
+		GlobalVariables.global_exp[i] -= neededExp
+		neededExp = checkNeededExp(levels, expTable, i)
+		

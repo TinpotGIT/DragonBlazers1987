@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b3tt1yvckk8l6"]
 
+[ext_resource type="Script" uid="uid://dhsh3nlplc01c" path="res://Scenes/MainScenes/map.gd" id="1_h6aav"]
 [ext_resource type="Script" uid="uid://bf6n52rlikuyp" path="res://Scripts/player.gd" id="2_g4t0d"]
-[ext_resource type="Texture2D" uid="uid://c6osg3y7jxen0" path="res://Sprites/Spritesheets/FF1_SANS_FOND_BLEU.png" id="3_o04y6"]
+[ext_resource type="Texture2D" uid="uid://c6osg3y7jxen0" path="res://Sprites/FF1_SANS_FOND_BLEU.png" id="3_o04y6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_etk83"]
 atlas = ExtResource("3_o04y6")
@@ -86,12 +87,12 @@ animations = [{
 size = Vector2(0, 0)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h6aav"]
-load_path = "res://.godot/imported/carré.png-3bf142cc45b62289c91e37b17e7f573e.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vefg"]
 size = Vector2(206, 170)
 
 [node name="Map" type="Node2D" unique_id=1433906551]
+script = ExtResource("1_h6aav")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=105889038]
 z_index = 1

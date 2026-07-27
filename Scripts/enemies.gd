@@ -3,9 +3,9 @@ extends Node
 
 var Monsters = [
 	#IMP 0
-	[8, 4, 2, 1, 1, 4, 6, 16, 106, ["None"],["None"],["None"],["None"],["None"], 6, 6,"res://Sprites/Enemies/Small/imp.png"]
+	[8, 4, 2, 1, 1, 4, 6, 16, 106, ["None"],["None"],["None"],["None"],["None"], 6, 24,"res://Sprites/Enemies/Small/imp.png"]
 	,#GrIMP 1
-	[16, 8, 4, 1, 1, 6, 9, 23, 120, ["None"],["None"],["None"],["None"],["None"], 18, 18,"res://Sprites/Enemies/Small/grImp.png"]
+	[16, 8, 4, 1, 1, 6, 9, 23, 120, ["None"],["None"],["None"],["None"],["None"], 18, 36,"res://Sprites/Enemies/Small/grImp.png"]
 	,#WOLF 2
 	[20, 8, 5, 1, 1, 0, 36, 28, 105, ["None"],["None"], ["Beast"], ["None"], ["None"], 6, 24,"res://Sprites/Enemies/Small/loup.png"]
 	,#GrWOLF 3
