@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://drabpcpg3ht7d" path="res://Scripts/itemButton.gd" id="19_12d8k"]
 [ext_resource type="Script" uid="uid://dch0dqump73p4" path="res://Scripts/enemyButton.gd" id="25_im4ol"]
 [ext_resource type="Texture2D" uid="uid://bh0o3waetma3c" path="res://Sprites/weapon_spritesheet.png" id="28_tyvb3"]
+[ext_resource type="AudioStream" uid="uid://7eab2ucnv0gw" path="res://Final Fantasy I NES - Battle.mp3" id="29_p5pfc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_im4ol"]
 texture = ExtResource("4_slmbn")
@@ -3059,6 +3060,12 @@ animation = &"saber_sword"
 [node name="WinTimer" type="Timer" parent="." unique_id=491178438]
 wait_time = 2.0
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1311520803]
+stream = ExtResource("29_p5pfc")
+volume_db = -10.0
+autoplay = true
+parameters/looping = false
 
 [connection signal="choose_monsters" from="." to="Background" method="_on_choose_monsters"]
 [connection signal="summon_monsters" from="Background" to="." method="_on_summon_monsters"]
