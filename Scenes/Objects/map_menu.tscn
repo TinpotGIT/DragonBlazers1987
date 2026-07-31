@@ -1,0 +1,1028 @@
+[gd_scene format=3 uid="uid://csi4xqvtscv1g"]
+
+[ext_resource type="Script" uid="uid://b2u1vqfkjmo3d" path="res://Scripts/Map/MapMenu/map_menu.gd" id="1_u7gkb"]
+[ext_resource type="Texture2D" uid="uid://81fp83fsif11" path="res://Sprites/MenuBackground.png" id="2_u7gkb"]
+[ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="3_u7gkb"]
+[ext_resource type="Texture2D" uid="uid://dcx1kd683775" path="res://Sprites/FF1_SANS_FOND_NOIR.png" id="4_16om5"]
+[ext_resource type="Script" uid="uid://b1haun6jcwuwj" path="res://Scripts/Map/MapMenu/money_text.gd" id="4_feyxm"]
+[ext_resource type="Script" uid="uid://7uicaiqkuow0" path="res://Scripts/Map/MapMenu/items_button.gd" id="5_gr4nd"]
+[ext_resource type="Script" uid="uid://baqjpn0rpvap1" path="res://Scripts/Map/MapMenu/mapmenu_button.gd" id="6_hkr76"]
+[ext_resource type="Texture2D" uid="uid://ct3xhffdfmm2n" path="res://Sprites/HandCursor.png" id="7_823jm"]
+[ext_resource type="Script" uid="uid://cm6mcdfrj1b3m" path="res://Scripts/Map/MapMenu/status_button.gd" id="7_feyxm"]
+[ext_resource type="Script" uid="uid://bfk8jiy57eik3" path="res://Scripts/Map/MapMenu/charSlotInfo.gd" id="7_u7gkb"]
+[ext_resource type="Script" uid="uid://deemsa0es17l2" path="res://Scenes/Objects/char_button.gd" id="8_gr4nd"]
+[ext_resource type="FontFile" uid="uid://b7oskin6e3055" path="res://ThemesFonts/FinalFantasyINES.ttf" id="9_u7gkb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgefo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7gkb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_150w0"]
+atlas = ExtResource("4_16om5")
+region = Rect2(5, 55, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtcjb"]
+atlas = ExtResource("4_16om5")
+region = Rect2(5, 105, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l4ck"]
+atlas = ExtResource("4_16om5")
+region = Rect2(5, 80, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdbkx"]
+atlas = ExtResource("4_16om5")
+region = Rect2(5, 30, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyvb3"]
+atlas = ExtResource("4_16om5")
+region = Rect2(5, 3, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1r4d"]
+atlas = ExtResource("4_16om5")
+region = Rect2(5, 130, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_823jm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_150w0")
+}],
+"loop": 1,
+"name": &"bbelt_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtcjb")
+}],
+"loop": 1,
+"name": &"bmage_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l4ck")
+}],
+"loop": 1,
+"name": &"rmage_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdbkx")
+}],
+"loop": 1,
+"name": &"thief_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyvb3")
+}],
+"loop": 1,
+"name": &"warrior_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1r4d")
+}],
+"loop": 1,
+"name": &"wmage_idle",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control" unique_id=1202153963]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 224.0
+script = ExtResource("1_u7gkb")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2083246067]
+texture_filter = 1
+position = Vector2(128, 112)
+texture = ExtResource("2_u7gkb")
+
+[node name="Gold_Text" type="RichTextLabel" parent="." unique_id=1578543172]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02296877
+anchor_top = 0.25039285
+anchor_right = 0.3825313
+anchor_bottom = 0.36153573
+offset_left = 0.11999512
+offset_top = -0.08800125
+offset_right = 0.07199097
+offset_bottom = 0.01599884
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "999999999 G"
+script = ExtResource("4_feyxm")
+metadata/_edit_use_anchors_ = true
+
+[node name="Items_Text" type="RichTextLabel" parent="." unique_id=805366157]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06203127
+anchor_top = 0.37985712
+anchor_right = 0.28487504
+anchor_bottom = 0.49099997
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "OBJET"
+metadata/_edit_use_anchors_ = true
+
+[node name="Magic_Text" type="RichTextLabel" parent="." unique_id=1262413625]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06203127
+anchor_top = 0.4602143
+anchor_right = 0.28487504
+anchor_bottom = 0.5713571
+offset_left = 0.11999512
+offset_top = -0.08800125
+offset_right = 0.07199097
+offset_bottom = 0.01599884
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "MAGIE"
+metadata/_edit_use_anchors_ = true
+
+[node name="Weapon_Text" type="RichTextLabel" parent="." unique_id=325281278]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06203127
+anchor_top = 0.54503566
+anchor_right = 0.28487504
+anchor_bottom = 0.6561786
+offset_left = 0.11999512
+offset_top = -0.08800125
+offset_right = 0.07199097
+offset_bottom = 0.01599884
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "ARME"
+metadata/_edit_use_anchors_ = true
+
+[node name="Armor_Text" type="RichTextLabel" parent="." unique_id=1921666442]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06203127
+anchor_top = 0.62539285
+anchor_right = 0.28487504
+anchor_bottom = 0.7365357
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.015991211
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "ARMURE"
+metadata/_edit_use_anchors_ = true
+
+[node name="Status_Text" type="RichTextLabel" parent="." unique_id=640846324]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06203127
+anchor_top = 0.70575
+anchor_right = 0.28487504
+anchor_bottom = 0.8168929
+offset_left = 0.11999512
+offset_top = -0.08800125
+offset_right = 0.07199097
+offset_bottom = 0.01599884
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "STATUS"
+metadata/_edit_use_anchors_ = true
+
+[node name="Formation_Text" type="RichTextLabel" parent="." unique_id=1983291071]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06203127
+anchor_top = 0.7905714
+anchor_right = 0.3669063
+anchor_bottom = 0.9017143
+offset_left = 0.11999512
+offset_top = -0.08800125
+offset_right = 0.07199097
+offset_bottom = 0.01599884
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "FORMATION"
+metadata/_edit_use_anchors_ = true
+
+[node name="Save_Text" type="RichTextLabel" parent="." unique_id=167093397]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06203127
+anchor_top = 0.8709286
+anchor_right = 0.4450313
+anchor_bottom = 0.98207146
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.015991211
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "SAUVEGARDE"
+metadata/_edit_use_anchors_ = true
+
+[node name="Items_Button" type="Button" parent="." unique_id=1923267744]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.059000004
+anchor_top = 0.41517857
+anchor_right = 0.33159375
+anchor_bottom = 0.44998008
+offset_left = -0.104001045
+offset_right = 0.11199951
+offset_bottom = 6.20446
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Save_Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Magic_Button")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
+flat = true
+script = ExtResource("5_gr4nd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Magic_Button" type="Button" parent="." unique_id=1601315609]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05859375
+anchor_top = 0.49107143
+anchor_right = 0.33159375
+anchor_bottom = 0.535782
+offset_right = 0.11199951
+offset_bottom = 5.984833
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Items_Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Weapon_Button")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
+flat = true
+script = ExtResource("6_hkr76")
+metadata/_edit_use_anchors_ = true
+
+[node name="Weapon_Button" type="Button" parent="." unique_id=1378580231]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05859375
+anchor_top = 0.57589287
+anchor_right = 0.33159375
+anchor_bottom = 0.6161391
+offset_right = 0.11199951
+offset_bottom = 5.984833
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Magic_Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Armor_Button")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
+flat = true
+script = ExtResource("6_hkr76")
+metadata/_edit_use_anchors_ = true
+
+[node name="Armor_Button" type="Button" parent="." unique_id=421842617]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05859375
+anchor_top = 0.66071427
+anchor_right = 0.33159375
+anchor_bottom = 0.69649637
+offset_right = 0.11199951
+offset_bottom = 5.9848175
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Weapon_Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Status_Button")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
+flat = true
+script = ExtResource("6_hkr76")
+metadata/_edit_use_anchors_ = true
+
+[node name="Status_Button" type="Button" parent="." unique_id=1376221059]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05859375
+anchor_top = 0.74553573
+anchor_right = 0.33159375
+anchor_bottom = 0.82614285
+offset_right = 0.11199951
+offset_bottom = -0.055999756
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Armor_Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Formation_Button")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
+flat = true
+script = ExtResource("7_feyxm")
+metadata/_edit_use_anchors_ = true
+
+[node name="Formation_Button" type="Button" parent="." unique_id=478088577]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05859375
+anchor_top = 0.83035713
+anchor_right = 0.33159375
+anchor_bottom = 0.88864285
+offset_right = 0.11199951
+offset_bottom = -0.055999756
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Status_Button")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Save_Button")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
+flat = true
+script = ExtResource("6_hkr76")
+metadata/_edit_use_anchors_ = true
+
+[node name="Save_Button" type="Button" parent="." unique_id=1641747348]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05859375
+anchor_top = 0.9151786
+anchor_right = 0.33159375
+anchor_bottom = 0.969
+offset_right = 0.11199951
+offset_bottom = -0.055999756
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Items_Button")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
+flat = true
+script = ExtResource("6_hkr76")
+metadata/_edit_use_anchors_ = true
+
+[node name="CharButton0" type="Button" parent="." unique_id=128217506]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.665
+anchor_right = -0.665
+offset_left = 286.24
+offset_top = 21.0
+offset_right = 302.24
+offset_bottom = 45.000008
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../CharButton3")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../CharButton1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u7gkb")
+flat = true
+script = ExtResource("8_gr4nd")
+metadata/_edit_use_anchors_ = true
+
+[node name="CharButton1" type="Button" parent="." unique_id=180472768]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.67200005
+anchor_top = -1.0710001
+anchor_right = -0.67200005
+anchor_bottom = -1.0710001
+offset_left = 288.032
+offset_top = 315.90402
+offset_right = 304.032
+offset_bottom = 339.90402
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../CharButton0")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../CharButton2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u7gkb")
+flat = true
+script = ExtResource("8_gr4nd")
+id = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CharButton2" type="Button" parent="." unique_id=1941405485]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.67700005
+anchor_top = -2.079
+anchor_right = -0.67700005
+anchor_bottom = -2.079
+offset_left = 289.312
+offset_top = 596.696
+offset_right = 305.312
+offset_bottom = 620.696
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../CharButton1")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../CharButton3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u7gkb")
+flat = true
+script = ExtResource("8_gr4nd")
+id = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CharButton3" type="Button" parent="." unique_id=1232869051]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.67300004
+anchor_top = -3.0730002
+anchor_right = -0.67300004
+anchor_bottom = -3.0730002
+offset_left = 288.28802
+offset_top = 874.35205
+offset_right = 304.28802
+offset_bottom = 898.35205
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../CharButton2")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../CharButton0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u7gkb")
+flat = true
+script = ExtResource("8_gr4nd")
+id = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="CharSlot0" type="Control" parent="." unique_id=1053410726]
+layout_mode = 1
+anchor_left = 0.402
+anchor_right = 1.0
+anchor_bottom = 0.263
+offset_left = 0.08799744
+offset_bottom = 0.08799744
+script = ExtResource("7_u7gkb")
+metadata/_edit_use_anchors_ = true
+
+[node name="Status" type="RichTextLabel" parent="CharSlot0" unique_id=1220637715]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = -0.11715259
+anchor_right = 0.9733857
+anchor_bottom = 0.3217626
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "STATUS"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ClassName" type="RichTextLabel" parent="CharSlot0" unique_id=1329989591]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.018440634
+anchor_right = 0.60083663
+anchor_bottom = 0.45735583
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="CharName" type="RichTextLabel" parent="CharSlot0" unique_id=1168028177]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5613072
+anchor_top = 0.018440634
+anchor_right = 0.9799215
+anchor_bottom = 0.45735583
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Level" type="RichTextLabel" parent="CharSlot0" unique_id=1918115067]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.15403385
+anchor_right = 0.9733857
+anchor_bottom = 0.59294903
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "NIVEAU 99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Char0" type="AnimatedSprite2D" parent="CharSlot0" unique_id=896821195]
+z_index = 1
+texture_filter = 1
+position = Vector2(21, 33)
+sprite_frames = SubResource("SpriteFrames_823jm")
+animation = &"bmage_idle"
+
+[node name="HP" type="RichTextLabel" parent="CharSlot0" unique_id=73587381]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.28962708
+anchor_right = 0.9733857
+anchor_bottom = 0.72854227
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "HP 999/999"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Magic" type="RichTextLabel" parent="CharSlot0" unique_id=1267683614]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.42522028
+anchor_right = 0.9733857
+anchor_bottom = 0.8641355
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "MAGIE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Charges" type="RichTextLabel" parent="CharSlot0" unique_id=2067539824]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.57776266
+anchor_right = 0.9733857
+anchor_bottom = 1.0166779
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "9/9/9/9/9/9/9/9"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CharSlot1" type="Control" parent="." unique_id=173736322]
+layout_mode = 1
+anchor_left = 0.402
+anchor_top = 0.26339287
+anchor_right = 1.0
+anchor_bottom = 0.50853574
+offset_left = 0.08799744
+offset_bottom = 0.08799744
+script = ExtResource("7_u7gkb")
+id = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Status" type="RichTextLabel" parent="CharSlot1" unique_id=182671106]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = -0.1984
+anchor_right = 0.9733857
+anchor_bottom = 0.24051517
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "STATUS"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ClassName" type="RichTextLabel" parent="CharSlot1" unique_id=1652782645]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = -0.05294553
+anchor_right = 0.60083663
+anchor_bottom = 0.38596964
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="CharName" type="RichTextLabel" parent="CharSlot1" unique_id=2121446699]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5613072
+anchor_top = -0.05294553
+anchor_right = 0.9799215
+anchor_bottom = 0.38596964
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Level" type="RichTextLabel" parent="CharSlot1" unique_id=500252689]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.092509024
+anchor_right = 0.9733857
+anchor_bottom = 0.5314242
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "NIVEAU 99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Char0" type="AnimatedSprite2D" parent="CharSlot1" unique_id=563337426]
+z_index = 1
+texture_filter = 1
+position = Vector2(21, 29)
+sprite_frames = SubResource("SpriteFrames_823jm")
+animation = &"bmage_idle"
+
+[node name="HP" type="RichTextLabel" parent="CharSlot1" unique_id=1957381076]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.23796359
+anchor_right = 0.9733857
+anchor_bottom = 0.67687875
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "HP 999/999"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Magic" type="RichTextLabel" parent="CharSlot1" unique_id=1705349366]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.40159994
+anchor_right = 0.9733857
+anchor_bottom = 0.8405152
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "MAGIE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Charges" type="RichTextLabel" parent="CharSlot1" unique_id=1803109626]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.54705447
+anchor_right = 0.9733857
+anchor_bottom = 0.98596966
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "9/9/9/9/9/9/9/9"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CharSlot2" type="Control" parent="." unique_id=1071283802]
+layout_mode = 1
+anchor_left = 0.402
+anchor_top = 0.5089286
+anchor_right = 1.0
+anchor_bottom = 0.7540714
+offset_left = 0.08799744
+offset_bottom = 0.08799744
+script = ExtResource("7_u7gkb")
+id = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Status" type="RichTextLabel" parent="CharSlot2" unique_id=776188987]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = -0.1984
+anchor_right = 0.9733857
+anchor_bottom = 0.24051517
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "STATUS"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ClassName" type="RichTextLabel" parent="CharSlot2" unique_id=312455734]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = -0.05294553
+anchor_right = 0.60083663
+anchor_bottom = 0.38596964
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="CharName" type="RichTextLabel" parent="CharSlot2" unique_id=2009215933]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5613072
+anchor_top = -0.05294553
+anchor_right = 0.9799215
+anchor_bottom = 0.38596964
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Level" type="RichTextLabel" parent="CharSlot2" unique_id=1975721914]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.092509024
+anchor_right = 0.9733857
+anchor_bottom = 0.5314242
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "NIVEAU 99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Char0" type="AnimatedSprite2D" parent="CharSlot2" unique_id=1862040198]
+z_index = 1
+texture_filter = 1
+position = Vector2(21, 29)
+sprite_frames = SubResource("SpriteFrames_823jm")
+animation = &"bmage_idle"
+
+[node name="HP" type="RichTextLabel" parent="CharSlot2" unique_id=656062104]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.23796359
+anchor_right = 0.9733857
+anchor_bottom = 0.67687875
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "HP 999/999"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Magic" type="RichTextLabel" parent="CharSlot2" unique_id=1781303152]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.40159994
+anchor_right = 0.9733857
+anchor_bottom = 0.8405152
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "MAGIE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Charges" type="RichTextLabel" parent="CharSlot2" unique_id=1755027675]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.54705447
+anchor_right = 0.9733857
+anchor_bottom = 0.98596966
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "9/9/9/9/9/9/9/9"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CharSlot3" type="Control" parent="." unique_id=1796912644]
+layout_mode = 1
+anchor_left = 0.402
+anchor_top = 0.75446427
+anchor_right = 1.0
+anchor_bottom = 0.99960715
+offset_left = 0.08799744
+offset_bottom = 0.08799744
+script = ExtResource("7_u7gkb")
+id = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Status" type="RichTextLabel" parent="CharSlot3" unique_id=517096884]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = -0.1984
+anchor_right = 0.9733857
+anchor_bottom = 0.24051517
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "STATUS"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ClassName" type="RichTextLabel" parent="CharSlot3" unique_id=299165417]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = -0.05294553
+anchor_right = 0.60083663
+anchor_bottom = 0.38596964
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="CharName" type="RichTextLabel" parent="CharSlot3" unique_id=1886839911]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5613072
+anchor_top = -0.05294553
+anchor_right = 0.9799215
+anchor_bottom = 0.38596964
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Level" type="RichTextLabel" parent="CharSlot3" unique_id=270339054]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.092509024
+anchor_right = 0.9733857
+anchor_bottom = 0.5314242
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "NIVEAU 99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Char0" type="AnimatedSprite2D" parent="CharSlot3" unique_id=1682509423]
+z_index = 1
+texture_filter = 1
+position = Vector2(21, 29)
+sprite_frames = SubResource("SpriteFrames_823jm")
+animation = &"bmage_idle"
+
+[node name="HP" type="RichTextLabel" parent="CharSlot3" unique_id=582775933]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.23796359
+anchor_right = 0.9733857
+anchor_bottom = 0.67687875
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "HP 999/999"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Magic" type="RichTextLabel" parent="CharSlot3" unique_id=2139038127]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.40159994
+anchor_right = 0.9733857
+anchor_bottom = 0.8405152
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "MAGIE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Charges" type="RichTextLabel" parent="CharSlot3" unique_id=372829313]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025359506
+anchor_top = 0.54705447
+anchor_right = 0.9733857
+anchor_bottom = 0.98596966
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("9_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "9/9/9/9/9/9/9/9"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HandCursor" type="Sprite2D" parent="." unique_id=1942570248]
+texture_filter = 1
+position = Vector2(-32, 226)
+texture = ExtResource("7_823jm")

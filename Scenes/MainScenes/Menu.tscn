@@ -1,24 +1,24 @@
 [gd_scene format=4 uid="uid://75nneoa3m7t"]
 
-[ext_resource type="Script" uid="uid://bn1rfo05wvtic" path="res://main_menu.gd" id="1_gqo8b"]
+[ext_resource type="Script" uid="uid://bn1rfo05wvtic" path="res://Scripts/Menu/main_menu.gd" id="1_gqo8b"]
 [ext_resource type="Texture2D" uid="uid://d3p70o45ptwip" path="res://Sprites/windowTilemapBlue.png" id="3_kk6qc"]
 [ext_resource type="Theme" uid="uid://cm4kvg6sf10lh" path="res://ThemesFonts/ff1_icon_theme.tres" id="4_8drj8"]
 [ext_resource type="Texture2D" uid="uid://qx58t0bywcko" path="res://Sprites/windowTilemapBlack.png" id="4_hvw8t"]
-[ext_resource type="Script" uid="uid://l6j8vkakqfpy" path="res://Scripts/simplefocus.gd" id="4_kk6qc"]
-[ext_resource type="Theme" uid="uid://cj2pg185bajwb" path="res://ff1_theme.tres" id="5_8drj8"]
+[ext_resource type="Script" uid="uid://l6j8vkakqfpy" path="res://Scripts/Menu/MainMenu/simplefocus.gd" id="4_kk6qc"]
+[ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="6_111w6"]
 [ext_resource type="Texture2D" uid="uid://dcx1kd683775" path="res://Sprites/FF1_SANS_FOND_NOIR.png" id="7_8drj8"]
-[ext_resource type="Script" uid="uid://c7654a50r2p26" path="res://Scenes/MainScenes/new_game_button.gd" id="7_uawf0"]
+[ext_resource type="Script" uid="uid://c7654a50r2p26" path="res://Scripts/Menu/MainMenu/new_game_button.gd" id="7_uawf0"]
 [ext_resource type="Texture2D" uid="uid://ct3xhffdfmm2n" path="res://Sprites/HandCursor.png" id="8_4lmyt"]
-[ext_resource type="Script" uid="uid://cc825spyknsv7" path="res://Scripts/char_select_1.gd" id="10_6yxkl"]
-[ext_resource type="Script" uid="uid://cwhnruuxlwtlx" path="res://Scripts/char_select_2.gd" id="10_61b7h"]
+[ext_resource type="Script" uid="uid://cc825spyknsv7" path="res://Scripts/Menu/NewGameMenu/char_select_1.gd" id="10_6yxkl"]
+[ext_resource type="Script" uid="uid://cwhnruuxlwtlx" path="res://Scripts/Menu/NewGameMenu/char_select_2.gd" id="10_61b7h"]
 [ext_resource type="Texture2D" uid="uid://bf71n3kg5iafg" path="res://Sprites/croix_direct.png" id="10_rltr5"]
-[ext_resource type="Script" uid="uid://da2aur20rvmjt" path="res://Scripts/char_select_3.gd" id="11_61b7h"]
+[ext_resource type="Script" uid="uid://da2aur20rvmjt" path="res://Scripts/Menu/NewGameMenu/char_select_3.gd" id="11_61b7h"]
 [ext_resource type="Texture2D" uid="uid://dmucbg51ue5i6" path="res://Sprites/bouton_manette.png" id="11_g73ox"]
 [ext_resource type="Texture2D" uid="uid://lypk75a2s777" path="res://Sprites/start.png" id="12_8hns5"]
-[ext_resource type="Script" uid="uid://b2co77f3eyd15" path="res://Scripts/char_select_4.gd" id="12_n0e55"]
-[ext_resource type="Script" uid="uid://b2aymlxpe3s65" path="res://Scripts/line_edit.gd" id="13_exnfy"]
+[ext_resource type="Script" uid="uid://b2co77f3eyd15" path="res://Scripts/Menu/NewGameMenu/char_select_4.gd" id="12_n0e55"]
+[ext_resource type="Script" uid="uid://b2aymlxpe3s65" path="res://Scripts/Menu/NewGameMenu/line_edit.gd" id="13_exnfy"]
 [ext_resource type="Texture2D" uid="uid://cmd6g1mqn1yqs" path="res://Sprites/ff1_logo_magnifique_gabin.png" id="18_t7m7d"]
-[ext_resource type="AudioStream" uid="uid://dy8tevrs67i8x" path="res://Final Fantasy I NES - Prelude.mp3" id="19_111w6"]
+[ext_resource type="AudioStream" uid="uid://dy8tevrs67i8x" path="res://Sounds/Final Fantasy I NES - Prelude.mp3" id="19_111w6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kk6qc"]
 texture = ExtResource("3_kk6qc")
@@ -54,6 +54,105 @@ sources/0 = SubResource("TileSetAtlasSource_kk6qc")
 sources/1 = SubResource("TileSetAtlasSource_hvw8t")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uawf0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vweq"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wapx3"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f33jh"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0)
+draw_center = false
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_34ofa"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py4qn"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_tyvb3"]
+default_font = ExtResource("6_111w6")
+default_font_size = 50
+Button/colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+Button/colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+Button/colors/font_focus_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+Button/colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+Button/colors/font_hover_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+Button/colors/font_outline_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+Button/colors/font_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+Button/colors/icon_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+Button/colors/icon_focus_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+Button/colors/icon_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+Button/colors/icon_hover_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+Button/colors/icon_normal_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+Button/colors/icon_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/styles/disabled = SubResource("StyleBoxFlat_1vweq")
+Button/styles/focus = SubResource("StyleBoxFlat_wapx3")
+Button/styles/hover = SubResource("StyleBoxFlat_f33jh")
+Button/styles/normal = SubResource("StyleBoxFlat_34ofa")
+Button/styles/pressed = SubResource("StyleBoxFlat_py4qn")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hns5"]
 
@@ -193,7 +292,7 @@ anchor_bottom = 0.4423929
 offset_top = -0.008003235
 offset_right = 0.11999512
 offset_bottom = -0.0960083
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "CONTINUER"
 horizontal_alignment = 1
@@ -228,7 +327,7 @@ offset_left = -0.04800415
 offset_top = 0.024002075
 offset_right = -0.072006226
 offset_bottom = -0.055999756
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "NOUVELLE PARTIE"
 horizontal_alignment = 1
@@ -240,7 +339,7 @@ offset_left = 67.0
 offset_top = 166.0
 offset_right = 190.0
 offset_bottom = 191.0
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "C 1987 SQUARE"
 horizontal_alignment = 1
@@ -251,7 +350,7 @@ offset_left = 67.0
 offset_top = 179.0
 offset_right = 190.0
 offset_bottom = 204.0
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "2026 REMAKE"
 horizontal_alignment = 1
@@ -262,7 +361,7 @@ offset_left = 70.0
 offset_top = 187.0
 offset_right = 193.0
 offset_bottom = 212.0
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "BY TINPOT"
 horizontal_alignment = 1
@@ -273,7 +372,7 @@ offset_left = 68.0
 offset_top = 195.0
 offset_right = 191.0
 offset_bottom = 220.0
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "AND ANOTHER"
 horizontal_alignment = 1
@@ -308,7 +407,7 @@ offset_left = -439.048
 offset_top = 0.024002075
 offset_right = -439.07202
 offset_bottom = -0.056007385
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "COMBATT."
 horizontal_alignment = 1
@@ -324,7 +423,7 @@ offset_left = -439.04797
 offset_top = 0.024002075
 offset_right = -439.07202
 offset_bottom = -0.056007385
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "VOLEUR"
 horizontal_alignment = 1
@@ -340,7 +439,7 @@ offset_left = -439.048
 offset_top = 0.024002075
 offset_right = -439.07202
 offset_bottom = -0.055999756
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "CEINT.NOIR"
 horizontal_alignment = 1
@@ -356,7 +455,7 @@ offset_left = -439.04797
 offset_top = 0.023994446
 offset_right = -439.07202
 offset_bottom = -0.055999756
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "MAGE RGE"
 horizontal_alignment = 1
@@ -444,7 +543,7 @@ offset_right = 106.5
 offset_bottom = 103.0
 focus_neighbor_top = NodePath("../CharSelect1")
 focus_neighbor_bottom = NodePath("../CharSelect3")
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1jdtu")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_u3qt4")
@@ -462,7 +561,7 @@ offset_right = 218.5
 offset_bottom = 103.0
 focus_neighbor_top = NodePath("../CharSelect2")
 focus_neighbor_bottom = NodePath("../CharSelect4")
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1jdtu")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_u3qt4")
@@ -478,7 +577,7 @@ offset_left = 37.0
 offset_top = 161.0
 offset_right = 105.5
 offset_bottom = 192.0
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1jdtu")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_u3qt4")
@@ -494,7 +593,7 @@ offset_left = 149.0
 offset_top = 161.0
 offset_right = 217.5
 offset_bottom = 192.0
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1jdtu")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_u3qt4")
@@ -514,7 +613,7 @@ offset_left = -439.048
 offset_top = 0.024002075
 offset_right = -439.07202
 offset_bottom = -0.056015015
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "ENTRER LES NOMS AU CLAVIER"
 horizontal_alignment = 1
@@ -531,7 +630,7 @@ offset_left = -439.048
 offset_top = 0.024002075
 offset_right = -439.07202
 offset_bottom = -0.055999756
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "DEPLACER   CLASSE A"
 horizontal_alignment = 1
@@ -565,7 +664,7 @@ offset_left = -439.048
 offset_top = 0.024002075
 offset_right = -439.07202
 offset_bottom = -0.055999756
-theme = ExtResource("5_8drj8")
+theme = SubResource("Theme_tyvb3")
 theme_override_font_sizes/normal_font_size = 25
 text = "DEMARRER"
 metadata/_edit_use_anchors_ = true

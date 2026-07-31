@@ -1,9 +1,13 @@
 extends Node
 
 var global_allies = [1, 3, 5, 2]
+var team_formation = [2, 3, 0, 1]
+
 var global_levels = [1, 1, 1, 1]
 var global_exp = [0, 0, 0, 0]
-var global_names = ["AAAA", "BBBB", "CCCC", "DDDD"]
+var total_exp = [0, 0, 0, 0]
+
+var global_names = ["", "", "", ""]
 #STR, AGL, INT, VIT, LUCK, ACC, MDEF
 var global_stats = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0 ,0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
 var gold = 400
@@ -25,6 +29,8 @@ var global_spells = [
 var global_resistances = [
 	[], [], [], []
 ]
+
+var global_item_inventory = [0, 1, 2, 3, 4, 5]
 
 var global_equipment_inventory = [
 	[[0, 0, 0, 0], [0, 0, 0, 0]],
@@ -50,5 +56,4 @@ var expTable = [
 var global_hp = [[0, 0], [0, 0], [0, 0], [0, 0]]
 var global_status = ["", "", "", ""]
 var next_battle = [[0, 0]]
-var team_formation = [2, 3, 0, 1]
 var inventory = [0, 0, 0]

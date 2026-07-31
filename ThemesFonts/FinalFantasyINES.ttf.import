@@ -2,18 +2,18 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bq1l2ssc6lvqg"
-path="res://.godot/imported/Final_Fantasy_I_-_NES.ttf-0fab0cea35f56e098a414a2b449f7340.fontdata"
+uid="uid://b7oskin6e3055"
+path="res://.godot/imported/FinalFantasyINES.ttf-70f89354bc27729ef3908112e31ae21c.fontdata"
 
 [deps]
 
-source_file="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf"
-dest_files=["res://.godot/imported/Final_Fantasy_I_-_NES.ttf-0fab0cea35f56e098a414a2b449f7340.fontdata"]
+source_file="res://ThemesFonts/FinalFantasyINES.ttf"
+dest_files=["res://.godot/imported/FinalFantasyINES.ttf-70f89354bc27729ef3908112e31ae21c.fontdata"]
 
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=0
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
@@ -22,7 +22,7 @@ msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 modulate_color_glyphs=false
-hinting=1
+hinting=3
 subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
@@ -34,7 +34,8 @@ preload=[{
 "chars": [],
 "glyphs": [],
 "name": "New Configuration",
-"size": Vector2i(16, 0)
+"size": Vector2i(16, 0),
+&"variation_embolden": 0.0
 }]
 language_support={}
 script_support={}

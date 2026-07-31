@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://b3tt1yvckk8l6"]
 
-[ext_resource type="Script" uid="uid://dhsh3nlplc01c" path="res://Scenes/MainScenes/map.gd" id="1_h6aav"]
-[ext_resource type="Script" uid="uid://bf6n52rlikuyp" path="res://Scripts/player.gd" id="2_g4t0d"]
+[ext_resource type="Script" uid="uid://dhsh3nlplc01c" path="res://Scripts/Map/map.gd" id="1_h6aav"]
+[ext_resource type="Script" uid="uid://bf6n52rlikuyp" path="res://Scripts/Map/player.gd" id="2_g4t0d"]
+[ext_resource type="PackedScene" uid="uid://bor6py8xr4yfp" path="res://Scenes/MainScenes/stat_menu.tscn" id="3_bvja7"]
 [ext_resource type="Texture2D" uid="uid://c6osg3y7jxen0" path="res://Sprites/FF1_SANS_FOND_BLEU.png" id="3_o04y6"]
+[ext_resource type="PackedScene" uid="uid://csi4xqvtscv1g" path="res://Scenes/Objects/map_menu.tscn" id="4_g4t0d"]
+[ext_resource type="PackedScene" uid="uid://cerqiqs0j7q7x" path="res://Scenes/MainScenes/item_magic_menu.tscn" id="5_bvja7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_etk83"]
 atlas = ExtResource("3_o04y6")
@@ -95,12 +98,36 @@ size = Vector2(206, 170)
 script = ExtResource("1_h6aav")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=105889038]
-z_index = 1
-position = Vector2(126, 110)
+position = Vector2(128, 112)
 script = ExtResource("2_g4t0d")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=232189378]
 position_smoothing_enabled = true
+
+[node name="MapMenu" parent="CharacterBody2D" unique_id=1202153963 instance=ExtResource("4_g4t0d")]
+visible = false
+z_index = 1
+offset_left = -128.0
+offset_top = -112.0
+offset_right = 128.0
+offset_bottom = 112.0
+
+[node name="StatMenu" parent="CharacterBody2D" unique_id=1724025771 instance=ExtResource("3_bvja7")]
+visible = false
+z_index = 1
+texture_filter = 1
+offset_left = -128.0
+offset_top = -112.0
+offset_right = 128.0
+offset_bottom = 112.0
+
+[node name="ItemMagicMenu" parent="CharacterBody2D" unique_id=1386616496 instance=ExtResource("5_bvja7")]
+visible = false
+z_index = 1
+offset_left = -128.0
+offset_top = -112.0
+offset_right = 128.0
+offset_bottom = 112.0
 
 [node name="Timer" type="Timer" parent="CharacterBody2D" unique_id=2052474736]
 wait_time = 0.4
@@ -131,6 +158,7 @@ position = Vector2(8, 0)
 target_position = Vector2(8, 0)
 
 [node name="ZONE" type="Area2D" parent="." unique_id=308347798]
+z_index = -1
 position = Vector2(127, 110)
 
 [node name="Carré" type="Sprite2D" parent="ZONE" unique_id=1175402432]

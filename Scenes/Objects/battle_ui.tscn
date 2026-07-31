@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bx38obn351t0q"]
 
-[ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://Final_Fantasy_I_-_NES.ttf" id="1_3efbw"]
-[ext_resource type="Script" uid="uid://ndnje7f535tl" path="res://Scripts/slot_status.gd" id="2_r2h2o"]
-[ext_resource type="Script" uid="uid://d30a2k0vdjmke" path="res://Scripts/slot_name.gd" id="3_qvy1q"]
-[ext_resource type="Script" uid="uid://bhmxfeg8klog" path="res://Scripts/slot_hp.gd" id="4_smewj"]
-[ext_resource type="Script" uid="uid://bfsyddafucmwd" path="res://Scripts/slot_hpmax.gd" id="5_dlh7i"]
+[ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="1_3efbw"]
+[ext_resource type="Script" uid="uid://ndnje7f535tl" path="res://Scripts/combat/BattleUI/slot_status.gd" id="2_r2h2o"]
+[ext_resource type="Script" uid="uid://d30a2k0vdjmke" path="res://Scripts/combat/BattleUI/slot_name.gd" id="3_qvy1q"]
+[ext_resource type="Script" uid="uid://bhmxfeg8klog" path="res://Scripts/combat/BattleUI/slot_hp.gd" id="4_smewj"]
+[ext_resource type="Script" uid="uid://bfsyddafucmwd" path="res://Scripts/combat/BattleUI/slot_hpmax.gd" id="5_dlh7i"]
 
 [node name="Battle_UI" type="Control" unique_id=682112751]
 layout_mode = 3

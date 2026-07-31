@@ -1,0 +1,407 @@
+[gd_scene format=3 uid="uid://bor6py8xr4yfp"]
+
+[ext_resource type="Script" uid="uid://ph45mcim1120" path="res://Scenes/MainScenes/stat_menu.gd" id="1_0evwb"]
+[ext_resource type="Texture2D" uid="uid://bmddtus17fdaj" path="res://Sprites/statusmenu.png" id="1_oha40"]
+[ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="2_bchpv"]
+[ext_resource type="Texture2D" uid="uid://dcx1kd683775" path="res://Sprites/FF1_SANS_FOND_NOIR.png" id="3_0j8gq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_150w0"]
+atlas = ExtResource("3_0j8gq")
+region = Rect2(5, 55, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtcjb"]
+atlas = ExtResource("3_0j8gq")
+region = Rect2(5, 105, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l4ck"]
+atlas = ExtResource("3_0j8gq")
+region = Rect2(5, 80, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdbkx"]
+atlas = ExtResource("3_0j8gq")
+region = Rect2(5, 30, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyvb3"]
+atlas = ExtResource("3_0j8gq")
+region = Rect2(5, 3, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1r4d"]
+atlas = ExtResource("3_0j8gq")
+region = Rect2(5, 130, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_syef7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_150w0")
+}],
+"loop": 1,
+"name": &"bbelt_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtcjb")
+}],
+"loop": 1,
+"name": &"bmage_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l4ck")
+}],
+"loop": 1,
+"name": &"rmage_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdbkx")
+}],
+"loop": 1,
+"name": &"thief_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyvb3")
+}],
+"loop": 1,
+"name": &"warrior_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1r4d")
+}],
+"loop": 1,
+"name": &"wmage_idle",
+"speed": 5.0
+}]
+
+[node name="StatMenu" type="Control" unique_id=1724025771]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 224.0
+script = ExtResource("1_0evwb")
+
+[node name="Statusmenu" type="Sprite2D" parent="." unique_id=2104763382]
+texture_filter = 1
+position = Vector2(128, 112)
+texture = ExtResource("1_oha40")
+
+[node name="CharName" type="RichTextLabel" parent="." unique_id=2057896627]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04640627
+anchor_top = -0.008535726
+anchor_right = 0.3434688
+anchor_bottom = 0.102607116
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level" type="RichTextLabel" parent="." unique_id=2147257527]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.04250002
+anchor_top = 0.03610713
+anchor_right = 0.3434688
+anchor_bottom = 0.14724997
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "NIVEAU 99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CharImage" type="AnimatedSprite2D" parent="." unique_id=421828101]
+z_index = 1
+texture_filter = 1
+position = Vector2(110, 19)
+sprite_frames = SubResource("SpriteFrames_syef7")
+animation = &"bmage_idle"
+
+[node name="ClassName" type="RichTextLabel" parent="." unique_id=635005647]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.46046877
+anchor_top = 0.013785703
+anchor_right = 0.9528438
+anchor_bottom = 0.12492854
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAAAAAAA"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CurrentExpTitle" type="RichTextLabel" parent="." unique_id=237850602]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015156269
+anchor_top = 0.18789284
+anchor_right = 0.9840938
+anchor_bottom = 0.2990357
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "EXPERIENCE TOTALE "
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CurrentExp" type="RichTextLabel" parent="." unique_id=1690193756]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015156269
+anchor_top = 0.25039285
+anchor_right = 0.9840938
+anchor_bottom = 0.3615357
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "9999999999999999999999999"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="NeededExpTitle" type="RichTextLabel" parent="." unique_id=1377841401]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015156269
+anchor_top = 0.33075
+anchor_right = 0.9840938
+anchor_bottom = 0.44189283
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "EXP. POUR LE NIVEAU SUIVANT"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="NeededExp" type="RichTextLabel" parent="." unique_id=474551385]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015156269
+anchor_top = 0.39325
+anchor_right = 0.9840938
+anchor_bottom = 0.5043928
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "9999999999999999999999999"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StrTitle" type="RichTextLabel" parent="." unique_id=1569005082]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03078127
+anchor_top = 0.5450357
+anchor_right = 0.4294063
+anchor_bottom = 0.65171427
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "FORCE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Str" type="RichTextLabel" parent="." unique_id=876687080]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.42140627
+anchor_top = 0.5450357
+anchor_right = 0.5231563
+anchor_bottom = 0.65171427
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AglTitle" type="RichTextLabel" parent="." unique_id=1122929872]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03078127
+anchor_top = 0.62539285
+anchor_right = 0.4294063
+anchor_bottom = 0.7320714
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "AGILITE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Agl" type="RichTextLabel" parent="." unique_id=1145514504]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.42140627
+anchor_top = 0.62539285
+anchor_right = 0.5231563
+anchor_bottom = 0.7320714
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VitTitle" type="RichTextLabel" parent="." unique_id=872892568]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03078127
+anchor_top = 0.7012857
+anchor_right = 0.4294063
+anchor_bottom = 0.80796427
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "VITALITE
+"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Vit" type="RichTextLabel" parent="." unique_id=1458916599]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.42140627
+anchor_top = 0.7012857
+anchor_right = 0.5231563
+anchor_bottom = 0.80796427
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="IntTitle" type="RichTextLabel" parent="." unique_id=1654710284]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03078127
+anchor_top = 0.78164285
+anchor_right = 0.4294063
+anchor_bottom = 0.8883214
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "INTELLIGENCE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Int" type="RichTextLabel" parent="." unique_id=761654012]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.42140627
+anchor_top = 0.78164285
+anchor_right = 0.5231563
+anchor_bottom = 0.8883214
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LuckTitle" type="RichTextLabel" parent="." unique_id=146599721]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03078127
+anchor_top = 0.86646426
+anchor_right = 0.4294063
+anchor_bottom = 0.9731428
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "CHANCE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Luck" type="RichTextLabel" parent="." unique_id=355795308]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.42140627
+anchor_top = 0.86646426
+anchor_right = 0.5231563
+anchor_bottom = 0.9731428
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_bchpv")
+theme_override_font_sizes/normal_font_size = 25
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
