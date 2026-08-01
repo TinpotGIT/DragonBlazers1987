@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dhsh3nlplc01c" path="res://Scripts/Map/map.gd" id="1_h6aav"]
 [ext_resource type="Script" uid="uid://bf6n52rlikuyp" path="res://Scripts/Map/player.gd" id="2_g4t0d"]
-[ext_resource type="PackedScene" uid="uid://bor6py8xr4yfp" path="res://Scenes/MainScenes/stat_menu.tscn" id="3_bvja7"]
+[ext_resource type="PackedScene" uid="uid://bor6py8xr4yfp" path="res://Scenes/Objects/stat_menu.tscn" id="3_bvja7"]
 [ext_resource type="Texture2D" uid="uid://c6osg3y7jxen0" path="res://Sprites/FF1_SANS_FOND_BLEU.png" id="3_o04y6"]
 [ext_resource type="PackedScene" uid="uid://csi4xqvtscv1g" path="res://Scenes/Objects/map_menu.tscn" id="4_g4t0d"]
-[ext_resource type="PackedScene" uid="uid://cerqiqs0j7q7x" path="res://Scenes/MainScenes/item_magic_menu.tscn" id="5_bvja7"]
+[ext_resource type="PackedScene" uid="uid://cerqiqs0j7q7x" path="res://Scenes/Objects/item_menu.tscn" id="5_bvja7"]
+[ext_resource type="PackedScene" uid="uid://cehv06eur6338" path="res://Scenes/Objects/magic_menu.tscn" id="7_vyt7l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_etk83"]
 atlas = ExtResource("3_o04y6")
@@ -103,6 +104,7 @@ script = ExtResource("2_g4t0d")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=232189378]
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
 [node name="MapMenu" parent="CharacterBody2D" unique_id=1202153963 instance=ExtResource("4_g4t0d")]
 visible = false
@@ -121,13 +123,27 @@ offset_top = -112.0
 offset_right = 128.0
 offset_bottom = 112.0
 
-[node name="ItemMagicMenu" parent="CharacterBody2D" unique_id=1386616496 instance=ExtResource("5_bvja7")]
+[node name="ItemMenu" parent="CharacterBody2D" unique_id=1386616496 instance=ExtResource("5_bvja7")]
 visible = false
 z_index = 1
 offset_left = -128.0
 offset_top = -112.0
 offset_right = 128.0
 offset_bottom = 112.0
+
+[node name="MagicMenu" parent="CharacterBody2D" unique_id=2069766347 instance=ExtResource("7_vyt7l")]
+visible = false
+z_index = 1
+offset_left = -128.0
+offset_top = -112.0
+offset_right = 128.0
+offset_bottom = 112.0
+
+[node name="ArmorWeaponMenu" type="Control" parent="CharacterBody2D" unique_id=1696784374]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Timer" type="Timer" parent="CharacterBody2D" unique_id=2052474736]
 wait_time = 0.4

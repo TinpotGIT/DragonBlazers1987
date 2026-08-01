@@ -1,232 +1,27 @@
 [gd_scene format=3 uid="uid://cerqiqs0j7q7x"]
 
 [ext_resource type="Texture2D" uid="uid://bsysmssahthp7" path="res://Sprites/background_objets_magies.png" id="1_4os5y"]
-[ext_resource type="Script" uid="uid://cp8204njxuvu0" path="res://Scenes/MainScenes/item_magic_menu.gd" id="1_ywk4r"]
+[ext_resource type="Script" uid="uid://cp8204njxuvu0" path="res://Scripts/Map/ItemMenu/item_menu.gd" id="1_mr87m"]
 [ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="2_fxj6x"]
 [ext_resource type="FontFile" uid="uid://bm3kdjamsjwew" path="res://ThemesFonts/Final-Fantasy.ttf" id="3_18rod"]
 [ext_resource type="Script" uid="uid://dylrknn7rl7ds" path="res://Scripts/combat/ItemMenu/items.gd" id="3_suif2"]
-[ext_resource type="Script" uid="uid://be4b8lc8i7hfy" path="res://Scenes/MainScenes/buttoslot0.gd" id="5_xvxad"]
-[ext_resource type="Script" uid="uid://2yhxshgui2a3" path="res://Scenes/MainScenes/button_slot.gd" id="6_s1y2l"]
+[ext_resource type="Script" uid="uid://2yhxshgui2a3" path="res://Scripts/Map/ItemMenu/button_slot.gd" id="5_w4gwo"]
 [ext_resource type="Texture2D" uid="uid://ct3xhffdfmm2n" path="res://Sprites/HandCursor.png" id="8_wqjck"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suif2"]
 
-[node name="ItemMagicMenu" type="Control" unique_id=1386616496]
+[node name="ItemMenu" type="Control" unique_id=1386616496]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 256.0
 offset_bottom = 224.0
-script = ExtResource("1_ywk4r")
+script = ExtResource("1_mr87m")
 
 [node name="BackgroundObjetsMagies" type="Sprite2D" parent="." unique_id=317665297]
 texture_filter = 1
 position = Vector2(128, 112)
 texture = ExtResource("1_4os5y")
 script = ExtResource("3_suif2")
-
-[node name="ButtonSlot0" type="Button" parent="." unique_id=1719176181]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 28.0
-offset_right = 128.0
-offset_bottom = 42.0
-focus_neighbor_right = NodePath("../ButtonSlot1")
-focus_neighbor_bottom = NodePath("../ButtonSlot2")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("5_xvxad")
-
-[node name="ButtonSlot1" type="Button" parent="." unique_id=447495514]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 28.0
-offset_right = 252.0
-offset_bottom = 42.0
-focus_neighbor_left = NodePath("../ButtonSlot0")
-focus_neighbor_bottom = NodePath("../ButtonSlot3")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-
-[node name="ButtonSlot2" type="Button" parent="." unique_id=189604823]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 45.0
-offset_right = 128.0
-offset_bottom = 59.0
-focus_neighbor_top = NodePath("../ButtonSlot0")
-focus_neighbor_right = NodePath("../ButtonSlot3")
-focus_neighbor_bottom = NodePath("../ButtonSlot4")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 2
-
-[node name="ButtonSlot3" type="Button" parent="." unique_id=446418856]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 45.0
-offset_right = 252.0
-offset_bottom = 59.0
-focus_neighbor_left = NodePath("../ButtonSlot2")
-focus_neighbor_top = NodePath("../ButtonSlot1")
-focus_neighbor_bottom = NodePath("../ButtonSlot5")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 3
-
-[node name="ButtonSlot4" type="Button" parent="." unique_id=1413131532]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 61.0
-offset_right = 128.0
-offset_bottom = 75.0
-focus_neighbor_top = NodePath("../ButtonSlot2")
-focus_neighbor_right = NodePath("../ButtonSlot5")
-focus_neighbor_bottom = NodePath("../ButtonSlot6")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 4
-
-[node name="ButtonSlot5" type="Button" parent="." unique_id=564229039]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 61.0
-offset_right = 252.0
-offset_bottom = 75.0
-focus_neighbor_left = NodePath("../ButtonSlot4")
-focus_neighbor_top = NodePath("../ButtonSlot3")
-focus_neighbor_bottom = NodePath("../ButtonSlot7")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 5
-
-[node name="ButtonSlot6" type="Button" parent="." unique_id=318601429]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 77.0
-offset_right = 128.0
-offset_bottom = 91.0
-focus_neighbor_top = NodePath("../ButtonSlot4")
-focus_neighbor_right = NodePath("../ButtonSlot7")
-focus_neighbor_bottom = NodePath("../ButtonSlot8")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 6
-
-[node name="ButtonSlot7" type="Button" parent="." unique_id=1258171259]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 77.0
-offset_right = 252.0
-offset_bottom = 91.0
-focus_neighbor_left = NodePath("../ButtonSlot6")
-focus_neighbor_top = NodePath("../ButtonSlot5")
-focus_neighbor_bottom = NodePath("../ButtonSlot9")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 7
-
-[node name="ButtonSlot8" type="Button" parent="." unique_id=1832107298]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 93.0
-offset_right = 128.0
-offset_bottom = 106.0
-focus_neighbor_top = NodePath("../ButtonSlot6")
-focus_neighbor_right = NodePath("../ButtonSlot9")
-focus_neighbor_bottom = NodePath("../ButtonSlot10")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 8
-
-[node name="ButtonSlot9" type="Button" parent="." unique_id=1935701313]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 93.0
-offset_right = 252.0
-offset_bottom = 106.0
-focus_neighbor_left = NodePath("../ButtonSlot8")
-focus_neighbor_top = NodePath("../ButtonSlot7")
-focus_neighbor_bottom = NodePath("../ButtonSlot11")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 9
-
-[node name="ButtonSlot10" type="Button" parent="." unique_id=821191480]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 109.0
-offset_right = 128.0
-offset_bottom = 123.0
-focus_neighbor_top = NodePath("../ButtonSlot8")
-focus_neighbor_right = NodePath("../ButtonSlot11")
-focus_neighbor_bottom = NodePath("../ButtonSlot12")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 10
-
-[node name="ButtonSlot12" type="Button" parent="." unique_id=718231593]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 125.0
-offset_right = 128.0
-offset_bottom = 139.0
-focus_neighbor_top = NodePath("../ButtonSlot10")
-focus_neighbor_right = NodePath("../ButtonSlot13")
-focus_neighbor_bottom = NodePath("../ButtonSlot14")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 12
-
-[node name="ButtonSlot13" type="Button" parent="." unique_id=247028172]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 125.0
-offset_right = 252.0
-offset_bottom = 139.0
-focus_neighbor_left = NodePath("../ButtonSlot12")
-focus_neighbor_top = NodePath("../ButtonSlot11")
-focus_neighbor_bottom = NodePath("../ButtonSlot15")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 13
-
-[node name="ButtonSlot14" type="Button" parent="." unique_id=1248572033]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 141.0
-offset_right = 128.0
-offset_bottom = 155.0
-focus_neighbor_top = NodePath("../ButtonSlot12")
-focus_neighbor_right = NodePath("../ButtonSlot15")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 14
-
-[node name="ButtonSlot15" type="Button" parent="." unique_id=1135106744]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 141.0
-offset_right = 252.0
-offset_bottom = 155.0
-focus_neighbor_left = NodePath("../ButtonSlot14")
-focus_neighbor_top = NodePath("../ButtonSlot13")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 15
 
 [node name="CharName" type="RichTextLabel" parent="." unique_id=1279722772]
 texture_filter = 1
@@ -244,6 +39,225 @@ theme_override_fonts/normal_font = ExtResource("2_fxj6x")
 theme_override_font_sizes/normal_font_size = 25
 text = "OBJET"
 horizontal_alignment = 1
+
+[node name="ButtonSlot0" type="Button" parent="." unique_id=1719176181]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 28.0
+offset_right = 128.0
+offset_bottom = 42.0
+focus_neighbor_right = NodePath("../ButtonSlot1")
+focus_neighbor_bottom = NodePath("../ButtonSlot2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 0
+
+[node name="ButtonSlot1" type="Button" parent="." unique_id=447495514]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 28.0
+offset_right = 252.0
+offset_bottom = 42.0
+focus_neighbor_left = NodePath("../ButtonSlot0")
+focus_neighbor_bottom = NodePath("../ButtonSlot3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+
+[node name="ButtonSlot2" type="Button" parent="." unique_id=189604823]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 45.0
+offset_right = 128.0
+offset_bottom = 59.0
+focus_neighbor_top = NodePath("../ButtonSlot0")
+focus_neighbor_right = NodePath("../ButtonSlot3")
+focus_neighbor_bottom = NodePath("../ButtonSlot4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 2
+
+[node name="ButtonSlot3" type="Button" parent="." unique_id=446418856]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 45.0
+offset_right = 252.0
+offset_bottom = 59.0
+focus_neighbor_left = NodePath("../ButtonSlot2")
+focus_neighbor_top = NodePath("../ButtonSlot1")
+focus_neighbor_bottom = NodePath("../ButtonSlot5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 3
+
+[node name="ButtonSlot4" type="Button" parent="." unique_id=1413131532]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 61.0
+offset_right = 128.0
+offset_bottom = 75.0
+focus_neighbor_top = NodePath("../ButtonSlot2")
+focus_neighbor_right = NodePath("../ButtonSlot5")
+focus_neighbor_bottom = NodePath("../ButtonSlot6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 4
+
+[node name="ButtonSlot5" type="Button" parent="." unique_id=564229039]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 61.0
+offset_right = 252.0
+offset_bottom = 75.0
+focus_neighbor_left = NodePath("../ButtonSlot4")
+focus_neighbor_top = NodePath("../ButtonSlot3")
+focus_neighbor_bottom = NodePath("../ButtonSlot7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 5
+
+[node name="ButtonSlot6" type="Button" parent="." unique_id=318601429]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 77.0
+offset_right = 128.0
+offset_bottom = 91.0
+focus_neighbor_top = NodePath("../ButtonSlot4")
+focus_neighbor_right = NodePath("../ButtonSlot7")
+focus_neighbor_bottom = NodePath("../ButtonSlot8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 6
+
+[node name="ButtonSlot7" type="Button" parent="." unique_id=1258171259]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 77.0
+offset_right = 252.0
+offset_bottom = 91.0
+focus_neighbor_left = NodePath("../ButtonSlot6")
+focus_neighbor_top = NodePath("../ButtonSlot5")
+focus_neighbor_bottom = NodePath("../ButtonSlot9")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 7
+
+[node name="ButtonSlot8" type="Button" parent="." unique_id=1832107298]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 93.0
+offset_right = 128.0
+offset_bottom = 106.0
+focus_neighbor_top = NodePath("../ButtonSlot6")
+focus_neighbor_right = NodePath("../ButtonSlot9")
+focus_neighbor_bottom = NodePath("../ButtonSlot10")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 8
+
+[node name="ButtonSlot9" type="Button" parent="." unique_id=1935701313]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 93.0
+offset_right = 252.0
+offset_bottom = 106.0
+focus_neighbor_left = NodePath("../ButtonSlot8")
+focus_neighbor_top = NodePath("../ButtonSlot7")
+focus_neighbor_bottom = NodePath("../ButtonSlot11")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 9
+
+[node name="ButtonSlot10" type="Button" parent="." unique_id=821191480]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 109.0
+offset_right = 128.0
+offset_bottom = 123.0
+focus_neighbor_top = NodePath("../ButtonSlot8")
+focus_neighbor_right = NodePath("../ButtonSlot11")
+focus_neighbor_bottom = NodePath("../ButtonSlot12")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 10
+
+[node name="ButtonSlot11" type="Button" parent="." unique_id=39282815]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 109.0
+offset_right = 252.0
+offset_bottom = 123.0
+focus_neighbor_left = NodePath("../ButtonSlot10")
+focus_neighbor_top = NodePath("../ButtonSlot9")
+focus_neighbor_bottom = NodePath("../ButtonSlot13")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 11
+
+[node name="ButtonSlot12" type="Button" parent="." unique_id=718231593]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 125.0
+offset_right = 128.0
+offset_bottom = 139.0
+focus_neighbor_top = NodePath("../ButtonSlot10")
+focus_neighbor_right = NodePath("../ButtonSlot13")
+focus_neighbor_bottom = NodePath("../ButtonSlot14")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 12
+
+[node name="ButtonSlot13" type="Button" parent="." unique_id=247028172]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 125.0
+offset_right = 252.0
+offset_bottom = 139.0
+focus_neighbor_left = NodePath("../ButtonSlot12")
+focus_neighbor_top = NodePath("../ButtonSlot11")
+focus_neighbor_bottom = NodePath("../ButtonSlot15")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 13
+
+[node name="ButtonSlot14" type="Button" parent="." unique_id=1248572033]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 141.0
+offset_right = 128.0
+offset_bottom = 155.0
+focus_neighbor_top = NodePath("../ButtonSlot12")
+focus_neighbor_right = NodePath("../ButtonSlot15")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 14
+
+[node name="ButtonSlot15" type="Button" parent="." unique_id=1135106744]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 141.0
+offset_right = 252.0
+offset_bottom = 155.0
+focus_neighbor_left = NodePath("../ButtonSlot14")
+focus_neighbor_top = NodePath("../ButtonSlot13")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+flat = true
+script = ExtResource("5_w4gwo")
+id = 15
 
 [node name="ItemSlot0" type="RichTextLabel" parent="." unique_id=655402887]
 texture_filter = 1
@@ -420,20 +434,6 @@ offset_bottom = 80.01601
 theme_override_fonts/normal_font = ExtResource("2_fxj6x")
 theme_override_font_sizes/normal_font_size = 25
 text = "AAAAAAAAAAAAAA"
-
-[node name="ButtonSlot11" type="Button" parent="." unique_id=39282815]
-layout_mode = 0
-offset_left = 137.0
-offset_top = 109.0
-offset_right = 252.0
-offset_bottom = 123.0
-focus_neighbor_left = NodePath("../ButtonSlot10")
-focus_neighbor_top = NodePath("../ButtonSlot9")
-focus_neighbor_bottom = NodePath("../ButtonSlot13")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
-flat = true
-script = ExtResource("6_s1y2l")
-id = 11
 
 [node name="ItemSlot11" type="RichTextLabel" parent="." unique_id=335010755]
 texture_filter = 1

@@ -34,7 +34,8 @@ func _process(delta: float) -> void:
 
 func hideMenus():
 	$CharacterBody2D/StatMenu.visible = false
-	$CharacterBody2D/ItemMagicMenu.visible = false
+	$CharacterBody2D/ItemMenu.visible = false
+	$CharacterBody2D/MagicMenu.visible = false
 
 func showAllCharInfo():
 	$CharacterBody2D/MapMenu/CharSlot0.showCharInfo()
@@ -47,12 +48,16 @@ func checkChosen(id):
 		$CharacterBody2D/StatMenu.visible = true
 		$CharacterBody2D/StatMenu.getId(id)
 		$CharacterBody2D/StatMenu.updateInformation()
-		$CharacterBody2D/MapMenu.visible = false
-		inMenu = false
-		
+	elif chosenButton == "Magic":
+		$CharacterBody2D/MagicMenu.visible = true
+		$CharacterBody2D/MagicMenu.getId(id)
+		$CharacterBody2D/MagicMenu.updateInfoMagic()
+	$CharacterBody2D/MapMenu.visible = false
+	inMenu = false
+
 func itemPressed():
 	chosenButton = "Items"
-	$CharacterBody2D/ItemMagicMenu.visible = true
-	$CharacterBody2D/ItemMagicMenu.updateInfoItems()
+	$CharacterBody2D/ItemMenu.visible = true
+	$CharacterBody2D/ItemMenu.updateInfoItem()
 	$CharacterBody2D/MapMenu.visible = false
 	inMenu = false

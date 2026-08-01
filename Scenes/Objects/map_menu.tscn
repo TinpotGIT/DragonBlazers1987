@@ -6,16 +6,28 @@
 [ext_resource type="Texture2D" uid="uid://dcx1kd683775" path="res://Sprites/FF1_SANS_FOND_NOIR.png" id="4_16om5"]
 [ext_resource type="Script" uid="uid://b1haun6jcwuwj" path="res://Scripts/Map/MapMenu/money_text.gd" id="4_feyxm"]
 [ext_resource type="Script" uid="uid://7uicaiqkuow0" path="res://Scripts/Map/MapMenu/items_button.gd" id="5_gr4nd"]
+[ext_resource type="Script" uid="uid://fxq8ibsui4xh" path="res://Scripts/Map/MapMenu/magic_button.gd" id="6_gr4nd"]
 [ext_resource type="Script" uid="uid://baqjpn0rpvap1" path="res://Scripts/Map/MapMenu/mapmenu_button.gd" id="6_hkr76"]
 [ext_resource type="Texture2D" uid="uid://ct3xhffdfmm2n" path="res://Sprites/HandCursor.png" id="7_823jm"]
 [ext_resource type="Script" uid="uid://cm6mcdfrj1b3m" path="res://Scripts/Map/MapMenu/status_button.gd" id="7_feyxm"]
 [ext_resource type="Script" uid="uid://bfk8jiy57eik3" path="res://Scripts/Map/MapMenu/charSlotInfo.gd" id="7_u7gkb"]
-[ext_resource type="Script" uid="uid://deemsa0es17l2" path="res://Scenes/Objects/char_button.gd" id="8_gr4nd"]
 [ext_resource type="FontFile" uid="uid://b7oskin6e3055" path="res://ThemesFonts/FinalFantasyINES.ttf" id="9_u7gkb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgefo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7gkb"]
+
+[sub_resource type="GDScript" id="GDScript_feyxm"]
+script/source = "extends Button
+
+@export var id = 0
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var main = get_parent()
+	focus_entered.connect(main._on_button_focus_entered.bind(get_path()))
+	pressed.connect(get_parent().get_parent().get_parent().checkChosen.bind(id))
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_150w0"]
 atlas = ExtResource("4_16om5")
@@ -275,7 +287,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Weapon_Button")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
 flat = true
-script = ExtResource("6_hkr76")
+script = ExtResource("6_gr4nd")
 metadata/_edit_use_anchors_ = true
 
 [node name="Weapon_Button" type="Button" parent="." unique_id=1378580231]
@@ -382,7 +394,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../CharButton1")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_u7gkb")
 flat = true
-script = ExtResource("8_gr4nd")
+script = SubResource("GDScript_feyxm")
 metadata/_edit_use_anchors_ = true
 
 [node name="CharButton1" type="Button" parent="." unique_id=180472768]
@@ -402,7 +414,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../CharButton2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_u7gkb")
 flat = true
-script = ExtResource("8_gr4nd")
+script = SubResource("GDScript_feyxm")
 id = 1
 metadata/_edit_use_anchors_ = true
 
@@ -423,7 +435,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../CharButton3")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_u7gkb")
 flat = true
-script = ExtResource("8_gr4nd")
+script = SubResource("GDScript_feyxm")
 id = 2
 metadata/_edit_use_anchors_ = true
 
@@ -444,7 +456,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../CharButton0")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_u7gkb")
 flat = true
-script = ExtResource("8_gr4nd")
+script = SubResource("GDScript_feyxm")
 id = 3
 metadata/_edit_use_anchors_ = true
 

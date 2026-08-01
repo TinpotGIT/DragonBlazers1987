@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bor6py8xr4yfp"]
 
-[ext_resource type="Script" uid="uid://ph45mcim1120" path="res://Scenes/MainScenes/stat_menu.gd" id="1_0evwb"]
+[ext_resource type="Script" uid="uid://ph45mcim1120" path="res://Scripts/Map/StatMenu/stat_menu.gd" id="1_0evwb"]
 [ext_resource type="Texture2D" uid="uid://bmddtus17fdaj" path="res://Sprites/statusmenu.png" id="1_oha40"]
 [ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="2_bchpv"]
 [ext_resource type="Texture2D" uid="uid://dcx1kd683775" path="res://Sprites/FF1_SANS_FOND_NOIR.png" id="3_0j8gq"]

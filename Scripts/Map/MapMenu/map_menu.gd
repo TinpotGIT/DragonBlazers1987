@@ -12,3 +12,7 @@ func _on_button_focus_entered(extra_arg_0: NodePath) -> void:
 func _on_status_button_pressed() -> void:
 	get_parent().get_parent().chosenButton = "Status"
 	$CharButton0.grab_focus()
+
+func _on_magic_button_pressed() -> void:
+	get_parent().get_parent().chosenButton = "Magic"
+	$CharButton0.grab_focus()
