@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://b2u46u4nvlxtj"]
 
 [ext_resource type="Script" uid="uid://cxh4gdy1a4q0u" path="res://Scripts/combat/main.gd" id="1_wr7ca"]
-[ext_resource type="Texture2D" uid="uid://byq2yvicqig5h" path="res://Sprites/NES - Final Fantasy - combat background.png" id="2_5jlbo"]
+[ext_resource type="Texture2D" uid="uid://byq2yvicqig5h" path="res://Sprites/Spritesheets/NES - Final Fantasy - combat background.png" id="2_5jlbo"]
 [ext_resource type="Script" uid="uid://behjtvyap8cx4" path="res://Scripts/combat/enemy_groups.gd" id="3_pq63y"]
 [ext_resource type="Texture2D" uid="uid://qx58t0bywcko" path="res://Sprites/windowTilemapBlack.png" id="4_ctksq"]
 [ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="5_t7gtt"]
@@ -19,13 +19,13 @@
 [ext_resource type="Script" uid="uid://hf5kqu23vywx" path="res://Scripts/combat/ItemMenu/inventory_item.gd" id="17_k8lqi"]
 [ext_resource type="Script" uid="uid://drabpcpg3ht7d" path="res://Scripts/combat/ItemMenu/itemButton.gd" id="18_yhchp"]
 [ext_resource type="Texture2D" uid="uid://cucd0lrpsmscr" path="res://Sprites/Icons/potion.png" id="19_swfgf"]
-[ext_resource type="Texture2D" uid="uid://dcx1kd683775" path="res://Sprites/FF1_SANS_FOND_NOIR.png" id="20_cdo2o"]
+[ext_resource type="Texture2D" uid="uid://dcx1kd683775" path="res://Sprites/Spritesheets/FF1_SANS_FOND_NOIR.png" id="20_cdo2o"]
 [ext_resource type="Script" uid="uid://88qhe8bkigvt" path="res://Scripts/combat/char.gd" id="21_blpgb"]
 [ext_resource type="Texture2D" uid="uid://7jbakgd6qiqt" path="res://Sprites/Enemies/Boss/lich.png" id="22_utamh"]
 [ext_resource type="Texture2D" uid="uid://byx4ibar66sjr" path="res://Sprites/Enemies/Small/imp.png" id="23_fv7b0"]
 [ext_resource type="Script" uid="uid://dch0dqump73p4" path="res://Scripts/combat/enemyButton.gd" id="24_x07ps"]
 [ext_resource type="Texture2D" uid="uid://dkicmlh2n0kwt" path="res://Sprites/Enemies/Medium/unicorn.png" id="25_d26st"]
-[ext_resource type="Texture2D" uid="uid://ct3xhffdfmm2n" path="res://Sprites/HandCursor.png" id="26_s31y5"]
+[ext_resource type="Texture2D" uid="uid://ct3xhffdfmm2n" path="res://Sprites/Icons/HandCursor.png" id="26_s31y5"]
 [ext_resource type="Texture2D" uid="uid://bh0o3waetma3c" path="res://Sprites/weapon_spritesheet.png" id="27_yd4mt"]
 [ext_resource type="AudioStream" uid="uid://7eab2ucnv0gw" path="res://Sounds/Final Fantasy I NES - Battle.mp3" id="28_3eksj"]
 
@@ -3177,6 +3177,10 @@ volume_db = -10.0
 autoplay = true
 parameters/looping = false
 
+[node name="LoseTimer" type="Timer" parent="." unique_id=68469697]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="choose_monsters" from="." to="Background" method="_on_choose_monsters"]
 [connection signal="summon_monsters" from="Background" to="." method="_on_summon_monsters"]
 [connection signal="timeout" from="Timer" to="." method="_on_actiontimer_timeout"]
@@ -3185,3 +3189,4 @@ parameters/looping = false
 [connection signal="timeout" from="ActionBuffer" to="." method="_on_action_buffer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]
+[connection signal="timeout" from="LoseTimer" to="." method="_on_lose_timer_timeout"]

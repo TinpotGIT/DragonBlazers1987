@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://nsytpsxs6rxg" path="res://Scripts/Map/ArmorWeaponMenu/swap_button.gd" id="6_5b73j"]
 [ext_resource type="Script" uid="uid://88v82wys24ye" path="res://Scripts/Map/ArmorWeaponMenu/item_select.gd" id="7_qjtiw"]
 [ext_resource type="Script" uid="uid://emtbx6ixphw1" path="res://Scripts/Map/ArmorWeaponMenu/throw_button.gd" id="7_vywtc"]
-[ext_resource type="Texture2D" uid="uid://ct3xhffdfmm2n" path="res://Sprites/HandCursor.png" id="8_oules"]
+[ext_resource type="Texture2D" uid="uid://ct3xhffdfmm2n" path="res://Sprites/Icons/HandCursor.png" id="8_oules"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1jdtu"]
 
@@ -1333,7 +1333,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.26638097
 anchor_top = -0.75
-anchor_right = 0.9043809
+anchor_right = 1.0474286
 anchor_bottom = 1.4170002
 offset_left = 0.02999878
 offset_right = 0.019996643

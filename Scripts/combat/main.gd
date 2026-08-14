@@ -60,6 +60,11 @@ func _ready() -> void:
 	expGained()
 
 func _process(delta: float) -> void:
+	if deadAllies == 4:
+		deadAllies = 0
+		showBattleUI()
+		$BattleInfo/InfoUI_Bar/Text.text = "You lost!"
+		$LoseTimer.start()
 	if Input.is_action_just_pressed("escape"):
 			actionBack()
 
@@ -259,14 +264,19 @@ func _on_animation_finished_char0(anim_name: StringName) -> void:
 					playTurn()
 
 func findAliveAlly():
-	while (GlobalVariables.global_hp[GlobalVariables.team_formation[charSelectedID]][0] <= 0) and deadAllies != 4:
-		actions.append([-1, -1])
-		if charSelectedID == 3:
-			turnFinished = true
-			charSelectedID = 0
-			playTurn()
-		else:
-			charSelectedID += 1
+	if deadAllies == 4:
+		showBattleUI()
+		$BattleInfo/InfoUI_Bar/Text.text = "You lost!"
+		$LoseTimer.start()
+	else:
+		while (GlobalVariables.global_hp[GlobalVariables.team_formation[charSelectedID]][0] <= 0) and deadAllies != 4:
+			actions.append([-1, -1])
+			if charSelectedID == 3:
+				turnFinished = true
+				charSelectedID = 0
+				playTurn()
+			else:
+				charSelectedID += 1
 
 func _on_enemy_pressed(extra_arg_0: int) -> void:
 	if enemies[extra_arg_0] != [] and enemies[extra_arg_0][1][0] > 0:
@@ -306,7 +316,7 @@ func _on_spell_pressed(extra_arg_0: Array) -> void:
 	var spellID = GlobalVariables.global_spells[charSelected][extra_arg_0[0]][extra_arg_0[1]]
 	var spell = $MagicMenu.Spells[spellID]
 	spellTarget(spell, spellID)
-	
+
 func spellTarget(spell, spellID):
 	var target_type = spell[4]
 	currentSpell = spellID
@@ -693,6 +703,7 @@ func giveExp():
 		if GlobalVariables.global_hp[i][0] > 0:
 			aliveAllies[i] = true
 			expDivisor += 1
+
 	var dividedExp = round(totalExp/expDivisor)
 	for i in range(len(aliveAllies)):
 		if aliveAllies[i]:
@@ -714,3 +725,6 @@ func levelUpCheck(i):
 		levels[i] += 1
 		GlobalVariables.global_exp[i] -= neededExp
 		neededExp = checkNeededExp(levels, expTable, i)
+
+func _on_lose_timer_timeout() -> void:
+	get_tree().change_scene_to_file("res://Scenes/MainScenes/Menu.tscn")
