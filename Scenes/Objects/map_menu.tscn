@@ -1,17 +1,23 @@
-[gd_scene format=3 uid="uid://csi4xqvtscv1g"]
+[gd_scene format=4 uid="uid://csi4xqvtscv1g"]
 
 [ext_resource type="Script" uid="uid://b2u1vqfkjmo3d" path="res://Scripts/Map/MapMenu/map_menu.gd" id="1_u7gkb"]
 [ext_resource type="Texture2D" uid="uid://81fp83fsif11" path="res://Sprites/MenuBackground.png" id="2_u7gkb"]
+[ext_resource type="Script" uid="uid://c1cj6ei2yhtw5" path="res://Scripts/Map/MapMenu/save_game.gd" id="3_ecxo3"]
 [ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="3_u7gkb"]
 [ext_resource type="Texture2D" uid="uid://dcx1kd683775" path="res://Sprites/FF1_SANS_FOND_NOIR.png" id="4_16om5"]
 [ext_resource type="Script" uid="uid://b1haun6jcwuwj" path="res://Scripts/Map/MapMenu/money_text.gd" id="4_feyxm"]
 [ext_resource type="Script" uid="uid://7uicaiqkuow0" path="res://Scripts/Map/MapMenu/items_button.gd" id="5_gr4nd"]
 [ext_resource type="Script" uid="uid://fxq8ibsui4xh" path="res://Scripts/Map/MapMenu/magic_button.gd" id="6_gr4nd"]
-[ext_resource type="Script" uid="uid://baqjpn0rpvap1" path="res://Scripts/Map/MapMenu/mapmenu_button.gd" id="6_hkr76"]
 [ext_resource type="Texture2D" uid="uid://ct3xhffdfmm2n" path="res://Sprites/HandCursor.png" id="7_823jm"]
 [ext_resource type="Script" uid="uid://cm6mcdfrj1b3m" path="res://Scripts/Map/MapMenu/status_button.gd" id="7_feyxm"]
+[ext_resource type="Script" uid="uid://cf28t1a3u2tpy" path="res://Scripts/Map/MapMenu/weapon_button.gd" id="7_hkr76"]
 [ext_resource type="Script" uid="uid://bfk8jiy57eik3" path="res://Scripts/Map/MapMenu/charSlotInfo.gd" id="7_u7gkb"]
+[ext_resource type="Script" uid="uid://dkv0ddjb2tmir" path="res://Scripts/Map/MapMenu/armor_button.gd" id="8_q64td"]
 [ext_resource type="FontFile" uid="uid://b7oskin6e3055" path="res://ThemesFonts/FinalFantasyINES.ttf" id="9_u7gkb"]
+[ext_resource type="Script" uid="uid://ba0tdeva8o6kp" path="res://Scripts/Map/MapMenu/formation_button.gd" id="10_lqm1p"]
+[ext_resource type="Script" uid="uid://b5toekwieo6qj" path="res://Scripts/Map/MapMenu/save_button.gd" id="12_ecxo3"]
+[ext_resource type="Texture2D" uid="uid://d3p70o45ptwip" path="res://Sprites/Tilemaps/windowTilemapBlue.png" id="17_73mrn"]
+[ext_resource type="AudioStream" uid="uid://oaochusba44l" path="res://Sounds/save_jingle.mp3" id="18_0dg1v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgefo"]
 
@@ -23,7 +29,7 @@ script/source = "extends Button
 @export var id = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _ready() -> void:
 	var main = get_parent()
 	focus_entered.connect(main._on_button_focus_entered.bind(get_path()))
 	pressed.connect(get_parent().get_parent().get_parent().checkChosen.bind(id))
@@ -104,6 +110,24 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0dg1v"]
+texture = ExtResource("17_73mrn")
+separation = Vector2i(1, 1)
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1jdtu"]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetAtlasSource_0dg1v")
+
 [node name="Control" type="Control" unique_id=1202153963]
 layout_mode = 3
 anchors_preset = 0
@@ -115,6 +139,7 @@ script = ExtResource("1_u7gkb")
 texture_filter = 1
 position = Vector2(128, 112)
 texture = ExtResource("2_u7gkb")
+script = ExtResource("3_ecxo3")
 
 [node name="Gold_Text" type="RichTextLabel" parent="." unique_id=1578543172]
 texture_filter = 1
@@ -305,7 +330,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Armor_Button")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
 flat = true
-script = ExtResource("6_hkr76")
+script = ExtResource("7_hkr76")
 metadata/_edit_use_anchors_ = true
 
 [node name="Armor_Button" type="Button" parent="." unique_id=421842617]
@@ -323,7 +348,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Status_Button")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
 flat = true
-script = ExtResource("6_hkr76")
+script = ExtResource("8_q64td")
 metadata/_edit_use_anchors_ = true
 
 [node name="Status_Button" type="Button" parent="." unique_id=1376221059]
@@ -359,7 +384,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Save_Button")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
 flat = true
-script = ExtResource("6_hkr76")
+script = ExtResource("10_lqm1p")
 metadata/_edit_use_anchors_ = true
 
 [node name="Save_Button" type="Button" parent="." unique_id=1641747348]
@@ -376,7 +401,7 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Items_Button")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wgefo")
 flat = true
-script = ExtResource("6_hkr76")
+script = ExtResource("12_ecxo3")
 metadata/_edit_use_anchors_ = true
 
 [node name="CharButton0" type="Button" parent="." unique_id=128217506]
@@ -1038,3 +1063,46 @@ metadata/_edit_use_anchors_ = true
 texture_filter = 1
 position = Vector2(-32, 226)
 texture = ExtResource("7_823jm")
+
+[node name="SaveTimer" type="Timer" parent="." unique_id=36207258]
+one_shot = true
+
+[node name="SaveWindow" type="Control" parent="." unique_id=390840973]
+visible = false
+layout_mode = 1
+anchor_left = 0.28100002
+anchor_top = 0.42900002
+anchor_right = 0.68700004
+anchor_bottom = 0.536
+offset_left = 0.06399536
+offset_top = -0.0960083
+offset_right = 0.12799072
+offset_bottom = -0.06400299
+
+[node name="Background" type="TileMapLayer" parent="SaveWindow" unique_id=843811513]
+z_index = 1
+texture_filter = 1
+position = Vector2(-72, -96)
+tile_map_data = PackedByteArray("AAAJAAwAAAAAAAAAAAAJAA4AAAAAAAIAAAAKAA4AAAABAAIAAAALAA4AAAABAAIAAAAMAA4AAAABAAIAAAANAA4AAAABAAIAAAAOAA4AAAABAAIAAAAPAA4AAAABAAIAAAAQAA4AAAABAAIAAAARAA4AAAABAAIAAAASAA4AAAABAAIAAAATAA4AAAABAAIAAAAUAA4AAAABAAIAAAAVAA4AAAACAAIAAAAKAAwAAAABAAAAAAALAAwAAAABAAAAAAAMAAwAAAABAAAAAAANAAwAAAABAAAAAAAOAAwAAAABAAAAAAAPAAwAAAABAAAAAAAQAAwAAAABAAAAAAARAAwAAAABAAAAAAASAAwAAAABAAAAAAATAAwAAAABAAAAAAAUAAwAAAABAAAAAAAVAAwAAAACAAAAAAAVAA0AAAACAAEAAAAJAA0AAAAAAAEAAAAKAA0AAAABAAEAAAALAA0AAAABAAEAAAAMAA0AAAABAAEAAAANAA0AAAABAAEAAAAOAA0AAAABAAEAAAAPAA0AAAABAAEAAAAQAA0AAAABAAEAAAARAA0AAAABAAEAAAASAA0AAAABAAEAAAATAA0AAAABAAEAAAAUAA0AAAABAAEAAAA=")
+tile_set = SubResource("TileSet_1jdtu")
+
+[node name="SaveText" type="RichTextLabel" parent="SaveWindow" unique_id=1783177915]
+z_index = 2
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = -0.125
+anchor_right = 0.952
+anchor_bottom = 1.0
+offset_left = 0.031999588
+offset_right = -0.008003235
+theme_override_fonts/normal_font = ExtResource("3_u7gkb")
+theme_override_font_sizes/normal_font_size = 25
+text = "Now Saving.... !"
+metadata/_edit_use_anchors_ = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=628748513]
+stream = ExtResource("18_0dg1v")
+
+[connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]

@@ -6,7 +6,7 @@ var rng = RandomNumberGenerator.new()
 var encounterID = 0
 
 func _physics_process(delta: float) -> void:
-	if (get_parent().inMenu == false) and (get_parent().chosenButton == "None"):
+	if (get_parent().actionList == []):
 		if !sprite_node_pos_tween or !sprite_node_pos_tween.is_running():
 			if Input.is_action_pressed("ui_up") and !$up.is_colliding():
 				_move(Vector2.UP)

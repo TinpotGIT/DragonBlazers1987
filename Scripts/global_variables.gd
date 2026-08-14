@@ -1,7 +1,7 @@
 extends Node
 
-var global_allies = [1, 3, 5, 2]
-var team_formation = [2, 3, 0, 1]
+var global_allies = [0, 0, 0, 0]
+var team_formation = [0, 1, 2, 3]
 
 var global_levels = [1, 1, 1, 1]
 var global_exp = [0, 0, 0, 0]
@@ -10,7 +10,12 @@ var total_exp = [0, 0, 0, 0]
 var global_names = ["", "", "", ""]
 #STR, AGL, INT, VIT, LUCK, ACC, MDEF
 var global_stats = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0 ,0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
-var gold = 400
+var global_hp = [[0, 0], [0, 0], [0, 0], [0, 0]]
+
+var global_status = ["", "", "", ""]
+var gold = 0
+
+var global_item_inventory = []
 
 var global_charges = [
 	[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
@@ -25,12 +30,6 @@ var global_spells = [
 	[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]],
 	[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
 ]
-
-var global_resistances = [
-	[], [], [], []
-]
-
-var global_item_inventory = [0, 1, 2, 3, 4, 5]
 
 var global_equipment_inventory = [
 	[[0, 0, 0, 0], [0, 0, 0, 0]],
@@ -53,7 +52,4 @@ var expTable = [
 	22464, 24376, 26364, 28432, 30576, 32800
 ]
 
-var global_hp = [[0, 0], [0, 0], [0, 0], [0, 0]]
-var global_status = ["", "", "", ""]
 var next_battle = [[0, 0]]
-var inventory = [0, 0, 0]

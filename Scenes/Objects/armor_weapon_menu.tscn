@@ -1,0 +1,1437 @@
+[gd_scene format=3 uid="uid://d1w321w50n18b"]
+
+[ext_resource type="Texture2D" uid="uid://bvxnj5xecjxvv" path="res://Sprites/background_armure_armes.png" id="1_0uxco"]
+[ext_resource type="Script" uid="uid://k248hjnpgw42" path="res://Scripts/Map/ArmorWeaponMenu/armor_weapon_menu.gd" id="1_fbpef"]
+[ext_resource type="Script" uid="uid://dylrknn7rl7ds" path="res://Scripts/combat/ItemMenu/items.gd" id="2_nmg3g"]
+[ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="2_tf3h4"]
+[ext_resource type="Script" uid="uid://b0s807spoty1j" path="res://Scripts/Map/ArmorWeaponMenu/char_equipment.gd" id="3_c1jsp"]
+[ext_resource type="Texture2D" uid="uid://chbyeiwi8pkmi" path="res://Sprites/Icons/hammer.png" id="3_weqd0"]
+[ext_resource type="FontFile" uid="uid://bm3kdjamsjwew" path="res://ThemesFonts/Final-Fantasy.ttf" id="4_o5fb2"]
+[ext_resource type="Script" uid="uid://bmggeosgodx6p" path="res://Scripts/Map/ArmorWeaponMenu/equip_button.gd" id="5_auk45"]
+[ext_resource type="Script" uid="uid://nsytpsxs6rxg" path="res://Scripts/Map/ArmorWeaponMenu/swap_button.gd" id="6_5b73j"]
+[ext_resource type="Script" uid="uid://88v82wys24ye" path="res://Scripts/Map/ArmorWeaponMenu/item_select.gd" id="7_qjtiw"]
+[ext_resource type="Script" uid="uid://emtbx6ixphw1" path="res://Scripts/Map/ArmorWeaponMenu/throw_button.gd" id="7_vywtc"]
+[ext_resource type="Texture2D" uid="uid://ct3xhffdfmm2n" path="res://Sprites/HandCursor.png" id="8_oules"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1jdtu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3qt4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5h08w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kpnpt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lr8sx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6l4k8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kgkd7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vuhri"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ua088"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jh2fi"]
+
+[node name="ArmorWeaponMenu" type="Control" unique_id=808313143]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 224.0
+script = ExtResource("1_fbpef")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=242079907]
+texture_filter = 1
+position = Vector2(128, 112)
+texture = ExtResource("1_0uxco")
+script = ExtResource("2_nmg3g")
+
+[node name="MenuName" type="RichTextLabel" parent="." unique_id=129535056]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01999998
+anchor_top = -0.021928582
+anchor_right = 0.27706254
+anchor_bottom = 0.08921426
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "ARMES"
+horizontal_alignment = 1
+
+[node name="EquipButton" type="Button" parent="." unique_id=737858892]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.31640625
+anchor_top = 0.017857144
+anchor_right = 0.4959375
+anchor_bottom = 0.07578572
+offset_right = 0.040000916
+offset_bottom = 0.02399826
+focus_neighbor_left = NodePath("../ThrowButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../SwapButton")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../SwapButton")
+focus_previous = NodePath("../ThrowButton")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1jdtu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u3qt4")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5h08w")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kpnpt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lr8sx")
+flat = true
+script = ExtResource("5_auk45")
+metadata/_edit_use_anchors_ = true
+
+[node name="Equip" type="RichTextLabel" parent="." unique_id=1729233099]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30900002
+anchor_top = -0.022000002
+anchor_right = 0.512
+anchor_bottom = 0.08921426
+offset_left = -0.104003906
+offset_top = -0.07199955
+offset_right = -0.072006226
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "EQUIPE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SwapButton" type="Button" parent="." unique_id=535351671]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5234375
+anchor_top = 0.017857144
+anchor_right = 0.74593747
+anchor_bottom = 0.07578572
+offset_right = 0.040008545
+offset_bottom = 0.02399826
+focus_neighbor_left = NodePath("../EquipButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../ThrowButton")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../ThrowButton")
+focus_previous = NodePath("../EquipButton")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1jdtu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u3qt4")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5h08w")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kpnpt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lr8sx")
+flat = true
+script = ExtResource("6_5b73j")
+metadata/_edit_use_anchors_ = true
+
+[node name="Swap" type="RichTextLabel" parent="." unique_id=1482580804]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.52000004
+anchor_top = -0.022000002
+anchor_right = 0.758
+anchor_bottom = 0.08921426
+offset_left = -0.120010376
+offset_top = -0.07199955
+offset_right = -0.04800415
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "ECHANGE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ThrowButton" type="Button" parent="." unique_id=1615517082]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7734375
+anchor_top = 0.017857144
+anchor_right = 0.9373437
+anchor_bottom = 0.07578572
+offset_right = 0.040008545
+offset_bottom = 0.02399826
+focus_neighbor_left = NodePath("../SwapButton")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../EquipButton")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../EquipButton")
+focus_previous = NodePath("../SwapButton")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1jdtu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u3qt4")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5h08w")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kpnpt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lr8sx")
+flat = true
+script = ExtResource("7_vywtc")
+metadata/_edit_use_anchors_ = true
+
+[node name="Throw" type="RichTextLabel" parent="." unique_id=479997387]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.76218754
+anchor_top = -0.022000002
+anchor_right = 0.95721877
+anchor_bottom = 0.08921426
+offset_left = -0.120010376
+offset_top = -0.07199955
+offset_right = -0.04800415
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "JETER"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Char0" type="Control" parent="." unique_id=1018015807]
+layout_mode = 1
+anchor_left = -0.00390625
+anchor_top = 0.11153572
+anchor_right = 0.9998438
+anchor_bottom = 0.29053572
+offset_left = 1.0
+offset_top = 0.01599884
+offset_right = 0.0399971
+offset_bottom = -0.08000183
+script = ExtResource("3_c1jsp")
+metadata/_edit_use_anchors_ = true
+
+[node name="CharName" type="RichTextLabel" parent="Char0" unique_id=1846919522]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01999998
+anchor_top = -0.021928582
+anchor_right = 0.27706254
+anchor_bottom = 0.08921426
+offset_left = 0.11999512
+offset_top = -4.1228566
+offset_right = 0.07199097
+offset_bottom = 21.39657
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+horizontal_alignment = 1
+
+[node name="Item0" type="Control" parent="Char0" unique_id=898298804]
+anchors_preset = 0
+offset_left = 70.0
+offset_top = 4.0
+offset_right = 175.0
+offset_bottom = 16.0
+
+[node name="ItemSelect" type="Button" parent="Char0/Item0" unique_id=893024504]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../../Item1/ItemSelect")
+focus_neighbor_bottom = NodePath("../../Item2/ItemSelect")
+focus_next = NodePath("../../Item1/ItemSelect")
+focus_previous = NodePath("../../Item3/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char0/Item0" unique_id=1930854430]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char0/Item0" unique_id=1686054281]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char0/Item0" unique_id=564747673]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item1" type="Control" parent="Char0" unique_id=218917280]
+anchors_preset = 0
+offset_left = 156.0
+offset_top = 4.0
+offset_right = 261.0
+offset_bottom = 16.0
+
+[node name="ItemSelect" type="Button" parent="Char0/Item1" unique_id=933164137]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath("../../Item0/ItemSelect")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../Item3/ItemSelect")
+focus_next = NodePath("../../Item2/ItemSelect")
+focus_previous = NodePath("../../Item0/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char0/Item1" unique_id=679261244]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char0/Item1" unique_id=957996794]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char0/Item1" unique_id=283530701]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item2" type="Control" parent="Char0" unique_id=616315172]
+anchors_preset = 0
+offset_left = 70.0
+offset_top = 20.0
+offset_right = 175.0
+offset_bottom = 32.0
+
+[node name="ItemSelect" type="Button" parent="Char0/Item2" unique_id=882613104]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../Item0/ItemSelect")
+focus_neighbor_right = NodePath("../../Item3/ItemSelect")
+focus_neighbor_bottom = NodePath("../../../Char1/Item0/ItemSelect")
+focus_next = NodePath("../../Item3/ItemSelect")
+focus_previous = NodePath("../../Item1/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char0/Item2" unique_id=1407088173]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char0/Item2" unique_id=146908149]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char0/Item2" unique_id=1837159410]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item3" type="Control" parent="Char0" unique_id=1778067429]
+anchors_preset = 0
+offset_left = 156.0
+offset_top = 20.0
+offset_right = 261.0
+offset_bottom = 32.0
+
+[node name="ItemSelect" type="Button" parent="Char0/Item3" unique_id=384954409]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath("../../Item2/ItemSelect")
+focus_neighbor_top = NodePath("../../Item1/ItemSelect")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../Char1/Item1/ItemSelect")
+focus_next = NodePath("../../Item0/ItemSelect")
+focus_previous = NodePath("../../Item2/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char0/Item3" unique_id=169126970]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char0/Item3" unique_id=970168468]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char0/Item3" unique_id=82996994]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Char1" type="Control" parent="." unique_id=993031425]
+layout_mode = 1
+anchor_left = -0.00390625
+anchor_top = 0.29010716
+anchor_right = 0.9998438
+anchor_bottom = 0.46910715
+offset_left = 1.0
+offset_top = 0.01599884
+offset_right = 0.0399971
+offset_bottom = -0.08000183
+script = ExtResource("3_c1jsp")
+id = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CharName" type="RichTextLabel" parent="Char1" unique_id=1043536876]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01999998
+anchor_top = -0.021928582
+anchor_right = 0.27706254
+anchor_bottom = 0.08921426
+offset_left = 0.11999512
+offset_top = -4.1228566
+offset_right = 0.07199097
+offset_bottom = 21.39657
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+horizontal_alignment = 1
+
+[node name="Item0" type="Control" parent="Char1" unique_id=1059586964]
+anchors_preset = 0
+offset_left = 70.0
+offset_top = 4.0
+offset_right = 175.0
+offset_bottom = 16.0
+
+[node name="ItemSelect" type="Button" parent="Char1/Item0" unique_id=338487232]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../../Char0/Item2/ItemSelect")
+focus_neighbor_right = NodePath("../../Item1/ItemSelect")
+focus_neighbor_bottom = NodePath("../../Item2/ItemSelect")
+focus_next = NodePath("../../Item1/ItemSelect")
+focus_previous = NodePath("../../Item3/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char1/Item0" unique_id=560740349]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char1/Item0" unique_id=373163946]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char1/Item0" unique_id=362823881]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item1" type="Control" parent="Char1" unique_id=572960756]
+anchors_preset = 0
+offset_left = 156.0
+offset_top = 4.0
+offset_right = 261.0
+offset_bottom = 16.0
+
+[node name="ItemSelect" type="Button" parent="Char1/Item1" unique_id=1886007958]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath("../../Item0/ItemSelect")
+focus_neighbor_top = NodePath("../../../Char0/Item3/ItemSelect")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../Item3/ItemSelect")
+focus_next = NodePath("../../Item2/ItemSelect")
+focus_previous = NodePath("../../Item0/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char1/Item1" unique_id=1578076420]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char1/Item1" unique_id=1639033179]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char1/Item1" unique_id=920901041]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item2" type="Control" parent="Char1" unique_id=1649990061]
+anchors_preset = 0
+offset_left = 70.0
+offset_top = 20.0
+offset_right = 175.0
+offset_bottom = 32.0
+
+[node name="ItemSelect" type="Button" parent="Char1/Item2" unique_id=1180181652]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../Item0/ItemSelect")
+focus_neighbor_right = NodePath("../../Item3/ItemSelect")
+focus_neighbor_bottom = NodePath("../../../Char2/Item0/ItemSelect")
+focus_next = NodePath("../../Item3/ItemSelect")
+focus_previous = NodePath("../../Item1/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char1/Item2" unique_id=1075001529]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char1/Item2" unique_id=647874753]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char1/Item2" unique_id=877361696]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item3" type="Control" parent="Char1" unique_id=767644569]
+anchors_preset = 0
+offset_left = 156.0
+offset_top = 20.0
+offset_right = 261.0
+offset_bottom = 32.0
+
+[node name="ItemSelect" type="Button" parent="Char1/Item3" unique_id=484881564]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath("../../Item2/ItemSelect")
+focus_neighbor_top = NodePath("../../Item1/ItemSelect")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../Char2/Item1/ItemSelect")
+focus_next = NodePath("../../Item0/ItemSelect")
+focus_previous = NodePath("../../Item2/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char1/Item3" unique_id=170999139]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char1/Item3" unique_id=1316089327]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char1/Item3" unique_id=2066621951]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Char2" type="Control" parent="." unique_id=91320772]
+layout_mode = 1
+anchor_left = -0.00390625
+anchor_top = 0.46867856
+anchor_right = 0.9998438
+anchor_bottom = 0.64767855
+offset_left = 1.0
+offset_top = 0.01599884
+offset_right = 0.0399971
+offset_bottom = -0.08000183
+script = ExtResource("3_c1jsp")
+id = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CharName" type="RichTextLabel" parent="Char2" unique_id=2146362608]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01999998
+anchor_top = -0.021928582
+anchor_right = 0.27706254
+anchor_bottom = 0.08921426
+offset_left = 0.11999512
+offset_top = -4.1228566
+offset_right = 0.07199097
+offset_bottom = 21.39657
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+horizontal_alignment = 1
+
+[node name="Item0" type="Control" parent="Char2" unique_id=736662387]
+anchors_preset = 0
+offset_left = 70.0
+offset_top = 4.0
+offset_right = 175.0
+offset_bottom = 16.0
+
+[node name="ItemSelect" type="Button" parent="Char2/Item0" unique_id=465845908]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../../Char1/Item2/ItemSelect")
+focus_neighbor_right = NodePath("../../Item1/ItemSelect")
+focus_neighbor_bottom = NodePath("../../Item2/ItemSelect")
+focus_next = NodePath("../../Item1/ItemSelect")
+focus_previous = NodePath("../../Item3/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char2/Item0" unique_id=589931431]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char2/Item0" unique_id=306197935]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char2/Item0" unique_id=662060967]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item1" type="Control" parent="Char2" unique_id=294101501]
+anchors_preset = 0
+offset_left = 156.0
+offset_top = 4.0
+offset_right = 261.0
+offset_bottom = 16.0
+
+[node name="ItemSelect" type="Button" parent="Char2/Item1" unique_id=72003895]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath("../../Item0/ItemSelect")
+focus_neighbor_top = NodePath("../../../Char1/Item3/ItemSelect")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../Item3/ItemSelect")
+focus_next = NodePath("../../Item2/ItemSelect")
+focus_previous = NodePath("../../Item0/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char2/Item1" unique_id=387796981]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char2/Item1" unique_id=1479108412]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char2/Item1" unique_id=1117350577]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item2" type="Control" parent="Char2" unique_id=1594638930]
+anchors_preset = 0
+offset_left = 70.0
+offset_top = 20.0
+offset_right = 175.0
+offset_bottom = 32.0
+
+[node name="ItemSelect" type="Button" parent="Char2/Item2" unique_id=432053706]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../Item0/ItemSelect")
+focus_neighbor_right = NodePath("../../Item3/ItemSelect")
+focus_neighbor_bottom = NodePath("../../../Char3/Item0/ItemSelect")
+focus_next = NodePath("../../Item3/ItemSelect")
+focus_previous = NodePath("../../Item1/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char2/Item2" unique_id=709451874]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char2/Item2" unique_id=1624874489]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char2/Item2" unique_id=1180866243]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item3" type="Control" parent="Char2" unique_id=1860794546]
+anchors_preset = 0
+offset_left = 156.0
+offset_top = 20.0
+offset_right = 261.0
+offset_bottom = 32.0
+
+[node name="ItemSelect" type="Button" parent="Char2/Item3" unique_id=1645578286]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath("../../Item2/ItemSelect")
+focus_neighbor_top = NodePath("../../Item1/ItemSelect")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../Char3/Item1/ItemSelect")
+focus_next = NodePath("../../Item0/ItemSelect")
+focus_previous = NodePath("../../Item2/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char2/Item3" unique_id=748530733]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char2/Item3" unique_id=2102127159]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char2/Item3" unique_id=1711876105]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Char3" type="Control" parent="." unique_id=1821745501]
+layout_mode = 1
+anchor_left = -0.00390625
+anchor_top = 0.64725006
+anchor_right = 0.9998438
+anchor_bottom = 0.82625
+offset_left = 1.0
+offset_top = 0.01599884
+offset_right = 0.0399971
+offset_bottom = -0.08000183
+script = ExtResource("3_c1jsp")
+id = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="CharName" type="RichTextLabel" parent="Char3" unique_id=1933404144]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01999998
+anchor_top = -0.021928582
+anchor_right = 0.27706254
+anchor_bottom = 0.08921426
+offset_left = 0.11999512
+offset_top = -4.1228566
+offset_right = 0.07199097
+offset_bottom = 21.39657
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAA"
+horizontal_alignment = 1
+
+[node name="Item0" type="Control" parent="Char3" unique_id=2018952395]
+anchors_preset = 0
+offset_left = 70.0
+offset_top = 4.0
+offset_right = 175.0
+offset_bottom = 16.0
+
+[node name="ItemSelect" type="Button" parent="Char3/Item0" unique_id=848594260]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../../Char2/Item2/ItemSelect")
+focus_neighbor_right = NodePath("../../Item1/ItemSelect")
+focus_neighbor_bottom = NodePath("../../Item2/ItemSelect")
+focus_next = NodePath("../../Item1/ItemSelect")
+focus_previous = NodePath("../../Item3/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char3/Item0" unique_id=2042415662]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char3/Item0" unique_id=458777395]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char3/Item0" unique_id=190386744]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item1" type="Control" parent="Char3" unique_id=551380560]
+anchors_preset = 0
+offset_left = 156.0
+offset_top = 4.0
+offset_right = 261.0
+offset_bottom = 16.0
+
+[node name="ItemSelect" type="Button" parent="Char3/Item1" unique_id=1781865598]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath("../../Item0/ItemSelect")
+focus_neighbor_top = NodePath("../../../Char2/Item3/ItemSelect")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../Item3/ItemSelect")
+focus_next = NodePath("../../Item2/ItemSelect")
+focus_previous = NodePath("../../Item0/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char3/Item1" unique_id=809548023]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char3/Item1" unique_id=1964942724]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char3/Item1" unique_id=2110960310]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item2" type="Control" parent="Char3" unique_id=1904259974]
+anchors_preset = 0
+offset_left = 70.0
+offset_top = 20.0
+offset_right = 175.0
+offset_bottom = 32.0
+
+[node name="ItemSelect" type="Button" parent="Char3/Item2" unique_id=62530472]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../Item0/ItemSelect")
+focus_neighbor_right = NodePath("../../Item3/ItemSelect")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../../Item3/ItemSelect")
+focus_previous = NodePath("../../Item1/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char3/Item2" unique_id=1376728819]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char3/Item2" unique_id=1911534475]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char3/Item2" unique_id=63342162]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Item3" type="Control" parent="Char3" unique_id=2072546609]
+anchors_preset = 0
+offset_left = 156.0
+offset_top = 20.0
+offset_right = 261.0
+offset_bottom = 32.0
+
+[node name="ItemSelect" type="Button" parent="Char3/Item3" unique_id=1453388113]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1904762
+anchor_top = 0.16666667
+anchor_right = 0.87600005
+anchor_bottom = 0.83366674
+offset_right = 0.019996643
+offset_bottom = -0.0040006638
+focus_neighbor_left = NodePath("../../Item2/ItemSelect")
+focus_neighbor_top = NodePath("../../Item1/ItemSelect")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../../Item0/ItemSelect")
+focus_previous = NodePath("../../Item2/ItemSelect")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6l4k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kgkd7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vuhri")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ua088")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jh2fi")
+flat = true
+script = ExtResource("7_qjtiw")
+equipID = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemIcon" type="Sprite2D" parent="Char3/Item3" unique_id=1662939925]
+texture_filter = 1
+position = Vector2(24, 6)
+texture = ExtResource("3_weqd0")
+
+[node name="EquipCheck" type="RichTextLabel" parent="Char3/Item3" unique_id=1914659580]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056857154
+anchor_top = -0.75
+anchor_right = 0.20933336
+anchor_bottom = 1.3336668
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "E-"
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemName" type="RichTextLabel" parent="Char3/Item3" unique_id=1424903082]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.26638097
+anchor_top = -0.75
+anchor_right = 0.9043809
+anchor_bottom = 1.4170002
+offset_left = 0.02999878
+offset_right = 0.019996643
+offset_bottom = -0.0040016174
+theme_override_fonts/normal_font = ExtResource("2_tf3h4")
+theme_override_font_sizes/normal_font_size = 25
+text = "AAAAAAAA"
+metadata/_edit_use_anchors_ = true
+
+[node name="Description" type="RichTextLabel" parent="." unique_id=1237897405]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01999998
+anchor_top = -0.021928582
+anchor_right = 0.27706254
+anchor_bottom = 0.08921426
+offset_left = 9.119995
+offset_top = 195.912
+offset_right = 181.07199
+offset_bottom = 203.016
+theme_override_fonts/normal_font = ExtResource("4_o5fb2")
+theme_override_font_sizes/normal_font_size = 8
+text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+horizontal_alignment = 1
+
+[node name="HandCursor" type="Sprite2D" parent="." unique_id=1907887043]
+texture_filter = 1
+position = Vector2(-57, 63)
+texture = ExtResource("8_oules")

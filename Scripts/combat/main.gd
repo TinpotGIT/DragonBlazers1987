@@ -48,11 +48,10 @@ func _on_summon_monsters(_chosenMonsters, _groupFormation) -> void:
 	showEnemyNames(_chosenMonsters)
 
 func _ready() -> void:
-	var formation = GlobalVariables.team_formation
 	choose_monsters.emit(GlobalVariables.next_battle)
 	for i in range(0, 4):
 		var char = get_node("Char" + str(i))
-		char.animationCheck(formation[i])
+		char.animationCheck(GlobalVariables.global_allies[GlobalVariables.team_formation[i]])
 		char.idle()
 	hideCursor()
 	onCharSelected()
@@ -63,10 +62,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 			actionBack()
-			
-	if GlobalVariables.global_hp[GlobalVariables.team_formation[charSelectedID]][0] <= 0:
-		actions.append([-1, -1])
-		charSelectedID += 1
 
 func checkAlive():
 	for i in range(len(enemies)):
@@ -212,6 +207,7 @@ func _on_enemy_focus_entered(extra_arg_0: NodePath) -> void:
 	$HandCursor.position = Vector2(get_node(extra_arg_0).position.x, get_node(extra_arg_0).position.y + 19)
 
 func onCharSelected():
+	findAliveAlly()
 	var char : AnimatedSprite2D = get_node("Char" + str(charSelectedID))
 	var anPlayer : AnimationPlayer = get_node("AnimationPlayer0")
 	char.play(char.run_name)
@@ -241,7 +237,7 @@ func attackChoice():
 
 func _on_animation_finished_char0(anim_name: StringName) -> void:
 	var char : AnimatedSprite2D = get_node("Char" + str(charSelectedID))
-	char.play(char.idle_name)
+	char.idle()
 	if turnFinished == false:
 		if anim_name == ("run_animation_" + str(charSelectedID)):
 			showCursor()
@@ -250,8 +246,9 @@ func _on_animation_finished_char0(anim_name: StringName) -> void:
 			if currentAction == "Back":
 				charSelectedID -= 1
 				actions.pop_back()
-			elif charSelectedID != 3:
+			elif charSelectedID < 3:
 				charSelectedID += 1
+				findAliveAlly()
 				print(charSelectedID)
 				charSelected = GlobalVariables.team_formation[charSelectedID]
 				onCharSelected()
@@ -260,7 +257,17 @@ func _on_animation_finished_char0(anim_name: StringName) -> void:
 				if len(actions) == 4 and turnFinished == false:
 					turnFinished = true
 					playTurn()
-			
+
+func findAliveAlly():
+	while (GlobalVariables.global_hp[GlobalVariables.team_formation[charSelectedID]][0] <= 0) and deadAllies != 4:
+		actions.append([-1, -1])
+		if charSelectedID == 3:
+			turnFinished = true
+			charSelectedID = 0
+			playTurn()
+		else:
+			charSelectedID += 1
+
 func _on_enemy_pressed(extra_arg_0: int) -> void:
 	if enemies[extra_arg_0] != [] and enemies[extra_arg_0][1][0] > 0:
 		if currentAction == "CastingSpell":
@@ -372,9 +379,6 @@ func getTurnOrder():
 # turn order : from 0 to 8 small enemies, 9 to 12 medium enemies, 20 to 23 allies
 
 func playTurn():
-	print(enemies)
-	print(turnOrder)
-	print(totalOrder)
 	var foundChar = false
 	var attackName = ""
 	hideInfo()
@@ -415,11 +419,11 @@ func playTurn():
 func _on_animation_finished_1(anim_name: StringName) -> void:
 	var char = get_node("Char" + str(charSelectedID))
 	if anim_name.begins_with("run_animation_") and turnFinished:
-		char.play(char.idle_name)
+		char.idle()
 		allyAttackAnimation()
 		$AttackTimer.start()
 	elif anim_name.begins_with("runback_animation_") and turnFinished:
-		char.play(char.idle_name)
+		char.idle()
 
 func getActionName(actionID):
 	match actionID:
@@ -647,6 +651,7 @@ func allyCheckAlive(ID):
 	if GlobalVariables.global_hp[GlobalVariables.team_formation[ID]][0] <= 0:
 		print(deadAllies)
 		deadAllies += 1
+		GlobalVariables.global_hp[GlobalVariables.team_formation[ID]][0] = 0
 		get_node("Char"+str(ID)).ko()
 		get_node("Char"+str(ID)).position.x -= 4
 
@@ -654,19 +659,17 @@ func checkOrder():
 	if totalOrder != 17:
 		playTurn()
 	else:
-		if (dead >= alive):
-			print("THEY ARE ALL DEAD")
+		charSelectedID = 0
+		findAliveAlly()
 		turnOrder = []
 		totalOrder = 0
 		actions = []
 		turnFinished = false
-		charSelectedID = 0
 		$BattleInfo.visible = false
 		$CommandUI.visible = true
 		$EnemiesUI.z_index = 0
 		$HandCursor.visible = true
 		$CommandUI/Button.grab_focus()
-
 
 func _on_attack_timer_timeout() -> void:
 	var ID = GlobalVariables.team_formation[charSelectedID]
@@ -677,7 +680,6 @@ func _on_attack_timer_timeout() -> void:
 	char.play(char.run_name)
 	allyAction(charSelectedID)
 	showInfo(20+charSelectedID, getActionName(actions[ID][1]))
-
 
 func _on_win_timer_timeout() -> void:
 	GlobalVariables.gold += totalGold
@@ -712,4 +714,3 @@ func levelUpCheck(i):
 		levels[i] += 1
 		GlobalVariables.global_exp[i] -= neededExp
 		neededExp = checkNeededExp(levels, expTable, i)
-		

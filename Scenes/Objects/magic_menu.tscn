@@ -38,7 +38,7 @@ offset_right = 0.07199097
 offset_bottom = 0.01600647
 theme_override_fonts/normal_font = ExtResource("4_7mtei")
 theme_override_font_sizes/normal_font_size = 25
-text = "OBJET"
+text = "MAGIE"
 horizontal_alignment = 1
 
 [node name="Level1" type="RichTextLabel" parent="." unique_id=1285002407]

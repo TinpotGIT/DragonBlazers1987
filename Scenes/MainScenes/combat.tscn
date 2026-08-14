@@ -1850,6 +1850,7 @@ offset_bottom = 161.0
 theme_override_fonts/normal_font = ExtResource("5_t7gtt")
 theme_override_font_sizes/normal_font_size = 25
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="EnemyText1" type="RichTextLabel" parent="EnemiesUI" unique_id=1704705630]
 offset_left = 5.0
@@ -1859,6 +1860,7 @@ offset_bottom = 169.0
 theme_override_fonts/normal_font = ExtResource("5_t7gtt")
 theme_override_font_sizes/normal_font_size = 25
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="EnemyText2" type="RichTextLabel" parent="EnemiesUI" unique_id=329635146]
 offset_left = 5.0
@@ -1868,6 +1870,7 @@ offset_bottom = 177.0
 theme_override_fonts/normal_font = ExtResource("5_t7gtt")
 theme_override_font_sizes/normal_font_size = 25
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="EnemyText3" type="RichTextLabel" parent="EnemiesUI" unique_id=2135044341]
 offset_left = 5.0
@@ -1877,6 +1880,7 @@ offset_bottom = 185.0
 theme_override_fonts/normal_font = ExtResource("5_t7gtt")
 theme_override_font_sizes/normal_font_size = 25
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="EnemyText4" type="RichTextLabel" parent="EnemiesUI" unique_id=1490553271]
 offset_left = 5.0
@@ -1886,6 +1890,7 @@ offset_bottom = 193.0
 theme_override_fonts/normal_font = ExtResource("5_t7gtt")
 theme_override_font_sizes/normal_font_size = 25
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="EnemyText5" type="RichTextLabel" parent="EnemiesUI" unique_id=200164423]
 offset_left = 5.0
@@ -1895,6 +1900,7 @@ offset_bottom = 201.0
 theme_override_fonts/normal_font = ExtResource("5_t7gtt")
 theme_override_font_sizes/normal_font_size = 25
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="EnemyText6" type="RichTextLabel" parent="EnemiesUI" unique_id=1888911352]
 offset_left = 5.0
@@ -1904,6 +1910,7 @@ offset_bottom = 209.0
 theme_override_fonts/normal_font = ExtResource("5_t7gtt")
 theme_override_font_sizes/normal_font_size = 25
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="EnemyText7" type="RichTextLabel" parent="EnemiesUI" unique_id=851870917]
 offset_left = 5.0
@@ -1913,6 +1920,7 @@ offset_bottom = 217.0
 theme_override_fonts/normal_font = ExtResource("5_t7gtt")
 theme_override_font_sizes/normal_font_size = 25
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="EnemyText8" type="RichTextLabel" parent="EnemiesUI" unique_id=1864142177]
 offset_left = 5.0
@@ -1940,6 +1948,7 @@ theme = SubResource("Theme_tyvb3")
 text = "ATTAQUE"
 flat = true
 script = ExtResource("9_1rx8y")
+metadata/_edit_use_anchors_ = true
 
 [node name="Button2" type="Button" parent="CommandUI" unique_id=1365424883]
 offset_left = 128.0
@@ -1953,6 +1962,7 @@ theme = SubResource("Theme_tyvb3")
 text = "MAGIE"
 flat = true
 script = ExtResource("10_kmfl7")
+metadata/_edit_use_anchors_ = true
 
 [node name="Button3" type="Button" parent="CommandUI" unique_id=1898697036]
 offset_left = 128.0
@@ -1966,6 +1976,7 @@ theme = SubResource("Theme_tyvb3")
 text = "OBJET"
 flat = true
 script = ExtResource("11_vip55")
+metadata/_edit_use_anchors_ = true
 
 [node name="Button4" type="Button" parent="CommandUI" unique_id=914792664]
 offset_left = 128.0
@@ -1978,6 +1989,7 @@ theme = SubResource("Theme_tyvb3")
 text = "FUITE"
 flat = true
 script = ExtResource("12_8aqg6")
+metadata/_edit_use_anchors_ = true
 
 [node name="MagicMenu" type="Node2D" parent="." unique_id=2020343639]
 script = ExtResource("13_5wevp")

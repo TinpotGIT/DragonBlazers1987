@@ -10,9 +10,28 @@ func _on_button_focus_entered(extra_arg_0: NodePath) -> void:
 
 
 func _on_status_button_pressed() -> void:
-	get_parent().get_parent().chosenButton = "Status"
+	get_parent().get_parent().actionList.append("Status")
 	$CharButton0.grab_focus()
 
 func _on_magic_button_pressed() -> void:
-	get_parent().get_parent().chosenButton = "Magic"
+	get_parent().get_parent().actionList.append("Magic")
 	$CharButton0.grab_focus()
+
+func _on_formation_button_pressed() -> void:
+	get_parent().get_parent().actionList.append("FormationReady")
+	$CharButton0.grab_focus()
+
+func _on_save_button_pressed() -> void:
+	$SaveTimer.start()
+	$SaveWindow.visible = true
+	$HandCursor.visible = false
+	get_viewport().gui_release_focus()
+	$SFX.stream = load("res://Sounds/save_jingle.mp3")
+	$SFX.play()
+	$Background.save_game()
+	
+
+func _on_save_timer_timeout() -> void:
+	$SaveWindow.visible = false
+	$HandCursor.visible = true
+	$Items_Button.grab_focus()

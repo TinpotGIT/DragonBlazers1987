@@ -6,105 +6,32 @@ var ally3 = 2
 var ally4 = 3
 var allies = [ally1, ally2, ally3, ally4]
 
+var save = {}
+
 var classNames = ["COMBATT.", "VOLEUR", "CEINT.NOIR", "MAGE RGE", "MAGE BLC", "MAGE NOIR"]
 var classImgs = ["fighter", "thief", "bbelt", "rmage", "wmage", "bmage"]
 
-var save = {
-	"0": {
-		"Id": 0,
-		"Name": "",
-		"Level": 1,
-		"Stats": { "HP_MAX": 0, "HP" : 0, "STR": 0, "AGL": 0, "INT": 0, "VIT": 0, "LUCK": 0, "ACC": 0, "MDEF": 0},
-		"Charges": {
-			"CANUSE": false,
-			"LV1":{ "MAX": 0, "CURRENT": 0 },
-			"LV2":{ "MAX": 0, "CURRENT": 0 },
-			"LV3":{ "MAX": 0, "CURRENT": 0 },
-			"LV4":{ "MAX": 0, "CURRENT": 0 },
-			"LV5":{ "MAX": 0, "CURRENT": 0 },
-			"LV6":{ "MAX": 0, "CURRENT": 0 },
-			"LV7":{ "MAX": 0, "CURRENT": 0 },
-			"LV8":{ "MAX": 0, "CURRENT": 0 },
-		},
-		"Status": "None",
-		"WeaponInventory": [0, 0, 0, 0],
-		"ArmorInventory": [0, 0, 0, 0],
-		"MagicInventory": [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], 
-						   [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
-	},
-	"1": {
-		"Id": 0,
-		"Name": "",
-		"Level": 1,
-		"Stats": { "HP_MAX": 0, "HP" : 0, "STR": 0, "AGL": 0, "INT": 0, "VIT": 0, "LUCK": 0, "ACC": 0, "MDEF": 0},
-		"Charges": {
-			"CANUSE": false,
-			"LV1":{ "MAX": 0, "CURRENT": 0 },
-			"LV2":{ "MAX": 0, "CURRENT": 0 },
-			"LV3":{ "MAX": 0, "CURRENT": 0 },
-			"LV4":{ "MAX": 0, "CURRENT": 0 },
-			"LV5":{ "MAX": 0, "CURRENT": 0 },
-			"LV6":{ "MAX": 0, "CURRENT": 0 },
-			"LV7":{ "MAX": 0, "CURRENT": 0 },
-			"LV8":{ "MAX": 0, "CURRENT": 0 },
-		},
-		"Status": "None",
-		"WeaponInventory": [0, 0, 0, 0],
-		"ArmorInventory": [0, 0, 0, 0],
-		"MagicInventory": [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], 
-						   [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
-	},
-	"2": {
-		"Id": 0,
-		"Name": "",
-		"Level": 1,
-		"Stats": { "HP_MAX": 0, "HP" : 0, "STR": 0, "AGL": 0, "INT": 0, "VIT": 0, "LUCK": 0, "ACC": 0, "MDEF": 0},
-		"Charges": {
-			"CANUSE": false,
-			"LV1":{ "MAX": 0, "CURRENT": 0 },
-			"LV2":{ "MAX": 0, "CURRENT": 0 },
-			"LV3":{ "MAX": 0, "CURRENT": 0 },
-			"LV4":{ "MAX": 0, "CURRENT": 0 },
-			"LV5":{ "MAX": 0, "CURRENT": 0 },
-			"LV6":{ "MAX": 0, "CURRENT": 0 },
-			"LV7":{ "MAX": 0, "CURRENT": 0 },
-			"LV8":{ "MAX": 0, "CURRENT": 0 },
-		},
-		"Status": "None",
-		"WeaponInventory": [0, 0, 0, 0],
-		"ArmorInventory": [0, 0, 0, 0],
-		"MagicInventory": [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], 
-						   [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
-	},
-	"3": {
-		"Id": 0,
-		"Name": "",
-		"Level": 1,
-		"Stats": { "HP_MAX": 0, "HP" : 0, "STR": 0, "AGL": 0, "INT": 0, "VIT": 0, "LUCK": 0, "ACC": 0, "MDEF": 0},
-		"Charges": {
-			"CANUSE": false,
-			"LV1":{ "MAX": 0, "CURRENT": 0 },
-			"LV2":{ "MAX": 0, "CURRENT": 0 },
-			"LV3":{ "MAX": 0, "CURRENT": 0 },
-			"LV4":{ "MAX": 0, "CURRENT": 0 },
-			"LV5":{ "MAX": 0, "CURRENT": 0 },
-			"LV6":{ "MAX": 0, "CURRENT": 0 },
-			"LV7":{ "MAX": 0, "CURRENT": 0 },
-			"LV8":{ "MAX": 0, "CURRENT": 0 },
-		},
-		"Status": "None",
-		"WeaponInventory": [0, 0, 0, 0],
-		"ArmorInventory": [0, 0, 0, 0],
-		"MagicInventory": [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], 
-						   [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
-	},
-	"Inventory": [15, 0, 0]
-}
+var defaultHP = [35, 30, 33, 1, 28, 25]
+
+#STR, AGL, INT, VIT, LUCK, ACC, MDEF
+var defaultStats = [
+	[20, 5, 1, 10, 5, 64, 15],
+	[5, 10, 5, 5, 15, 10, 15],
+	[5, 5, 5, 20, 5, 5, 10],
+	[10, 10, 10, 5, 5, 7, 20],
+	[5, 5, 15, 10, 5, 5, 20],
+	[1, 10, 20, 1, 10, 5, 20]
+]
+
+var defaultCharges = [
+	[[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+	[[2, 2], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AudioStreamPlayer.play()
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if $NewGameMenu.visible == true:
@@ -115,189 +42,111 @@ func _process(delta: float) -> void:
 			$NewGameMenu.visible = false
 			$MainMenu/ContinueButton.grab_focus.call_deferred()
 
-func newSave():	
-	
-	GlobalVariables.global_allies[0] = ally1
-	GlobalVariables.global_allies[1] = ally2
-	GlobalVariables.global_allies[2] = ally3
-	GlobalVariables.global_allies[3] = ally4
-	
+func saveChar(charID, slotNumber):
+	save[str(slotNumber)]["Name"] = get_node("NewGameMenu/CharName" + str(slotNumber + 1)).text
+	save[str(slotNumber)]["Id"] = charID
+	save[str(slotNumber)]["Formation"] = slotNumber
+	save[str(slotNumber)]["Status"] = ""
+	save[str(slotNumber)]["Exp"] = {}
+	save[str(slotNumber)]["Exp"]["Level"] = 1
+	save[str(slotNumber)]["Exp"]["CurrentExp"] = 0
+	save[str(slotNumber)]["Exp"]["TotalExp"] = 0
+	save[str(slotNumber)]["Stats"] = {}
+	save[str(slotNumber)]["Stats"]["HP_MAX"] = defaultHP[charID]
+	save[str(slotNumber)]["Stats"]["HP"] = defaultHP[charID]
+	save[str(slotNumber)]["Stats"]["STR"] = defaultStats[charID][0]
+	save[str(slotNumber)]["Stats"]["AGL"] = defaultStats[charID][1]
+	save[str(slotNumber)]["Stats"]["INT"] = defaultStats[charID][2]
+	save[str(slotNumber)]["Stats"]["VIT"] = defaultStats[charID][3]
+	save[str(slotNumber)]["Stats"]["LUCK"] = defaultStats[charID][4]
+	save[str(slotNumber)]["Stats"]["ACC"] = defaultStats[charID][5]
+	save[str(slotNumber)]["Stats"]["MDEF"] = defaultStats[charID][6]
+	save[str(slotNumber)]["Magic"] = {}
+	save[str(slotNumber)]["Magic"]["Charges"] = defaultCharges[int(charID/4)]
+	save[str(slotNumber)]["Magic"]["Spells"] = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
+	save[str(slotNumber)]["Equipment"] = {}
+	save[str(slotNumber)]["Equipment"]["Weapons"] = [0, 0, 0, 0]
+	save[str(slotNumber)]["Equipment"]["Armor"] = [43, 44, 56, 71]
+	save[str(slotNumber)]["Equipment"]["EquippedWeapons"] = [false, false, false, false]
+	save[str(slotNumber)]["Equipment"]["EquippedArmor"] = [false, false, false, false]
+
+func newSave():
 	for i in range(4):
-		if i == 0:
-			save[str(i)]["Name"] = $NewGameMenu/CharName1.text
-		elif i == 1:
-			save[str(i)]["Name"] = $NewGameMenu/CharName2.text
-		elif i == 2:
-			save[str(i)]["Name"] = $NewGameMenu/CharName3.text
-		elif i == 3:
-			save[str(i)]["Name"] = $NewGameMenu/CharName4.text
-			
-		if GlobalVariables.global_allies[i] == 0:
-			#WARRIOR
-			save[str(i)]["Id"] = 0
-			save[str(i)]["Stats"]["HP_MAX"] = 35
-			save[str(i)]["Stats"]["HP"] = 35
-			save[str(i)]["Stats"]["STR"] = 80
-			save[str(i)]["Stats"]["AGL"] = 5
-			save[str(i)]["Stats"]["INT"] = 1
-			save[str(i)]["Stats"]["VIT"] = 10
-			save[str(i)]["Stats"]["LUCK"] = 5
-			save[str(i)]["Stats"]["MDEF"] = 15
-			save[str(i)]["Stats"]["ACC"] = 64
-			save[str(i)]["WeaponInventory"][0] = 1
-			save[str(i)]["ArmorInventory"][1] = 2
-		elif GlobalVariables.global_allies[i] == 1:
-			#THIEF
-			save[str(i)]["Id"] = 1
-			save[str(i)]["Stats"]["HP_MAX"] = 30
-			save[str(i)]["Stats"]["HP"] = 30
-			save[str(i)]["Stats"]["STR"] = 5
-			save[str(i)]["Stats"]["AGL"] = 10
-			save[str(i)]["Stats"]["INT"] = 5
-			save[str(i)]["Stats"]["VIT"] = 5
-			save[str(i)]["Stats"]["LUCK"] = 15
-			save[str(i)]["Stats"]["MDEF"] = 15
-			save[str(i)]["Stats"]["ACC"] = 10
-		elif GlobalVariables.global_allies[i] == 2:
-			#BBELT
-			save[str(i)]["Id"] = 2
-			save[str(i)]["Stats"]["HP_MAX"] = 33
-			save[str(i)]["Stats"]["HP"] = 33
-			save[str(i)]["Stats"]["STR"] = 5
-			save[str(i)]["Stats"]["AGL"] = 5
-			save[str(i)]["Stats"]["INT"] = 5
-			save[str(i)]["Stats"]["VIT"] = 20
-			save[str(i)]["Stats"]["LUCK"] = 5
-			save[str(i)]["Stats"]["MDEF"] = 10
-			save[str(i)]["Stats"]["ACC"] = 5
-		elif GlobalVariables.global_allies[i] == 3:
-			#RMAGE
-			save[str(i)]["Id"] = 3
-			save[str(i)]["Stats"]["HP_MAX"] = 1
-			save[str(i)]["Stats"]["HP"] = 1
-			save[str(i)]["Stats"]["STR"] = 10
-			save[str(i)]["Stats"]["AGL"] = 10
-			save[str(i)]["Stats"]["INT"] = 10
-			save[str(i)]["Stats"]["VIT"] = 5
-			save[str(i)]["Stats"]["LUCK"] = 5
-			save[str(i)]["Stats"]["MDEF"] = 20
-			save[str(i)]["Stats"]["ACC"] = 7
-			#CHARGES
-			save[str(i)]["Charges"]["CANUSE"] = true
-			save[str(i)]["Charges"]["LV1"]["MAX"] = 2
-			save[str(i)]["Charges"]["LV1"]["CURRENT"] = 2
-		elif GlobalVariables.global_allies[i] == 4:
-			#WMAGE
-			save[str(i)]["Id"] = 4
-			save[str(i)]["Stats"]["HP_MAX"] = 28
-			save[str(i)]["Stats"]["HP"] = 28
-			save[str(i)]["Stats"]["STR"] = 5
-			save[str(i)]["Stats"]["AGL"] = 5
-			save[str(i)]["Stats"]["INT"] = 15
-			save[str(i)]["Stats"]["VIT"] = 10
-			save[str(i)]["Stats"]["LUCK"] = 5
-			save[str(i)]["Stats"]["MDEF"] = 20
-			save[str(i)]["Stats"]["ACC"] = 5
-			save[str(i)]["MagicInventory"][0][1] = 1
-			save[str(i)]["MagicInventory"][0][0] = 3
-			save[str(i)]["MagicInventory"][0][2] = 5
-			save[str(i)]["MagicInventory"][1][0] = 2
-			#CHARGES
-			save[str(i)]["Charges"]["CANUSE"] = true
-			save[str(i)]["Charges"]["LV1"]["MAX"] = 2
-			save[str(i)]["Charges"]["LV1"]["CURRENT"] = 2
-		elif GlobalVariables.global_allies[i] == 5:
-			#BMAGE
-			save[str(i)]["Id"] = 5
-			save[str(i)]["Stats"]["HP_MAX"] = 25
-			save[str(i)]["Stats"]["HP"] = 25
-			save[str(i)]["Stats"]["STR"] = 1
-			save[str(i)]["Stats"]["AGL"] = 10
-			save[str(i)]["Stats"]["INT"] = 20
-			save[str(i)]["Stats"]["VIT"] = 1
-			save[str(i)]["Stats"]["LUCK"] = 10
-			save[str(i)]["Stats"]["MDEF"] = 20
-			save[str(i)]["Stats"]["ACC"] = 5
-			#CHARGES
-			save[str(i)]["Charges"]["CANUSE"] = true
-			save[str(i)]["Charges"]["LV1"]["MAX"] = 2
-			save[str(i)]["Charges"]["LV1"]["CURRENT"] = 2
+		save[str(i)] = {}
+		saveChar(allies[i], i)
+	save["Inventory"] = [0, 1, 2, 3, 4, 5]
+	save["Gold"] = 400
+	print(str(save))
 	var save_file = FileAccess.open("res://savegame.save", FileAccess.WRITE)
 	save_file.store_string(str(save))
-	print(str(save))
 	save_file.close()
 	loadSave()
-	
+
 func loadSave():
 	var loaded_save_file = FileAccess.open("res://savegame.save", FileAccess.READ)
 	var content = loaded_save_file.get_as_text()
-	save = JSON.parse_string(content)
-	print(save)
-	print(save["Inventory"])
-	GlobalVariables.inventory = save["Inventory"]
+	var save = JSON.parse_string(content)
+	GlobalVariables.global_item_inventory = save["Inventory"]
+	GlobalVariables.gold = int(save["Gold"])
 	for i in range(4):
-		GlobalVariables.global_levels[i] = int(save[str(i)]["Level"])
-		GlobalVariables.global_equipment_inventory[i][0] = save[str(i)]["WeaponInventory"]
-		GlobalVariables.global_equipment_inventory[i][1] = save[str(i)]["ArmorInventory"]
-		print(str(save[str(i)]["Id"]))
-		GlobalVariables.global_allies[i] = save[str(i)]["Id"]
-		var stats = save[str(i)]["Stats"]
-		GlobalVariables.global_names[i] = save[str(i)]["Name"]
-		GlobalVariables.global_hp[i] = [stats["HP_MAX"], stats["HP"]]
-		GlobalVariables.global_stats[i] = [stats["STR"], stats["AGL"], stats["INT"], stats["VIT"], stats["LUCK"], stats["ACC"], stats["MDEF"]]
-		# Loading spells into game memory
-		if save[str(i)]["Charges"]["CANUSE"] == true:
-			GlobalVariables.global_spells[i] = save[str(i)]["MagicInventory"]
-			var charges = save[str(i)]["Charges"]
-			GlobalVariables.global_charges[i] = [
-				[charges["LV1"]["MAX"], charges["LV1"]["CURRENT"]],
-				[charges["LV2"]["MAX"], charges["LV2"]["CURRENT"]],
-				[charges["LV3"]["MAX"], charges["LV3"]["CURRENT"]],
-				[charges["LV4"]["MAX"], charges["LV4"]["CURRENT"]],
-				[charges["LV5"]["MAX"], charges["LV5"]["CURRENT"]],
-				[charges["LV6"]["MAX"], charges["LV6"]["CURRENT"]],
-				[charges["LV7"]["MAX"], charges["LV7"]["CURRENT"]],
-				[charges["LV8"]["MAX"], charges["LV8"]["CURRENT"]]
-				]
+		loadBaseInfo(i, save[str(i)])
+		loadExp(i, save[str(i)]["Exp"])
+		loadStats(i, save[str(i)]["Stats"])
+		loadMagic(i, save[str(i)]["Magic"])
+		loadEquipment(i, save[str(i)]["Equipment"])
 	$AudioStreamPlayer.stop()
 	get_tree().change_scene_to_file("res://Scenes/MainScenes/Map.tscn")
+
+func loadBaseInfo(charSlot, save):
+	GlobalVariables.global_names[charSlot] = save["Name"]
+	GlobalVariables.global_allies[charSlot] = int(save["Id"])
+	GlobalVariables.team_formation[charSlot] = int(save["Formation"])
+	GlobalVariables.global_status[charSlot] = save["Status"]
+
+func loadExp(charSlot, save):
+	GlobalVariables.global_levels[charSlot] = int(save["Level"])
+	GlobalVariables.global_exp[charSlot] = int(save["CurrentExp"])
+	GlobalVariables.total_exp[charSlot] = int(save["TotalExp"])
+
+func loadStats(charSlot, save):
+	GlobalVariables.global_hp[charSlot] = [int(save["HP"]), int(save["HP_MAX"])]
+	GlobalVariables.global_stats[charSlot] = [
+		int(save["STR"]), int(save["AGL"]), int(save["INT"]), int(save["VIT"]), 
+		int(save["LUCK"]), int(save["ACC"]), int(save["MDEF"])
+		]
+
+func loadMagic(charSlot, save):
+	GlobalVariables.global_charges[charSlot] = save["Charges"]
+	GlobalVariables.global_spells[charSlot] = save["Spells"]
+
+func loadEquipment(charSlot, save):
+	GlobalVariables.global_equipment_inventory[charSlot][0] = save["Weapons"]
+	GlobalVariables.global_equipment_inventory[charSlot][1] = save["Armor"]
+	GlobalVariables.global_is_equipped[charSlot][0] = save["EquippedWeapons"]
+	GlobalVariables.global_is_equipped[charSlot][1] = save["EquippedArmor"]
 
 func _on_loading_pressed() -> void:
 	loadSave()
 
-
 func _on_char_1_class_pressed() -> void:
-	if ally1 == 5:
-		ally1 = 0
-	else:
-		ally1 += 1
-	$NewGameMenu/CharTitle1.text = classNames[ally1]
-	$NewGameMenu/CharImg1.play(classImgs[ally1])
-	
+	allyCycle(0)
+
 func _on_char_2_class_pressed() -> void:
-	if ally2 == 5:
-		ally2 = 0
-	else:
-		ally2 += 1
-	$NewGameMenu/CharTitle2.text = classNames[ally2]
-	$NewGameMenu/CharImg2.play(classImgs[ally2])
+	allyCycle(1)
 
 func _on_char_3_class_pressed() -> void:
-	if ally3 == 5:
-		ally3 = 0
-	else:
-		ally3 += 1
-	$NewGameMenu/CharTitle3.text = classNames[ally3]
-	$NewGameMenu/CharImg3.play(classImgs[ally3])
+	allyCycle(2)
 
 func _on_char_4_class_pressed() -> void:
-	if ally4 == 5:
-		ally4 = 0
-	else:
-		ally4 += 1
-	$NewGameMenu/CharTitle4.text = classNames[ally4]
-	$NewGameMenu/CharImg4.play(classImgs[ally4])
+	allyCycle(3)
 
+func allyCycle(charID : int):
+	if allies[charID] == 5:
+		allies[charID] = 0
+	else:
+		allies[charID] += 1
+	get_node("NewGameMenu/CharTitle" + str(charID + 1)).text = classNames[allies[charID]]
+	get_node("NewGameMenu/CharImg" + str(charID + 1)).play(classImgs[allies[charID]])
 
 func _on_new_game_button_pressed() -> void:
 	$MainMenu.visible = false
