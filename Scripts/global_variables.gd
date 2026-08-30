@@ -12,6 +12,8 @@ var global_names = ["", "", "", ""]
 var global_stats = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0 ,0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
 var global_hp = [[0, 0], [0, 0], [0, 0], [0, 0]]
 
+var global_resistances = [[],[],[],[]]
+
 var global_status = ["", "", "", ""]
 var gold = 0
 

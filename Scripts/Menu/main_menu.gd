@@ -63,7 +63,7 @@ func saveChar(charID, slotNumber):
 	save[str(slotNumber)]["Stats"]["MDEF"] = defaultStats[charID][6]
 	save[str(slotNumber)]["Magic"] = {}
 	save[str(slotNumber)]["Magic"]["Charges"] = defaultCharges[int(charID/4)]
-	save[str(slotNumber)]["Magic"]["Spells"] = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
+	save[str(slotNumber)]["Magic"]["Spells"] = [[1, 2, 4], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
 	save[str(slotNumber)]["Equipment"] = {}
 	save[str(slotNumber)]["Equipment"]["Weapons"] = [0, 0, 0, 0]
 	save[str(slotNumber)]["Equipment"]["Armor"] = [43, 44, 56, 71]

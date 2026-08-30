@@ -79,22 +79,35 @@ func _on_item_select_pressed(equipID : int, charID : int):
 		"SwapReady":
 			chooseSecondSwap(equipID, charID)
 		"Throwing":
-			throwItem(equipID, charID)
+			throwItem(equipID, charID)	
 
 func equipItem(equipID : int, charID : int):
 	var itemID = GlobalVariables.global_equipment_inventory[charID][isArmor][equipID]
 	var isEquipped = GlobalVariables.global_is_equipped[charID][isArmor][equipID]
 	if isEquipped:
 		GlobalVariables.global_is_equipped[charID][isArmor][equipID] = false
+		removeResistance(itemID, charID)
 	else:
 		checkEquipped(equipID, charID)
 	get_node("Char"+str(charID)).updateInfo(isArmor)
+	print(GlobalVariables.global_resistances)
+
+func removeResistance(itemID, charID):
+	if itemID >= 42 and $Background.items[itemID][-3][0] != "None":
+		for i in range(len($Background.items[itemID][-3])):
+			GlobalVariables.global_resistances[charID].erase($Background.items[itemID][-3][i])
+
+func addResistance(itemID, charID):
+	if itemID >= 42 and $Background.items[itemID][-3][0] != "None":
+		for i in range(len($Background.items[itemID][-3])):
+			GlobalVariables.global_resistances[charID].append($Background.items[itemID][-3][i])
 
 func checkEquipped(equipID: int, charID : int):
+	var itemID = GlobalVariables.global_equipment_inventory[charID][isArmor][equipID]
 	var itemInventory = GlobalVariables.global_equipment_inventory[charID][isArmor]
 	var equipInventory = GlobalVariables.global_is_equipped[charID][isArmor]
 	var switched = false
-
+	
 	for i in range(4):
 		var equipment = itemInventory[i]
 		var isEquipped = equipInventory[i]
@@ -102,12 +115,14 @@ func checkEquipped(equipID: int, charID : int):
 			if (isArmor == 0) or (isSameArmorType(equipment, itemInventory[equipID])):
 				GlobalVariables.global_is_equipped[charID][isArmor][equipID] = true
 				GlobalVariables.global_is_equipped[charID][isArmor][i] = false
-				print("Found same type")
+				removeResistance(equipment, charID)
+				addResistance(itemID, charID)
 				switched = true
 				break
 	
 	if switched == false:
 		GlobalVariables.global_is_equipped[charID][isArmor][equipID] = true
+		addResistance(itemID, charID)
 
 func isSameArmorType(currentEquipment, chosenEquipment):
 	var currentEquipmentType = getArmorType(currentEquipment)
