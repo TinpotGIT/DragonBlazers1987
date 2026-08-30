@@ -583,14 +583,13 @@ func spellTarget(spell, spellID):
 func Spells(target, spellID):
 	var spells = $MagicMenu.Spells
 	var spell = spells[spellID]
+	var spellValue = 0
 	
 	match spell[5]:
 		0:
-			var spellHealing = randi_range(spell[1], spell[1]*2)
-			spellHeal(spellHealing, target)
+			spellHeal(spellValue, target)
 		1:	
-			var spellDamage = randi_range(spell[1], spell[1]*2)
-			spellDamage(spellDamage, target, spell)
+			spellDamage(spellValue, target, spell)
 		2:
 			var statusValue = spell[1][0]
 			spellStatChange(statusValue, target, spell)
@@ -620,13 +619,13 @@ func spellHeal(heal, target):
 func spellDamage(damage, target, spell):
 	if target >= 20:
 		if target == 30:
-			spellDamageAllEnemies(damage, spell)
+			spellDamageAllEnemies(spell)
 		elif target == 31:
-			spellDamageAllAllies(damage, spell)
+			spellDamageAllAllies(spell)
 		else:
-			spellDamageAlly(damage, target, spell)
+			spellDamageAlly(target, spell)
 	else:
-		spellDamageEnemy(damage, target, spell)
+		spellDamageEnemy(target, spell)
 
 func spellStatChange(statusValue, target, spell):
 	if target >= 20:
@@ -711,11 +710,12 @@ func spellHealAllAllies(heal):
 		if GlobalVariables.global_hp[teamFormation[i]] != 0:
 			spellHealAlly(heal, i)
 
-func spellDamageEnemy(damage, target, spell):
+func spellDamageEnemy(target, spell):
 	var targets = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 	var target_found = false
 	while target_found == false:
 		if enemies[target] != [] and enemies[target][1][0] > 0:
+			var damage = damageCalc(spell)
 			var weakCoef = enemyTargetElementCheck(spell, target)
 			enemies[target][1][0] -= damage * weakCoef
 			enemyInfo[target][0] += int(damage * weakCoef)
@@ -726,21 +726,29 @@ func spellDamageEnemy(damage, target, spell):
 		targets.erase(target)
 		target = targets.pick_random()
 
-func spellDamageAllEnemies(damage, spell):
+func damageCalc(spell):
+	var casterInt = GlobalVariables.global_stats[teamFormation[charSelectedID]][2]
+	var addedMin = spell[1] * (casterInt/100)
+	return randi_range((spell[1] + addedMin), spell[1]*2)
+
+func spellDamageAllEnemies(spell):
 	for i in range(13):
 		if enemies[i] != [] and enemies[i][1][0] > 0:
 			var weakCoef = enemyTargetElementCheck(i, spell)
+			var damage = damageCalc(spell)
+			print("Weak coef is : " + str(weakCoef) + " and damage is : " + str(damage))
 			enemies[i][1][0] -= damage * weakCoef
 			enemyInfo[i][0] += int(damage * weakCoef)
 			if enemies[i][1][0] <= 0:
 				enemies[i] = []
 				dead += 1
-
-func spellDamageAlly(damage, target, spell):
+ 
+func spellDamageAlly(target, spell):
 	var targets = [0, 1, 2, 3]
 	var target_found = false
 	while target_found == false:
 		if GlobalVariables.global_hp[teamFormation[target-20]][0] > 0:
+			var damage = damageCalc(spell)
 			var weakCoef = allyTargetElementCheck(spell, target)
 			GlobalVariables.global_hp[teamFormation[target-20]][0] -= damage * weakCoef
 			allyInfo[teamFormation[target-20]][0] += int(damage * weakCoef)
@@ -748,9 +756,10 @@ func spellDamageAlly(damage, target, spell):
 		targets.erase(target)
 		target = targets.pick_random()
 
-func spellDamageAllAllies(damage, spell):
+func spellDamageAllAllies(spell):
 	for i in range(4):
 		if GlobalVariables.global_hp[teamFormation[i]][0] > 0:
+			var damage = damageCalc(spell)
 			var weakCoef = allyTargetElementCheck(spell, i+20)
 			GlobalVariables.global_hp[teamFormation[i]][0] -= damage * weakCoef
 			allyInfo[teamFormation[i]][0] += int(damage * weakCoef)
@@ -780,7 +789,7 @@ func spellStatChangeAllAllies(statusValue, spell):
 		if GlobalVariables.global_hp[teamFormation[i]][0] > 0:
 			extraStats[teamFormation[i]][spell[1][1]] += statusValue
 
-func spellStatusEnemy(target, spell):
+func chanceToHit(target, spell):
 	var baseChance = 148
 	var weaknessList : Array = enemies[target][1][-5]
 	var resistanceList : Array = enemies[target][1][-4]
@@ -791,22 +800,16 @@ func spellStatusEnemy(target, spell):
 	var chance = baseChance + spell[2] - enemies[target][1][7]
 	var hitNumber = randi_range(0, 200)
 	if hitNumber <= chance:
+		return true
+
+func spellStatusEnemy(target, spell):
+	if chanceToHit(target, spell):
 		enemies[target][2] = spell[1]
 
 func spellStatusAllEnemies(spell):
 	for i in range(len(enemies)):
-		if enemies[i] != [] and enemies[i][1][0] > 0:
-			var baseChance = 148
-			var weaknessList : Array = enemies[i][1][-5]
-			var resistanceList : Array = enemies[i][1][-4]
-			if resistanceList.find(spell[3]):
-				baseChance = 0
-			if weaknessList.find(spell[3]):
-				baseChance += 40
-			var chance = baseChance + spell[2] - enemies[i][1][7]
-			var hitNumber = randi_range(0, 200)
-			if hitNumber <= chance:
-				enemies[i][2] = spell[1]
+		if chanceToHit(i, spell):
+			enemies[i][2] = spell[1]
 
 func spellStatusAlly(target, spell):
 	var baseChance = 148
@@ -831,12 +834,16 @@ func spellStatusAllAllies(spell):
 				GlobalVariables.global_status[teamFormation[i]] = spell[1]
 
 func enemyTargetElementCheck(target, spell):
+	print(spell)
 	var weaknessList : Array = enemies[target][1][-5]
+	print(weaknessList)
 	var resistanceList : Array = enemies[target][1][-4]
-	if resistanceList.find(spell[3]):
-		return 0.5
-	if weaknessList.find(spell[3]):
-		return 1.5
+	for i in range(len(spell[3])):
+		if spell[3][i] != "None":
+			if resistanceList.has(spell[3][i]):
+				return 0.5
+			if weaknessList.has(spell[3][i]):
+				return 1.5
 	return 1
 
 func allyTargetElementCheck(target, spell):
