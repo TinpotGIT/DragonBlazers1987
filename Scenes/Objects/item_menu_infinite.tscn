@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://2lybvm2i55d4"]
+
+[ext_resource type="Script" uid="uid://cp8204njxuvu0" path="res://Scripts/Map/ItemMenu/item_menu.gd" id="1_sqpru"]
+[ext_resource type="Texture2D" uid="uid://bsysmssahthp7" path="res://Sprites/background_objets_magies.png" id="2_d5n0h"]
+[ext_resource type="Script" uid="uid://dylrknn7rl7ds" path="res://Scripts/combat/ItemMenu/items.gd" id="3_8xycs"]
+[ext_resource type="FontFile" uid="uid://bq1l2ssc6lvqg" path="res://ThemesFonts/Final_Fantasy_I_-_NES.ttf" id="4_bm8v8"]
+[ext_resource type="Script" uid="uid://2yhxshgui2a3" path="res://Scripts/Map/ItemMenu/button_slot.gd" id="5_7l8cl"]
+[ext_resource type="FontFile" uid="uid://dcl87yhexg5o3" path="res://ThemesFonts/coneria-pixel.otf" id="5_8xycs"]
+[ext_resource type="FontFile" uid="uid://bm3kdjamsjwew" path="res://ThemesFonts/Final-Fantasy.ttf" id="6_bw1lp"]
+[ext_resource type="Texture2D" uid="uid://ct3xhffdfmm2n" path="res://Sprites/HandCursor.png" id="7_ifwkw"]
+[ext_resource type="Texture2D" uid="uid://bov3c7ok4indw" path="res://Sprites/Icons/armor.png" id="9_bm8v8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suif2"]
+
+[node name="ItemMenu" type="Control" unique_id=1386616496]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 224.0
+script = ExtResource("1_sqpru")
+
+[node name="BackgroundObjetsMagies" type="Sprite2D" parent="." unique_id=317665297]
+texture_filter = 1
+position = Vector2(128, 112)
+texture = ExtResource("2_d5n0h")
+script = ExtResource("3_8xycs")
+
+[node name="MenuName" type="RichTextLabel" parent="." unique_id=1279722772]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01999998
+anchor_top = -0.021928582
+anchor_right = 0.27706254
+anchor_bottom = 0.08921426
+offset_left = 0.11999512
+offset_top = -0.08799744
+offset_right = 0.07199097
+offset_bottom = 0.01600647
+theme_override_fonts/normal_font = ExtResource("4_bm8v8")
+theme_override_font_sizes/normal_font_size = 25
+text = "OBJET"
+horizontal_alignment = 1
+
+[node name="Item0" type="Control" parent="." unique_id=102120279]
+layout_mode = 1
+anchor_left = 0.051000003
+anchor_top = 0.125
+anchor_right = 0.48000002
+anchor_bottom = 0.223
+offset_left = -2.0560007
+offset_right = -1.8800049
+offset_bottom = 0.048000336
+
+[node name="ItemButton" type="Button" parent="Item0" unique_id=1719176181]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10045455
+anchor_right = 1.0729091
+anchor_bottom = 1.0
+offset_left = -0.05000019
+offset_right = -0.020004272
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_8xycs")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+text = "AAAAAAAAAAAA"
+flat = true
+script = ExtResource("5_7l8cl")
+id = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Item0" unique_id=1561687592]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054545455
+anchor_top = 0.27272728
+anchor_right = 0.13636364
+anchor_bottom = 0.6818182
+texture = ExtResource("9_bm8v8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Item1" type="Control" parent="." unique_id=2057128311]
+anchors_preset = 0
+offset_left = 135.0
+offset_top = 28.0
+offset_right = 245.0
+offset_bottom = 50.0
+
+[node name="ItemButton" type="Button" parent="Item1" unique_id=233203921]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.109545454
+anchor_right = 1.082
+anchor_bottom = 1.0
+offset_left = -0.05000019
+offset_right = -0.020004272
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_8xycs")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+text = "AAAAAAAAAAAA"
+flat = true
+script = ExtResource("5_7l8cl")
+id = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Item1" unique_id=935842492]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06363636
+anchor_top = 0.2727272
+anchor_right = 0.14545454
+anchor_bottom = 0.6818182
+texture = ExtResource("9_bm8v8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Description" type="RichTextLabel" parent="." unique_id=1408887952]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.526875
+anchor_top = 0.08967856
+anchor_right = 0.99581254
+anchor_bottom = 0.2008214
+offset_left = -131.88
+offset_top = 152.912
+offset_right = -3.928009
+offset_bottom = 167.016
+theme_override_fonts/normal_font = ExtResource("6_bw1lp")
+theme_override_font_sizes/normal_font_size = 10
+fit_content = true
+horizontal_alignment = 1
+
+[node name="HandCursor" type="Sprite2D" parent="." unique_id=964966143]
+texture_filter = 1
+position = Vector2(-22, 154)
+texture = ExtResource("7_ifwkw")
