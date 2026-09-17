@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://t12mmojd1nbw"]
+
+[ext_resource type="FontFile" uid="uid://dcl87yhexg5o3" path="res://ThemesFonts/coneria-pixel.otf" id="1_y3t2x"]
+[ext_resource type="Texture2D" uid="uid://bov3c7ok4indw" path="res://Sprites/Icons/armor.png" id="3_05ipm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suif2"]
+
+[node name="Item0" type="Control" unique_id=1021412110]
+layout_mode = 3
+anchor_left = 0.051000003
+anchor_top = 0.125
+anchor_right = 0.48000002
+anchor_bottom = 0.223
+offset_left = -2.0560007
+offset_right = -1.8800049
+offset_bottom = 0.048000336
+
+[node name="ItemButton" type="Button" parent="." unique_id=24791340 groups=["instanced_items"]]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.10045455
+anchor_right = 1.0729091
+anchor_bottom = 1.0
+offset_left = -0.05000019
+offset_right = -0.020004272
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_y3t2x")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_suif2")
+text = "AAAAAAAAAAAA"
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1954020192]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054545455
+anchor_top = 0.27272728
+anchor_right = 0.13636364
+anchor_bottom = 0.6818182
+texture = ExtResource("3_05ipm")
+metadata/_edit_use_anchors_ = true
