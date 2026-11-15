@@ -9,25 +9,20 @@ func _physics_process(delta: float) -> void:
 	if (get_parent().actionList == []):
 		if !sprite_node_pos_tween or !sprite_node_pos_tween.is_running():
 			if Input.is_action_pressed("ui_up"):
-				$up.force_raycast_update()
-				if !$up.is_colliding():
-					_move(Vector2.UP)
-					$AnimatedSprite2D.play("walk_up")
-					_random_encounter()
-			elif Input.is_action_pressed("ui_down") and !$down.is_colliding():
-				_move(Vector2.DOWN)
-				$AnimatedSprite2D.play("walk_down")
-				_random_encounter()
-			elif Input.is_action_pressed("ui_left") and !$left.is_colliding():
-				_move(Vector2.LEFT)
-				$AnimatedSprite2D.play("walk_left")
-				_random_encounter()
-			elif Input.is_action_pressed("ui_right") and !$right.is_colliding():
-				_move(Vector2.RIGHT)
-				$AnimatedSprite2D.play("walk_right")
-				_random_encounter()
+				_move_choice(Vector2.UP, "walk_up")
+			elif Input.is_action_pressed("ui_down"):
+				_move_choice(Vector2.DOWN, "walk_down")
+			elif Input.is_action_pressed("ui_left"):
+				_move_choice(Vector2.LEFT, "walk_left")
+			elif Input.is_action_pressed("ui_right"):
+				_move_choice(Vector2.RIGHT, "walk_right")
 			else:
 				$AnimatedSprite2D.stop()
+
+func _move_choice(vector, animation):
+	_move(vector)
+	$AnimatedSprite2D.play(animation)
+	_random_encounter()
 
 func _random_encounter():
 	var number = rng.randi_range(1, 500)
@@ -35,7 +30,8 @@ func _random_encounter():
 		get_tree().change_scene_to_file("res://Scenes/MainScenes/combat.tscn")
 		
 func _move(dir: Vector2):
-	print($left.get_collider())
+	if test_move(global_transform, dir * tile_size):
+		return
 	global_position += dir * tile_size
 	$AnimatedSprite2D.global_position -= dir * tile_size
 		
